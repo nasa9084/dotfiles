@@ -49,6 +49,8 @@
 (require 'cl)
 
 ;; use-package
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 (require 'use-package)
 
 ;; スタートアップ非表示
@@ -108,7 +110,7 @@
     ("" mode-line-mule-info mode-line-modified "-" mode-line-buffer-identification "%p / L%l:C%c (" mode-name mode-line-process minor-mode-alist ")")))
  '(package-selected-packages
    (quote
-    (markdown-mode magit mode-compile smart-compile codic auto-complete hiwin yatex yasnippet web-mode volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
+    (magit markdown-mode flycheck-pos-tip mode-compile smart-compile codic auto-complete hiwin yatex yasnippet web-mode volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
  '(tab-width 4))
 
 ;; yes or no -> y or n
