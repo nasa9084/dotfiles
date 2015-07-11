@@ -470,6 +470,8 @@
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode)
+  :init
+  (remove-hook 'before-save-hook 'delete-trailing-whitespace)
   :mode
   (("\\.markdown\\'" . markdown-mode)
    ("\\.md\\'" . markdown-mode)
