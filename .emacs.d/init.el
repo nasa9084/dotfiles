@@ -447,9 +447,12 @@
 ;; Helm.el
 (use-package helm
   :ensure t
+  :init
+  (global-set-key (kbd "C-c h") 'helm-mini)
   :config
-  (require 'helm-config))
-(helm-mode 1)
+  (require 'helm-config)
+  (helm-mode 1)
+  )
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ magit                                                         ;;;
