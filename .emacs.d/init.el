@@ -452,7 +452,49 @@
   :config
   (require 'helm-config)
   (helm-mode 1)
-  )
+  
+  (define-key global-map (kbd "M-x") 'helm-M-x)
+  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
+  (define-key global-map (kbd "C-x C-r") 'helm-recentf)
+  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+  (define-key global-map (kbd "C-c i")   'helm-imenu)
+  (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+
+  (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+  (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
+
+  (defadvice helm-ff-kill-or-find-buffer-fname (around execute-only-if-exist activate)
+    "Execute command only if CANDIDATE exists"
+    (when (file-exists-p candidate)
+      ad-do-it))
+  (defadvice helm-ff-transform-fname-for-completion (around my-transform activate)
+    "Transform the pattern to reflect my intention"
+    (let* ((pattern (ad-get-arg 0))
+           (input-pattern (file-name-nondirectory pattern))
+           (dirname (file-name-directory pattern)))
+      (setq input-pattern (replace-regexp-in-string "\\." "\\\\." input-pattern))
+      (setq ad-return-value
+            (concat dirname
+                    (if (string-match "^\\^" input-pattern)
+                        ;; '^' is a pattern for basename
+                        ;; and not required because the directory name is prepended
+                        (substring input-pattern 1)
+                      (concat ".*" input-pattern))))))
+  (defun helm-buffers-list-pattern-transformer (pattern)
+    (if (equal pattern "")
+        pattern
+      ;; Escape '.' to match '.' instead of an arbitrary character
+      (setq pattern (replace-regexp-in-string "\\." "\\\\." pattern))
+      (let ((first-char (substring pattern 0 1)))
+        (cond ((equal first-char "*")
+               (concat " " pattern))
+              ((equal first-char "=")
+               (concat "*" (substring pattern 1)))
+              (t
+               pattern)))))
+
+  (add-to-list 'helm-source-buffers-list
+               '(pattern-transformer helm-buffers-list-pattern-transformer)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ magit                                                         ;;;
