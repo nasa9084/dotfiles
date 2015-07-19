@@ -575,10 +575,13 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; プログラム中の複数行文字列・コメントをまとめて編集
-(global-set-key (kbd "C-c p") 'poporg-dwim)
-(add-hook 'poporg-mode-hook
-          '(lambda()
-             (define-key poporg-mode-map (kbd "C-c C-c") 'poporg-dwim)))
+(use-package poporg
+  :ensure t
+  :config
+  (global-set-key (kbd "C-c p") 'poporg-dwim)
+  (add-hook 'poporg-mode-hook
+            '(lambda()
+               (define-key poporg-mode-map (kbd "C-c C-c") 'poporg-dwim))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ sdic                                                          ;;;
