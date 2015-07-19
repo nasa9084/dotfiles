@@ -111,7 +111,7 @@
     ("" mode-line-mule-info mode-line-modified "-" mode-line-buffer-identification "%p / L%l:C%c (" mode-name mode-line-process minor-mode-alist ")")))
  '(package-selected-packages
    (quote
-    (helm-config helm mode-compile smart-compile codic auto-complete hiwin yatex yasnippet web-mode volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
+    (geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic auto-complete hiwin yatex yasnippet web-mode volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
  '(tab-width 4))
 
 ;; yes or no -> y or n
@@ -424,6 +424,21 @@
     '(custom-set-variables
       '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))))
 (flycheck-mode)
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ geeknote.el                                                   ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; geeknote(evernote CLI client) with emacs
+(use-package geeknote
+  :ensure t
+  :config
+  (global-set-key (kbd "C-c g c") 'geeknote-create)
+  (global-set-key (kbd "C-c g e") 'geeknote-edit)
+  (global-set-key (kbd "C-c g f") 'geeknote-find)
+  (global-set-key (kbd "C-c g s") 'geeknote-show)
+  (global-set-key (kbd "C-c g r") 'geeknote-remove)
+  (global-set-key (kbd "C-c g m") 'geeknote-move))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ haskell-mode                                                  ;;;
