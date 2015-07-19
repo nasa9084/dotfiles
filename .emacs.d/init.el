@@ -73,7 +73,8 @@
   :config
   (set-face-attribute 'linum nil
                       :height 0.9)
-  (setq linum-format "%4d"))
+  (setq linum-format "%4d")
+  (global-linum-mode t))
 
 ;; フォント設定
 (add-to-list 'default-frame-alist '(font . "ricty-13.5"))
