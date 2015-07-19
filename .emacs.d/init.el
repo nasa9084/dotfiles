@@ -257,6 +257,7 @@
 
     (switch-to-buffer-other-window other-buf)
     (other-window -1)))
+(global-set-key (kbd "C-x t") 'window-toggle-division)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - cursor                                               ;;;
