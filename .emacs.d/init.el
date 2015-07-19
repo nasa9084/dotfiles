@@ -503,22 +503,7 @@
                         ;; '^' is a pattern for basename
                         ;; and not required because the directory name is prepended
                         (substring input-pattern 1)
-                      (concat ".*" input-pattern))))))
-  (defun helm-buffers-list-pattern-transformer (pattern)
-    (if (equal pattern "")
-        pattern
-      ;; Escape '.' to match '.' instead of an arbitrary character
-      (setq pattern (replace-regexp-in-string "\\." "\\\\." pattern))
-      (let ((first-char (substring pattern 0 1)))
-        (cond ((equal first-char "*")
-               (concat " " pattern))
-              ((equal first-char "=")
-               (concat "*" (substring pattern 1)))
-              (t
-               pattern)))))
-
-  (add-to-list 'helm-source-buffers-list
-               '(pattern-transformer helm-buffers-list-pattern-transformer)))
+                      (concat ".*" input-pattern)))))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ magit                                                         ;;;
