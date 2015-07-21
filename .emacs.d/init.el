@@ -597,15 +597,6 @@
                (define-key poporg-mode-map (kbd "C-c C-c") 'poporg-dwim))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ sdic                                                          ;;;
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; 英和・和英辞書(外部パッケージ)
-(use-package sdic
-  :config
-  (global-set-key (kbd "C-c w") 'sdic))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ smart-newline                                                 ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -643,12 +634,6 @@
 (use-package twittering-mode
   :ensure t
   :commands (twittering-mode twit)
-  :init
-  ;; urlを開くブラウザをewwに変更
-  (add-hook 'twittering-mode-hook
-            (lambda()
-              (setq-local browse-url-browser-function 'eww-browse-url)))
-
   :config
   ;; マスターパスワードの使用->毎回PINを入力しなくてよくなる
   (setq twittering-use-master-password t)
@@ -672,7 +657,13 @@
 ")
 
   ;; 割り込みReply時に全員に返信
-  (setq twittering-edit-skeleton 'inherit-mentions))
+  (setq twittering-edit-skeleton 'inherit-mentions)
+  
+  ;; URLを開くときにブラウザを聞く
+  (defadvice browse-url (before select-browser activate)
+    (if (y-or-n-p "Open with eww? ")
+        (setq-local browse-url-browser-function 'eww-browse-url)
+      (setq-local browse-url-browser-function 'browse-url-default-browser))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ undohist                                                      ;;;
