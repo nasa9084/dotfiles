@@ -658,9 +658,9 @@
 // via %f%L %RT{retweeted by %S(%s)}
 ")
 
-  ;; 割り込みReply時に全員に返信
-  (setq twittering-edit-skeleton 'inherit-mentions)
-  
+  ;; 割り込みReply時に全員に返信、ハッシュタグ自動挿入
+  (setq twittering-edit-skeleton 'inherit-any)
+
   ;; URLを開くときにブラウザを聞く
   (defadvice browse-url (before select-browser activate)
     (if (y-or-n-p "Open with eww? ")
