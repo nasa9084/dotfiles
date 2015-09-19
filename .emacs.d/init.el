@@ -145,7 +145,7 @@
        (setq shell-file-name '"/usr/bin/zsh"))
       ((string= (system-name) "NASA-THINK")
        (setq shell-file-name '"C:\\msys32\\usr\\bin\\zsh.exe"))
-      ((string= (system-name) "nasa-ThinkPad-X220.Ubuntu")
+      ((string= (system-name) "nasa-thinkpad-x220")
        (setq shell-file-name '"/usr/bin/zsh"))
       (t
        (setq shell-file-name '"~/.local/bin/zsh")))
