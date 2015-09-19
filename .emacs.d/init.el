@@ -757,6 +757,8 @@
   (setq tex-command "platex -interaction=nonstopmode")
   (cond ((string= (system-name) "nasa-ubuntu")
          (setq dvi2-command "xdvi"))
+        ((string= (system-name) "nasa-thinkpad-x220")
+         (setq div2-command "xdvi"))
         (t (setq dvi2-command "pxdvi")))
   (setq bibtex-command "pbibtex")
   (setq dviprint-command-format "dvipdfmx"))
