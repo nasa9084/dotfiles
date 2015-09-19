@@ -632,6 +632,11 @@
   :ensure t
   :commands (twittering-mode twit)
   :config
+  ;; 公式retweetキーバインド
+  (add-hook 'twittering-mode-hook
+            '(lambda ()
+               (define-key twittering-mode-map (kbd "C-u C-c RET") 'twittering-native-retweet)))
+
   ;; マスターパスワードの使用->毎回PINを入力しなくてよくなる
   (setq twittering-use-master-password t)
 
