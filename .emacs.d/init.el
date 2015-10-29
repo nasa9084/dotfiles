@@ -141,7 +141,7 @@
 
 ;; shellをbashからzshに変更
 (setq hostname (system-name))
-(cond ((string= (system-name) "nasa-ubuntu")
+(cond ((or (string= (system-name) "nasa-ubuntu") (string= (system-name) "nasa-Desktop"))
        (setq shell-file-name '"/usr/bin/zsh"))
       ((string= (system-name) "NASA-THINK")
        (setq shell-file-name '"C:\\msys32\\usr\\bin\\zsh.exe"))
