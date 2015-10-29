@@ -20,14 +20,8 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 
-;; elispフォルダをロード
-(add-to-load-path "elisp")
-
 ;; elpaフォルダをロード
 (add-to-load-path "elpa")
-
-;; site-lispフォルダをロード
-(add-to-load-path "site-lisp")
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ package manager                                               ;;;
@@ -672,9 +666,9 @@
  :create twit)
 
 (cond ((or (string= (system-name) "nasa-ubuntu") (string= (system-name) "nasa-Desktop"))
-       (setq initdir '"~/.emacs.d/init"))
+       (setq initdir '"~/.emacs.d"))
       ((string= (system-name) "nasa-thinkpad-x220")
-       (setq initdir '"/mnt/A2C043EDC043C66F/Users/owner/Dropbox/.emacs.d/init")))
+       (setq initdir '"/mnt/A2C043EDC043C66F/Users/owner/Dropbox/.emacs.d/")))
 
 ;; [emacsstate]prefix eでEmacs設定ファイルを編集する
 (state-define-state
