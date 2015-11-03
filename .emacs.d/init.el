@@ -652,6 +652,9 @@
 ;; stateのプレフィクスキーをC-c C-sにする(読み込み前に指定)
 (setq state-keymap-prefix (kbd "C-c C-s"))
 
+(use-package state
+  :ensure t)
+
 ;; マイナーモードを有効にする
 (state-global-mode 1)
 
