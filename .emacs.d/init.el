@@ -698,8 +698,8 @@
 ;;; @ state                                                            ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; stateのプレフィクスキーをC-c C-sにする(読み込み前に指定)
-(setq state-keymap-prefix (kbd "C-c C-s"))
+;; stateのプレフィクスキーをC-c C-x C-sにする(読み込み前に指定)
+(setq state-keymap-prefix (kbd "C-c C-x C-s"))
 
 (use-package state
   :ensure t
@@ -726,7 +726,7 @@
   ;; [emacsstate]prefix eでEmacs設定ファイルを編集する
   (state-define-state
       emacs
-    :key "i"
+    :key "e"
     ;; ~/.emacs.d/initから始まるファイル (~/.emacs.d/init*) を開いているときemacs stateとみなす
     ;; :inが文字列で:existが指定されていないとき:inで指定されたファイルのうち
     ;; 最も最近指定されたバッファに切替える
