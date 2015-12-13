@@ -100,13 +100,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-idle-delay nil)
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
  '(mode-line-format
    (quote
     ("" mode-line-mule-info mode-line-modified "-" mode-line-buffer-identification "%p / L%l:C%c (" mode-name mode-line-process minor-mode-alist ")")))
  '(package-selected-packages
    (quote
-    (state htmlize yasnippet ox-reveal github-browse-file visual-regexp geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic auto-complete hiwin yatex web-mode volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
+    (drill-instructor-AZIK-force company state htmlize yasnippet ox-reveal github-browse-file visual-regexp geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic hiwin yatex web-mode volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
  '(tab-width 4))
 
 ;; yes or no -> y or n
@@ -376,6 +377,51 @@
   :ensure t
   :config
   (bury-successful-compilation 1))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ company                                                       ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+(use-package company
+  :ensure t
+  :init
+  (global-company-mode 1)
+  (global-set-key (kbd "C-M-i") 'company-complete)
+
+  ;; C-n, C-pで補完候補を次/前の候補を選択
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (define-key company-search-map (kbd "C-n") 'company-select-next)
+  (define-key company-search-map (kbd "C-p") 'company-select-previous)
+
+  ;; C-sで絞り込む
+  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
+
+  ;; TABで候補を設定
+  (define-key company-active-map (kbd "C-i") 'company-complete-selection)
+
+  ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
+  (define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
+
+  :config
+  (custom-set-variables
+   '(company-idle-delay nil))
+  (company-quickhelp-mode 1)
+  (set-face-attribute 'company-tooltip nil
+                      :foreground "black" :background "lightgrey")
+  (set-face-attribute 'company-tooltip-common nil
+                      :foreground "black" :background "lightgrey")
+  (set-face-attribute 'company-tooltip-common-selection nil
+                      :foreground "white" :background "steelblue")
+  (set-face-attribute 'company-tooltip-selection nil
+                      :foreground "black" :background "steelblue")
+  (set-face-attribute 'company-preview-common nil
+                      :background nil :foreground "lightgrey" :underline t)
+  (set-face-attribute 'company-scrollbar-fg nil
+                      :background "grey")
+  (set-face-attribute 'company-scrollbar-bg nil
+                      :background "gray40")
+  )
+
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ codic                                                         ;;;
