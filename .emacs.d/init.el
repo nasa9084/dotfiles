@@ -699,35 +699,37 @@
 (setq state-keymap-prefix (kbd "C-c C-s"))
 
 (use-package state
-  :ensure t)
+  :ensure t
 
-;; マイナーモードを有効にする
-(state-global-mode 1)
+  :init
+  ;; マイナーモードを有効にする
+  (state-global-mode 1)
 
-;; [twit state]prefix tでtwittering-modeに切替える
-(state-define-state
- twit
- :key "t"
- ;; この条件を満たすときにtwit stateとみなす
- :in (string= major-mode "twittering-mode")
- ;; (twit) でtwittering-modeにする
- :create twit)
+  :config
+  ;; [twit state]prefix tでtwittering-modeに切替える
+  (state-define-state
+      twit
+    :key "t"
+    ;; この条件を満たすときにtwit stateとみなす
+    :in (string= major-mode "twittering-mode")
+    ;; (twit) でtwittering-modeにする
+    :create twit)
 
-(cond ((or (string= (system-name) "nasa-ubuntu") (string= (system-name) "nasa-Desktop"))
-       (setq initdir '"~/.emacs.d"))
-      ((string= (system-name) "nasa-thinkpad-x220")
-       (setq initdir '"/mnt/A2C043EDC043C66F/Users/owner/Dropbox/.emacs.d/")))
+  (cond ((or (string= (system-name) "nasa-ubuntu") (string= (system-name) "nasa-Desktop"))
+         (setq initdir '"~/.emacs.d/"))
+        ((string= (system-name) "nasa-thinkpad-x220")
+         (setq initdir '"/mnt/A2C043EDC043C66F/Users/owner/Dropbox/.emacs.d/")))
 
-;; [emacsstate]prefix eでEmacs設定ファイルを編集する
-(state-define-state
- emacs
- :key "e"
- ;; ~/.emacs.d/initから始まるファイル (~/.emacs.d/init*) を開いているときemacs stateとみなす
- ;; :inが文字列で:existが指定されていないとき:inで指定されたファイルのうち
- ;; 最も最近指定されたバッファに切替える
- :in initdir
- ;; どれも見付からないときは init.el を開く
- :create (find-file "~/.emacs.d/init.el"))
+  ;; [emacsstate]prefix eでEmacs設定ファイルを編集する
+  (state-define-state
+      emacs
+    :key "i"
+    ;; ~/.emacs.d/initから始まるファイル (~/.emacs.d/init*) を開いているときemacs stateとみなす
+    ;; :inが文字列で:existが指定されていないとき:inで指定されたファイルのうち
+    ;; 最も最近指定されたバッファに切替える
+    :in initdir
+    ;; どれも見付からないときは init.el を開く
+    :create (find-file "~/.emacs.d/init.el")))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ twittering-mode                                               ;;;
