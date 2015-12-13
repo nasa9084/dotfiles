@@ -157,6 +157,9 @@
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
 
+;; C-h で[BS]
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+
 ;; C-[Ret] M-Iでデクリメント
 (defun cua-decr-rectangle (DECRIMENT)
   "Decrement each line of CUA rectangle by prefix amount."
