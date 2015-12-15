@@ -348,19 +348,6 @@
   (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ auto-complete                                                 ;;;
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-(use-package auto-complete
-  :ensure t
-  :config
-  (require 'auto-complete-config)
-  (ac-config-default)
-  (define-key ac-complete-mode-map "\r" nil)
-  (push 'ac-source-filename ac-sources)
-  (setq ac-ignore-case 'smart))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ auto-install                                                  ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -580,9 +567,9 @@
   :ensure t
   :commands (markdown-mode)
   :mode
-  (("\\.markdown\\'" . markdown-mode)
-   ("\\.md\\'" . markdown-mode)
-   ("\\.text\\'" . markdown-mode)))
+  (("\\.markdown\\'" . gfm-mode)
+   ("\\.md\\'" . gfm-mode)
+   ("\\.text\\'" . gfm-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ mode-compile                                                  ;;;
