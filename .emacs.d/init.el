@@ -785,6 +785,7 @@
 ;; undoの拡張
 (use-package undo-tree
   :ensure t
+  :diminish undo-tree-mode "UndoT"
   :config
   (global-undo-tree-mode))
 
