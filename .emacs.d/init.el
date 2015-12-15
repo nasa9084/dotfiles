@@ -580,9 +580,9 @@
   :ensure t
   :commands (markdown-mode)
   :mode
-  (("\\.markdown\\'" . markdown-mode)
-   ("\\.md\\'" . markdown-mode)
-   ("\\.text\\'" . markdown-mode)))
+  (("\\.markdown\\'" . gfm-mode)
+   ("\\.md\\'" . gfm-mode)
+   ("\\.text\\'" . gfm-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ mode-compile                                                  ;;;
