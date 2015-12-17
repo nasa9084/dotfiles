@@ -107,7 +107,7 @@
     ("" mode-line-mule-info mode-line-modified "-" mode-line-buffer-identification "%p / L%l:C%c (" mode-name mode-line-process minor-mode-alist ")")))
  '(package-selected-packages
    (quote
-    (company-quickhelp org web-mode yasnippet company state htmlize ox-reveal github-browse-file visual-regexp geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic hiwin yatex volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
+    (cyphejor company-quickhelp org web-mode yasnippet company state htmlize ox-reveal github-browse-file visual-regexp geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic hiwin yatex volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
  '(tab-width 4))
 
 ;; yes or no -> y or n
@@ -422,6 +422,24 @@
 ;; プログラマ用命名辞書
 (use-package codic
   :ensure t)
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ cyphejor                                                      ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; モード名を変換
+(use-package cyphejor
+  :ensure t
+  :config
+  (setq cyphejor-rules
+        '(:upcase
+          ("emacs" "e")
+          ("lisp" "lisp")
+          ("interaction" "i" :prefix)
+          ("twittering" "tw")
+          ("mode" "" :postfix)))
+  (cyphejor-mode 1))
+(cyphejor--cypher "emacs-lisp-mode" cyphejor-rules)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ emmet-mode                                                    ;;;
