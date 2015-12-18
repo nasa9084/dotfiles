@@ -702,11 +702,11 @@
 (defstash kill-ring "kill-ring.el" nil (or stashed 'nil))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ state                                                            ;;;
+;;; @ state                                                         ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; stateのプレフィクスキーをC-c C-x C-sにする(読み込み前に指定)
-(setq state-keymap-prefix (kbd "C-c C-x C-s"))
+;; stateのプレフィクスキーをC-c C-cにする(読み込み前に指定)
+(setq state-keymap-prefix (kbd "C-c s"))
 
 (use-package state
   :ensure t
