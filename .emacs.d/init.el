@@ -721,7 +721,7 @@
       twit
     :key "t"
     ;; この条件を満たすときにtwit stateとみなす
-    :in (string= major-mode "twittering-mode")
+    :in (string= major-mode 'twittering-mode)
     ;; (twit) でtwittering-modeにする
     :create twit)
 
