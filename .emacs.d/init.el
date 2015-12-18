@@ -725,21 +725,13 @@
     ;; (twit) でtwittering-modeにする
     :create twit)
 
-  (cond ((or (string= (system-name) "nasa-ubuntu") (string= (system-name) "nasa-Desktop"))
-         (setq initdir '"~/.emacs.d/"))
-        ((string= (system-name) "nasa-thinkpad-x220")
-         (setq initdir '"/mnt/A2C043EDC043C66F/Users/owner/Dropbox/.emacs.d/")))
-
   ;; [emacsstate]prefix eでEmacs設定ファイルを編集する
   (state-define-state
-      emacs
+    emacs
     :key "e"
-    ;; ~/.emacs.d/initから始まるファイル (~/.emacs.d/init*) を開いているときemacs stateとみなす
-    ;; :inが文字列で:existが指定されていないとき:inで指定されたファイルのうち
-    ;; 最も最近指定されたバッファに切替える
-    :in initdir
+    :in "~/git/emacs/init.el"
     ;; どれも見付からないときは init.el を開く
-    :create (find-file "~/.emacs.d/init.el")))
+    :switch (find-file "~/git/emacs/init.el")))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ twittering-mode                                               ;;;
