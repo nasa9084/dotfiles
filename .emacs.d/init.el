@@ -4,6 +4,7 @@
 
 ;;; Commentary:
 ;; init.el is setting initialize file for emacs.
+;; this is used on the newest emacs w/GUI.
 ;; by nasa9084
 
 ;;; Code:
