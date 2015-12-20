@@ -438,9 +438,9 @@
           ("lisp" "lisp")
           ("interaction" "i" :prefix)
           ("twittering" "tw")
+          ("org" "org")
           ("mode" "" :postfix)))
   (cyphejor-mode 1))
-(cyphejor--cypher "emacs-lisp-mode" cyphejor-rules)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ emmet-mode                                                    ;;;
