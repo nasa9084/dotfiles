@@ -108,7 +108,7 @@
     ("" mode-line-mule-info mode-line-modified "-" mode-line-buffer-identification "%p / L%l:C%c (" mode-name mode-line-process minor-mode-alist ")")))
  '(package-selected-packages
    (quote
-    (cyphejor company-quickhelp org web-mode yasnippet company state htmlize ox-reveal github-browse-file visual-regexp geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic hiwin yatex volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
+    (which-key cyphejor company-quickhelp org web-mode yasnippet company state htmlize ox-reveal github-browse-file visual-regexp geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic hiwin yatex volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
  '(tab-width 4))
 
 ;; yes or no -> y or n
@@ -833,6 +833,17 @@
   :mode (("\\.html?\\'" . web-mode)
          ("\\.xhtml\\'" . web-mode)
          ("\\.shtml\\'" . web-mode)))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ which-key                                                     ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; prefix-keyのあとの操作を教えてくれる
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-setup-side-window-bottom)
+  (which-key-mode 1))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ yasnippet                                                     ;;;
