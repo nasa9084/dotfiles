@@ -103,5 +103,9 @@ bindkey "^[[Z" reverse-menu-complete
 # DELキーの修正
 bindkey "^[[3~" delete-char
 
+# anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init - zsh)"
+
 # added by Anaconda 2.3.0 installer
 export PATH="/home/nasa/anaconda/bin:$PATH"
