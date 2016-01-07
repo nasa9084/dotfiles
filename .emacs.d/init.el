@@ -717,6 +717,12 @@
   (state-global-mode 1)
 
   :config
+  ;; [scratch state]prefix sで*scratch*に切り替える
+  (state-define-state
+      scratch
+    :key "s"
+    :switch "*scratch*")
+
   ;; [twit state]prefix tでtwittering-modeに切替える
   (state-define-state
       twit
