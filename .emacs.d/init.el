@@ -772,7 +772,7 @@
   (setq twittering-status-format
         "%i %S (@%s) - %@:
 %T
-// via %f%L %RT{retweeted by %S(%s)}
+// via %f%L%RT{ retweeted by %S(%s)}
 ")
 
   ;; 割り込みReply時に全員に返信、ハッシュタグ自動挿入
