@@ -736,9 +736,9 @@
   (state-define-state
     emacs
     :key "e"
-    :in "~/git/emacs/init.el"
+    :in "~/git/emacsconfig/init.el"
     ;; どれも見付からないときは init.el を開く
-    :switch (find-file "~/git/emacs/init.el")))
+    :switch (find-file "~/git/emacsconfig/init.el")))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ twittering-mode                                               ;;;
@@ -838,7 +838,8 @@
   :ensure t
   :mode (("\\.html?\\'" . web-mode)
          ("\\.xhtml\\'" . web-mode)
-         ("\\.shtml\\'" . web-mode)))
+         ("\\.shtml\\'" . web-mode)
+         ("\\.tpl\\'" . web-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ which-key                                                     ;;;
