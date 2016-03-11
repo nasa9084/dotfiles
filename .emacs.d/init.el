@@ -35,7 +35,7 @@
              '("marmalade" . "https://marmalade-repo.org/packages/") t)
 
 (package-initialize)
-(package-refresh-contents)
+;(package-refresh-contents)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ general                                                       ;;;
