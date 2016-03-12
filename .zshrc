@@ -51,12 +51,6 @@ setopt share_history
 #ファイル名の展開でディレクトリにマッチした場合末尾に / を付加する
 setopt MARK_DIRS
 
-# 入力したコマンドが存在しない場合bash同様に提案
-function command_not_found_handler {
-	/usr/bin/python /usr/lib/command-not-found -- $1
-	return $?
-}
-
 # zsh簡易エディタ
 autoload zed
 
