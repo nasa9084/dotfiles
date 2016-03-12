@@ -81,7 +81,7 @@ alias pd="pushd"
 alias ppd="popd"
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias rezshrc="source ~/.zshrc"
-alias setdisp="xrandr --output HDMI-0 --gamma 1.1:1:1 --brightness 0.88"
+alias setdisp="xrandr --output HDMI-1 --gamma 1.1:1:1 --brightness 0.88"
 
 # global alias
 alias -g G="| grep"
