@@ -854,7 +854,8 @@
   :mode (("\\.html?\\'" . web-mode)
          ("\\.xhtml\\'" . web-mode)
          ("\\.shtml\\'" . web-mode)
-         ("\\.tpl\\'" . web-mode))
+         ("\\.tpl\\'" . web-mode)
+         ("\\.jsx\\'" . web-mode))
   :config
   (setq web-mode-markup-indent-offset 2)
   )
