@@ -686,6 +686,8 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; built-in python.el
+(setq auto-mode-alist (append (list
+                               '("\\.wsgi$" . python-mode))))
 (add-hook 'python-mode-hook
           '(lambda ()
              (define-key python-mode-map (kbd "C-m") 'newline-and-indent)))
