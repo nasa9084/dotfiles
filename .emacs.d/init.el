@@ -452,9 +452,8 @@
 ;; major mode for docker
 (use-package dockerfile-mode
   :ensure t
-  :config
-  (setq auto-mode-alist (append (list
-                               '("Dockerfile$" . dockerfile-mode)))))
+  :mode
+  ("Dockerfile$" . dockerfile-mode))
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -686,8 +685,8 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; built-in python.el
-(setq auto-mode-alist (append (list
-                               '("\\.wsgi$" . python-mode))))
+(add-to-list 'auto-mode-alist
+             '("\\.wsgi$" . python-mode) t)
 (add-hook 'python-mode-hook
           '(lambda ()
              (define-key python-mode-map (kbd "C-m") 'newline-and-indent)))
