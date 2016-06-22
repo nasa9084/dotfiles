@@ -493,9 +493,6 @@
   ;; 文法チェック
   (add-hook 'after-init-hook #'global-flycheck-mode)
 
-  ;; add list
-  (flycheck-add-mode 'javascript-eslint 'js2-jsx-mode)
-
   ;; エラーをツールチップ表示
   (eval-after-load 'flycheck
     '(custom-set-variables
