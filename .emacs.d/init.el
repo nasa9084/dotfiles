@@ -866,7 +866,7 @@
          ("\\.shtml\\'" . web-mode)
          ("\\.tpl\\'" . web-mode)
          ("\\.jsx\\'" . web-mode)
-         ("\\.tag'" . web-mode))
+         ("\\.tag\\'" . web-mode))
   :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-attr-indent-offset nil)
