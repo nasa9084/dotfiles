@@ -761,9 +761,9 @@
   (state-define-state
     emacs
     :key "e"
-    :in "~/git/emacsconfig/init"
+    :in "~/.emacs.d/init"
     ;; どれも見付からないときは init.el を開く
-    :create (find-file "~/git/emacsconfig/init.el")))
+    :create (find-file "~/.emacs.d/init.el")))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ twittering-mode                                               ;;;
