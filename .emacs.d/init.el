@@ -729,6 +729,8 @@
 (use-package stash
   :ensure t)
 (defstash kill-ring "kill-ring.el" nil (or stashed 'nil))
+(setq stash-directory "/var/tmp/stashes")
+
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ state                                                         ;;;
