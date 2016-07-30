@@ -121,6 +121,7 @@
 (recentf-mode t)
 (setq recentf-max-menu-items 10)
 (setq recentf-max-saved-items 100)
+(setq recentf-save-file "/var/tmp/recentf")
 
 ;; ミニバッファの履歴を保存する
 (savehist-mode 1)
