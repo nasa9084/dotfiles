@@ -125,6 +125,7 @@
 ;; ミニバッファの履歴を保存する
 (savehist-mode 1)
 (setq history-length 500)
+(setq savehist-file "/tmp/emacs-savehist-history")
 
 ;; バックアップしない
 (setq make-backup-files nil)
