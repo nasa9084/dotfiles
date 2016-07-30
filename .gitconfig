@@ -1,0 +1,33 @@
+[user]
+name = nasa9084
+email = nasa9084@live.jp
+
+[core]
+editor = emacsclient -a '' -c
+
+[color]
+status = auto
+diff = auto
+branch = auto
+interactive = auto
+grep = auto
+
+[push]
+default = tracking
+
+[alias]
+branches = branch -a
+tags = tag
+stashes = stash list
+
+unstage = reset -q HEAD --
+discard = checkout --
+uncommit = reset --mixed HEAD~
+nevermind = !git reset --hard HEAD && git clean -d -f
+
+graph = graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+
+precommit = diff --cached --diff-algorithm=minimal
+
+unmerged = diff --name-only --diff-filter=U
+remotes = remote -v
