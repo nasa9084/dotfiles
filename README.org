@@ -1,2 +1,4 @@
-* zshconfig
-my configuration file for zsh
+* dotfiles
+my configuration files
+- .emacs.d
+- .zshrc
