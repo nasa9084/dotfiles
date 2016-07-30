@@ -2,3 +2,4 @@
 my configuration files
 - .emacs.d/
 - .zshrc
+- .gitconfig
