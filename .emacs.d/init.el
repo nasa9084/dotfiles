@@ -125,7 +125,7 @@
 ;; ミニバッファの履歴を保存する
 (savehist-mode 1)
 (setq history-length 500)
-(setq savehist-file "/tmp/emacs-savehist-history")
+(setq savehist-file "/var/tmp/emacs-savehist-history")
 (setq savehist-ignored-variables '(file-name-history))
 
 ;; バックアップしない
