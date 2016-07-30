@@ -1,2 +1,2 @@
-# zshconfig
+* zshconfig
 my configuration file for zsh
