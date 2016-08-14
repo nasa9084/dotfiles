@@ -1,0 +1,9 @@
+{
+    "Prompt": "peco >",
+    "Keymap": {
+        "C-g": "peco.Cancel"
+    },
+    "Style": {
+        "Query": ["yellow"]
+    }
+}
