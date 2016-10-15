@@ -112,9 +112,6 @@ bindkey '^R' peco-history-selection
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init - zsh)"
 
-# added by Anaconda 2.3.0 installer
-export PATH="/home/nasa/anaconda/bin:$PATH"
-
 PATH="/home/nasa/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/nasa/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/nasa/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
