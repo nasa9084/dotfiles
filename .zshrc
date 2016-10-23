@@ -97,6 +97,28 @@ bindkey "^[[Z" reverse-menu-complete
 # DELキーの修正
 bindkey "^[[3~" delete-char
 
+# peco
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail | tac | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+
 # anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init - zsh)"
+
+# perl path
+PATH="/home/nasa/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/nasa/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/nasa/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/nasa/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/nasa/perl5"; export PERL_MM_OPT;
+
+# go path
+export GOPATH=~/.go
+export PATH=$PATH:$GOPATH/bin

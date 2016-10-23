@@ -30,7 +30,7 @@
 
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("marmalade" . "https://marmalade-repo.org/packages/") t)
 
@@ -111,7 +111,7 @@
     ("" mode-line-mule-info mode-line-modified "-" mode-line-buffer-identification "%p / L%l:C%c (" mode-name mode-line-process minor-mode-alist ")")))
  '(package-selected-packages
    (quote
-    (json-mode pip-requirements python-pep8 dockerfile-mode coffee-mode js2-mode which-key cyphejor company-quickhelp org web-mode yasnippet company state htmlize ox-reveal github-browse-file visual-regexp geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic hiwin yatex volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
+    (company-go nginx-mode jinja2-mode go-mode magit-popup json-mode pip-requirements python-pep8 dockerfile-mode coffee-mode js2-mode which-key cyphejor company-quickhelp org web-mode yasnippet company state htmlize ox-reveal github-browse-file visual-regexp geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic hiwin yatex volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
  '(tab-width 4))
 
 ;; yes or no -> y or n
@@ -529,6 +529,18 @@
   :config
   (custom-set-variables
    '(github-browse-file-show-line-at-point t)))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ go                                                            ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; for golang
+(use-package go-mode
+  :ensure t
+  :init
+  (add-hook 'go-mode-hook (lambda()
+                            (local-set-key (kbd "M-.") 'godef-jump))))
+
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ haskell-mode                                                  ;;;
