@@ -906,6 +906,7 @@
          ("\\.xhtml\\'" . web-mode)
          ("\\.shtml\\'" . web-mode)
          ("\\.tpl\\'" . web-mode)
+         ("\\.tmpl\\'" . web-mode)
          ("\\.jsx\\'" . web-mode)
          ("\\.tag\\'" . web-mode))
   :config
