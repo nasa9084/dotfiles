@@ -346,7 +346,6 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; 自動コンパイル
-;; http://www.emacswiki.org/emacs/auto-async-byte-compile.el
 (use-package auto-async-byte-compile
   :ensure t
   :config
@@ -630,8 +629,6 @@
 ;;; @ multi-term                                                    ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; term/ansi-termの拡張
-;; termの複数起動ができるほか、いろいろ強化
 (use-package multi-term
   :ensure t
   :init
