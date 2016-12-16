@@ -390,8 +390,6 @@
   (define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
 
   :config
-  (custom-set-variables
-   '(company-idle-delay nil))
   (company-quickhelp-mode 1)
   (set-face-attribute 'company-tooltip nil
                       :foreground "black" :background "lightgrey")
