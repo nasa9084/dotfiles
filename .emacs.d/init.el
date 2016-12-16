@@ -95,24 +95,16 @@
 ;; タブをスペースで扱う
 (setq-default indent-tabs-mode nil)
 
-;; タブ幅
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-idle-delay nil)
- '(custom-safe-themes
-   (quote
-    ("33e6cfb654f07e565038fbb7ae00592dde82d72f75d6cb76bbe7052cd45fcce4" default)))
- '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
- '(mode-line-format
-   (quote
-    ("" mode-line-mule-info mode-line-modified "-" mode-line-buffer-identification "%p / L%l:C%c (" mode-name mode-line-process minor-mode-alist ")")))
- '(package-selected-packages
-   (quote
-    (company-go nginx-mode jinja2-mode go-mode magit-popup json-mode pip-requirements python-pep8 dockerfile-mode coffee-mode js2-mode which-key cyphejor company-quickhelp org web-mode yasnippet company state htmlize ox-reveal github-browse-file visual-regexp geeknote poporg flycheck-pos-tip magit markdown-mode helm-config helm mode-compile smart-compile codic hiwin yatex volatile-highlights use-package undohist undo-tree twittering-mode stash smooth-scroll smart-newline multi-term haskell-mode flycheck emmet-mode bury-successful-compilation auto-install auto-compile auto-async-byte-compile)))
- '(tab-width 4))
+;; custom
+(setq custom-file "~/.emacs.d/custom.el")
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+;; mode line format
+(setq mode-line-format '("" mode-line-mule-info mode-line-modified "-" mode-line-buffer-identification "%p / L%l:C%c (" mode-name mode-line-process minor-mode-alist ")"))
+
+;; tab width
+(setq tab-width 4)
 
 ;; yes or no -> y or n
 (fset 'yes-or-no-p 'y-or-n-p)
