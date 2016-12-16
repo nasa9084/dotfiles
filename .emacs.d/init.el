@@ -366,13 +366,12 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ company                                                       ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-(use-package company-quickhelp
-  :ensure t)
+
+;; 補完
 (use-package company
   :ensure t
   :init
   (global-company-mode 1)
-  (global-set-key (kbd "C-M-i") 'company-complete)
 
   ;; C-n, C-pで補完候補を次/前の候補を選択
   (define-key company-active-map (kbd "C-n") 'company-select-next)
@@ -387,7 +386,6 @@
   (define-key company-active-map (kbd "C-i") 'company-complete-selection)
 
   :config
-  (company-quickhelp-mode 1)
   (setq company-dabbrev-downcase nil)
   (set-face-attribute 'company-tooltip nil
                       :foreground "black" :background "lightgrey")
@@ -398,12 +396,11 @@
   (set-face-attribute 'company-tooltip-selection nil
                       :foreground "black" :background "steelblue")
   (set-face-attribute 'company-preview-common nil
-                      :background nil :foreground "lightgrey" :underline t)
+                      :foreground "lightgrey" :background nil :underline t)
   (set-face-attribute 'company-scrollbar-fg nil
-                      :background "grey")
-  (set-face-attribute 'company-scrollbar-bg nil
                       :background "gray40")
-  )
+  (set-face-attribute 'company-scrollbar-bg nil
+                      :background "gray"))
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
