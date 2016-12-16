@@ -441,6 +441,7 @@
   (setq cyphejor-rules
         '(:upcase
           ("emacs" "e")
+          ("js2" "js2")
           ("lisp" "lisp")
           ("interaction" "i" :prefix)
           ("twittering" "tw")
