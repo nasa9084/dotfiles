@@ -627,27 +627,6 @@
    ("\\.text\\'" . gfm-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ mode-compile                                                  ;;;
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; M-x compileを賢く->M-x mode-compile
-(use-package mode-compile
-  ;:ensure t
-  :commands (mode-compile mode-compile-kill)
-  :config
-  (setq mode-compile-always-save-buffer-p t)
-  (setq mode-compile-expert-p t)
-  (setq mode-compile-reading-time 0)
-  (defun compile-autoclose (buffer string)
-    (cond ((string-match "finished" string)
-         (message "Build maybe successful: closing window.")
-         (run-with-timer 0.3 nil
-                         'delete-window
-                         (get-buffer-window buffer t)))
-        (t (message "Compilation exited abnormally: %s" string))))
-(setq compilation-finish-functions 'compile-autoclose))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ multi-term                                                    ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
