@@ -386,11 +386,9 @@
   ;; TABで候補を設定
   (define-key company-active-map (kbd "C-i") 'company-complete-selection)
 
-  ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
-  (define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
-
   :config
   (company-quickhelp-mode 1)
+  (setq company-dabbrev-downcase nil)
   (set-face-attribute 'company-tooltip nil
                       :foreground "black" :background "lightgrey")
   (set-face-attribute 'company-tooltip-common nil
