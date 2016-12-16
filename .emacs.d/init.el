@@ -259,7 +259,7 @@
   "ウィンドウ 2 分割時に、縦分割横分割"
   (interactive)
   (unless (= (count-windows 1) 2)
-    (error "ウィンドウが 2 分割されていません。"))
+    (error "ウィンドウが2分割されていません。"))
   (let (before-height (other-buf (window-buffer (next-window))))
     (setq before-height (window-height))
     (delete-other-windows)
