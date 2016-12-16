@@ -480,9 +480,8 @@
   (add-hook 'after-init-hook #'global-flycheck-mode)
 
   ;; エラーをツールチップ表示
-  (eval-after-load 'flycheck
-    '(custom-set-variables
-      '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))))
+  (with-eval-after-load 'flycheck
+    (flycheck-pos-tip-mode)))
 (flycheck-mode)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
