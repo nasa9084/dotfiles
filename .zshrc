@@ -99,7 +99,7 @@ bindkey "^[[3~" delete-char
 
 # peco
 function peco-history-selection() {
-    BUFFER=`history -n 1 | tail | tac | awk '!a[$0]++' | peco`
+    BUFFER=`history -n 1 | tail -n 100 | tac | awk '!a[$0]++' | peco`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
