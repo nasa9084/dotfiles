@@ -360,6 +360,16 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; 補完
+;; Python-JEDI
+(use-package jedi-core
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  :config
+  (setq jedi:complete-on-dot t)
+  (setq jedi:use-shortcuts t))
+
+;; company-mode
 (use-package company
   :ensure t
   :init
@@ -379,6 +389,7 @@
 
   :config
   (setq company-dabbrev-downcase nil)
+  (add-to-list 'company-backends 'company-jedi)
   (set-face-attribute 'company-tooltip nil
                       :foreground "black" :background "lightgrey")
   (set-face-attribute 'company-tooltip-common nil
