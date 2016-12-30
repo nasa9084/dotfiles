@@ -582,6 +582,15 @@
                         ;; and not required because the directory name is prepended
                         (substring input-pattern 1)
                       (concat ".*" input-pattern)))))))
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ jinja2-mode
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; for Jinja2 Template
+(use-package jinja2-mode
+  :ensure t
+  :mode
+  ("\\.tmpl\\'" . jinja2-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ js2-mode
