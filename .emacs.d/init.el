@@ -772,7 +772,7 @@
   (state-define-state
     emacs
     :key "e"
-    :in "~/.emacs.d/init"
+    :in "init.el"
     ;; どれも見付からないときは init.el を開く
     :create (find-file "~/.emacs.d/init.el")))
 
