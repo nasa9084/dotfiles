@@ -418,18 +418,18 @@
 ;;; @ cyphejor
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; モード名を変換
+;; メジャーモード名を変換
 (use-package cyphejor
   :ensure t
   :config
   (setq cyphejor-rules
-        '(:upcase
-          ("emacs" "e")
+        '(("emacs" "e")
+          ("interaction" "i" :prefix)
           ("js2" "js2")
           ("lisp" "lisp")
-          ("interaction" "i" :prefix)
-          ("twittering" "tw")
+          ("markdown" "md")
           ("org" "org")
+          ("twittering" "tw")
           ("mode" "" :postfix)))
   (cyphejor-mode 1))
 
