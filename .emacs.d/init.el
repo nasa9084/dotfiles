@@ -716,6 +716,21 @@
              (define-key python-mode-map (kbd "C-c s") 'python-pep8)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ rainbow-mode
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; 16進色文字列に色をつける
+(use-package rainbow-mode
+  :ensure t
+  :diminish rainbow-mode
+  :config
+  (setq rainbow-html-colors t)
+  (setq rainbow-latex-colors t)
+  (setq rainbow-x-colors t)
+  (setq rainbow-ansi-colors t)
+  (rainbow-mode))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ smart-newline
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
