@@ -723,12 +723,15 @@
 (use-package rainbow-mode
   :ensure t
   :diminish rainbow-mode
+  :init
+  (add-hook 'css-mode-hook 'rainbow-mode)
+  (add-hook 'scss-mode-hook 'rainbow-mode)
+  (add-hook 'web-mode-hook 'rainbow-mode)
   :config
   (setq rainbow-html-colors t)
   (setq rainbow-latex-colors t)
   (setq rainbow-x-colors t)
-  (setq rainbow-ansi-colors t)
-  (rainbow-mode))
+  (setq rainbow-ansi-colors t))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ smart-newline
