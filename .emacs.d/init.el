@@ -346,6 +346,13 @@
   (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ auto-revert
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; built-in auto-revert
+(diminish 'auto-revert-mode)
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ bury successful compilation
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -372,6 +379,7 @@
 ;; company-mode
 (use-package company
   :ensure t
+  :diminish company-mode
   :init
   (global-company-mode 1)
 
@@ -530,6 +538,7 @@
 ;; Helm.el
 (use-package helm
   :ensure t
+  :diminish helm-mode
   :init
   (global-set-key (kbd "C-c h") 'helm-mini)
   :config
@@ -724,6 +733,7 @@
 ;; C-v M-vをなめらかに
 (use-package smooth-scroll
   :ensure t
+  :diminish smooth-scroll-mode
   :config
   (smooth-scroll-mode t))
 
@@ -747,7 +757,7 @@
 
 (use-package state
   :ensure t
-
+  :diminish state-mode
   :init
   ;; マイナーモードを有効にする
   (state-global-mode 1)
@@ -842,7 +852,7 @@
 ;; undoの拡張
 (use-package undo-tree
   :ensure t
-  :diminish undo-tree-mode "UndoT"
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode))
 
@@ -864,6 +874,7 @@
 ;; undoやyankなどの操作をした部分を可視化
 (use-package volatile-highlights
   :ensure t
+  :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode t))
 
@@ -898,6 +909,7 @@
 ;; prefix-keyのあとの操作を教えてくれる
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config
   (which-key-setup-side-window-bottom)
   (which-key-mode 1))
@@ -909,6 +921,7 @@
 ;; snippet
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :config
   (yas-global-mode 1)
   (setq yas-snippet-dirs
