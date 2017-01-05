@@ -502,6 +502,8 @@
 ;;; @ flycheck
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
+(use-package flycheck-pos-tip
+  :ensure t)
 (use-package flycheck
   :ensure t
   :init
