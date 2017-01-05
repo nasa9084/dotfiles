@@ -97,6 +97,12 @@ bindkey "^[[Z" reverse-menu-complete
 # DELキーの修正
 bindkey "^[[3~" delete-char
 
+# path to coreutils
+case "${OSTYPE}" in
+    darwin*)
+        PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+esac
+
 # peco
 function peco-history-selection() {
     BUFFER=`history -n 1 | tail -n 100 | tac | awk '!a[$0]++' | peco`
