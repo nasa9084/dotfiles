@@ -101,7 +101,16 @@
   (load custom-file))
 
 ;; mode line format
-(setq mode-line-format '("" mode-line-mule-info mode-line-modified "-" mode-line-buffer-identification "%p / L%l:C%c (" mode-name mode-line-process minor-mode-alist ")"))
+(setq-default mode-line-format
+      '(
+        ""
+        mode-line-mule-info mode-line-modified
+        "-"
+        mode-line-buffer-identification
+        "%p / L%l:C%c ("
+        mode-name mode-line-process minor-mode-alist ")"
+        )
+      )
 
 ;; tab width
 (setq tab-width 4)
