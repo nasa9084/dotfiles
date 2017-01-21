@@ -154,6 +154,13 @@
       (t
        (setq shell-file-name '"~/.local/bin/zsh")))
 
+(use-package exec-path-from-shell
+  :ensure t)
+(setq ostype system-type)
+(cond ((string= ostype "darwin")
+       (let ((envs '("PATH" "GOPATH")))
+         (exec-path-from-shell-copy-envs envs))))
+
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ key-bind
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
