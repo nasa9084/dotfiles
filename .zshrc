@@ -126,5 +126,5 @@ PERL_MB_OPT="--install_base \"/home/nasa/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/nasa/perl5"; export PERL_MM_OPT;
 
 # go path
-export GOPATH=~/.go
+export GOPATH=$HOME
 export PATH=$PATH:$GOPATH/bin
