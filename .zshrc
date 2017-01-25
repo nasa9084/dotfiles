@@ -104,6 +104,18 @@ case "${OSTYPE}" in
 esac
 
 # peco
+function peco-src () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+
+zle -N peco-src
+bindkey '^]' peco-src
+
 function peco-history-selection() {
     BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
     CURSOR=$#BUFFER
