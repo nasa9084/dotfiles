@@ -536,6 +536,8 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; for golang
+(use-package company-go
+  :ensure t)
 (use-package go-mode
   :ensure t
   :init
