@@ -31,3 +31,6 @@ precommit = diff --cached --diff-algorithm=minimal
 
 unmerged = diff --name-only --diff-filter=U
 remotes = remote -v
+
+[ghq]
+root = ~/src
