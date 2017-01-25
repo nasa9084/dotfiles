@@ -97,10 +97,12 @@ bindkey "^[[Z" reverse-menu-complete
 # DELキーの修正
 bindkey "^[[3~" delete-char
 
-# path to coreutils
+# config for darwin(Mac OSX)
 case "${OSTYPE}" in
     darwin*)
         PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+        stty stop undef
+        stty start undef
 esac
 
 # peco
@@ -114,7 +116,7 @@ function peco-src () {
 }
 
 zle -N peco-src
-bindkey '^]' peco-src
+bindkey '^S' peco-src
 
 function peco-history-selection() {
     BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
