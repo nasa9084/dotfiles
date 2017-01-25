@@ -101,9 +101,10 @@ bindkey "^[[3~" delete-char
 case "${OSTYPE}" in
     darwin*)
         PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-        stty stop undef
-        stty start undef
 esac
+
+stty stop undef
+stty start undef
 
 # peco
 function peco-src () {
