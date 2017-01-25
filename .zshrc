@@ -118,8 +118,8 @@ bindkey '^]' peco-src
 
 function peco-history-selection() {
     BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
+    zle accept-line
+    zle clear-screen
 }
 
 zle -N peco-history-selection
