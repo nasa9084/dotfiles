@@ -120,7 +120,7 @@ zle -N peco-src
 bindkey '^S' peco-src
 
 function peco-history-selection() {
-    BUFFER="$(history -nr 1 | awk '!a[$0]++' | peco --query "$LBUFFER" | sed 's/\\n/\n/')"
+    BUFFER="$(history -nr 1 | awk '!a[$0]++' | peco --query "$LBUFFER" | sed 's/\\n/\n/g')"
     zle clear-screen
 }
 
