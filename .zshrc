@@ -142,3 +142,6 @@ PERL_MM_OPT="INSTALL_BASE=/home/nasa/perl5"; export PERL_MM_OPT;
 # go path
 export GOPATH=$HOME
 export PATH=$PATH:$GOPATH/bin
+# Wrap git automatically by adding the following to ~/.zshrc:
+
+eval "$(hub alias -s)"
