@@ -567,6 +567,10 @@
 ;;; @ helm
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
+;; helm-ghq
+(use-package helm-ghq
+  :ensure t)
+
 ;; Helm.el
 (use-package helm
   :ensure t
@@ -580,6 +584,7 @@
   (define-key global-map (kbd "M-x") 'helm-M-x)
   (define-key global-map (kbd "C-x C-f") 'helm-find-files)
   (define-key global-map (kbd "C-x C-r") 'helm-recentf)
+  (define-key global-map (kbd "C-c C-s") 'helm-ghq)
   (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
   (define-key global-map (kbd "C-c i")   'helm-imenu)
   (define-key global-map (kbd "C-x b")   'helm-buffers-list)
