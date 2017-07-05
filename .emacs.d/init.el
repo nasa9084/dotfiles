@@ -641,7 +641,7 @@
 (use-package json-mode
   :ensure t
   :mode
-  (("\\.js\\'" . json-mode)))
+  (("\\.json\\'" . json-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ magit
