@@ -192,11 +192,6 @@
      (t (forward-char) (backward-word) (kill-word 1)))))
 (global-set-key "\M-d" 'kill-word-at-point)
 
-;; 画面内のカーソル移動
-(global-set-key (kbd "C-M-t") (lambda () (interactive) (move-to-window-line 0)))
-(global-set-key (kbd "C-M-m") (lambda () (interactive) (move-to-window-line nil)))
-(global-set-key (kbd "C-M-l") (lambda () (interactive) (move-to-window-line -1)))
-
 ;; flycheck次のエラー・前のエラー
 (global-set-key (kbd "C-c C-n") 'flycheck-next-error)
 (global-set-key (kbd "C-c C-p") 'flycheck-previous-error)
