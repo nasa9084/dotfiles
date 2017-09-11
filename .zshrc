@@ -127,10 +127,12 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
-
 # anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init - zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
 
 # perl path
 PATH="/home/nasa/perl5/bin${PATH:+:${PATH}}"; export PATH;
