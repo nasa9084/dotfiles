@@ -86,11 +86,6 @@ alias -g T="| tail"
 alias -g W="| wc"
 alias -g WL="| wc -l"
 
-# suffix alias
-alias -s py="python"
-alias -s txt="less"
-alias -s rb="ruby"
-
 # S-[TAB]で補完を逆順
 bindkey "^[[Z" reverse-menu-complete
 
