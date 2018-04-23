@@ -75,6 +75,9 @@
 ;; フォント設定
 (add-to-list 'default-frame-alist '(font . "ricty-13.5"))
 
+;; 優先文字コード
+(prefer-coding-system 'utf-8)
+
 ;; 対応する括弧を光らせる
 (show-paren-mode 1)
 (setq show-paren-delay 0)
