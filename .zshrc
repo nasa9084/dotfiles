@@ -18,7 +18,7 @@ PROMPT=$'%B%F{green}❯❯%1(v|%1v|)%f%b %B%F{blue}%~%f%b
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-PATH=${PATH}:~/bin
+PATH="${PATH}:~/bin"
 
 # 自動補完を有効にする
 autoload -U compinit
@@ -142,7 +142,7 @@ eval "$(anyenv init - zsh)"
 eval "$(direnv hook zsh)"
 
 # perl path
-PATH="/home/nasa/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PATH="/home/nasa/perl5/bin${PATH:+:${PATH}}"; export "PATH";
 PERL5LIB="/home/nasa/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/nasa/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/nasa/perl5\""; export PERL_MB_OPT;
@@ -150,7 +150,7 @@ PERL_MM_OPT="INSTALL_BASE=/home/nasa/perl5"; export PERL_MM_OPT;
 
 # go path
 export GOPATH=$HOME
-export PATH=$PATH:$GOPATH/bin
+export PATH="$PATH:$GOPATH/bin"
 # Wrap git automatically by adding the following to ~/.zshrc:
 
 eval "$(hub alias -s)"
