@@ -313,6 +313,7 @@
 
 ;; emacs組み込みブラウザ
 (use-package eww
+  :defer t
   :config
   (defvar eww-disable-colorize t)
   (defun shr-colorize-region--disable (orig start end fg &optional bg &rest _)
@@ -437,7 +438,8 @@
 
 ;; プログラマ用命名辞書
 (use-package codic
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ cyphejor
@@ -532,11 +534,22 @@
   :ensure t)
 (use-package go-mode
   :ensure t
+  :mode (("\\.go\\" . go-mode))
   :init
   (setq gofmt-command "goimports")
   (add-hook 'go-mode-hook (lambda()
                             (local-set-key (kbd "M-.") 'godef-jump)))
   (add-hook 'before-save-hook 'gofmt-before-save))
+(use-package flycheck-gometalinter
+  :ensure t
+  :defer t
+  :init
+  (flycheck-gometalinter-setup)
+  :config
+  (setq flycheck-gometalinter-fast t)
+  (setq flycheck-gometalinter-test t)
+  (setq flycheck-gometalinter-disable-linters '("gotype" "gotypex"))
+  )
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -621,7 +634,8 @@
 
 ;; gitクライアント
 (use-package magit
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ Markdown-mode
@@ -687,6 +701,7 @@
 ;; org-modeからreveal.jsを出力
 (use-package ox-reveal
   :ensure t
+  :defer t
   :config
   (setq my-reveal-src-dir "/path/to/reveal.js-dir")
   (defcustom org-reveal-plugins
@@ -711,11 +726,12 @@
 ;; プログラム中の複数行文字列・コメントをまとめて編集
 (use-package poporg
   :ensure t
+  :defer t
   :config
-  (global-set-key (kbd "C-c p") 'poporg-dwim)
   (add-hook 'poporg-mode-hook
             '(lambda()
                (define-key poporg-mode-map (kbd "C-c C-c") 'poporg-dwim))))
+(global-set-key (kbd "C-c p") 'poporg-dwim)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ python.el
@@ -843,7 +859,7 @@
 ;; emacs用twitterクライアント
 (use-package twittering-mode
   :ensure t
-  :commands (twittering-mode twit)
+  :defer t
   :config
   ;; 公式retweetキーバインド
   (add-hook 'twittering-mode-hook
@@ -897,9 +913,8 @@
 
 ;; 対話的正規表現置換
 (use-package visual-regexp
-  :ensure t
-  :config
-  (global-set-key (kbd "M-%") 'vr/query-replace))
+  :ensure t)
+(global-set-key (kbd "M-%") 'vr/query-replace)
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -982,7 +997,6 @@
 ;; LaTeX用モード
 (use-package yatex
   :ensure t
-  :commands (yatex yatex-mode)
   :mode (("\\.tex\\'" . yatex-mode)
          ("\\.ltx\\'" . yatex-mode)
          ("\\.cls\\'" . yatex-mode)
