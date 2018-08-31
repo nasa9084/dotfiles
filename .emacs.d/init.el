@@ -534,7 +534,7 @@
   :ensure t)
 (use-package go-mode
   :ensure t
-  :mode (("\\.go\\" . go-mode))
+  :mode (("\\.go\\'" . go-mode))
   :init
   (setq gofmt-command "goimports")
   (add-hook 'go-mode-hook (lambda()
