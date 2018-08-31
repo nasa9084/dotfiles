@@ -4,7 +4,6 @@ email = nasa.9084.bassclarinet@gmail.com
 
 [core]
 editor = emacsclient -a '' -c
-excludesFile = $HOME/.config/.gitignore
 
 [color]
 status = auto
