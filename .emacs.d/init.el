@@ -35,7 +35,6 @@
              '("marmalade" . "https://marmalade-repo.org/packages/") t)
 
 (package-initialize)
-;(package-refresh-contents)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ general
@@ -46,6 +45,7 @@
 
 ;; use-package
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
 
