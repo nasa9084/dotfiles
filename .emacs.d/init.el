@@ -341,6 +341,7 @@
 
 ;; 現在アクティブなウィンドウを可視化
 (use-package hiwin
+  :ensure t
   :config
   ;; hiwin-modeを有効化
   (hiwin-activate))
@@ -373,13 +374,6 @@
   ;; 自動コンパイルを無効にするファイル名の正規表現
   (setq auto-async-byte-compile-exclude-files-regexp "init.el")
   (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ auto-revert
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; built-in auto-revert
-(diminish 'auto-revert-mode)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ bury successful compilation
@@ -459,6 +453,14 @@
           ("twittering" "tw")
           ("mode" "" :postfix)))
   (cyphejor-mode 1))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ diminish
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package diminish
+  :ensure t)
+(diminish 'auto-revert-modee)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ dockerfile-mode
@@ -693,23 +695,6 @@
    'org-babel-load-languages
    (add-to-list 'org-babel-load-languages '(plantuml . t))))
 (add-hook 'org-mode-hook 'plantuml-org-mode-init)
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ org-reveal
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; org-modeからreveal.jsを出力
-(use-package ox-reveal
-  :ensure t
-  :defer t
-  :config
-  (setq my-reveal-src-dir "/path/to/reveal.js-dir")
-  (defcustom org-reveal-plugins
-    '(notes)
-    "Default builtin plugins"
-    :group 'org-export-reveal
-    :type '(set
-            (const notes))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ perl-mode
