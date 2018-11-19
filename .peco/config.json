@@ -4,6 +4,7 @@
         "C-g": "peco.Cancel"
     },
     "Style": {
-        "Query": ["yellow"]
+        "Query": ["yellow"],
+        "Selected": ["underline"]
     }
 }
