@@ -875,6 +875,9 @@
   ;; 割り込みReply時に全員に返信、ハッシュタグ自動挿入
   (setq twittering-edit-skeleton 'inherit-any)
 
+  ;; C-c <RET>で引用RT
+  (setq twittering-retweet-format '(nil _ " %u"))
+
   ;; URLを開くときにブラウザを聞く
   (defadvice browse-url (before select-browser activate)
     (if (y-or-n-p "Open with eww? ")
