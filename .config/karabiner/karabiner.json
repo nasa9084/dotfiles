@@ -251,6 +251,15 @@
                     "to": {
                         "key_code": "left_control"
                     }
+                },
+                {
+                    "from": {
+                        "key_code": "international3"
+                    },
+                    "to": {
+                        "key_code": "international3",
+                        "modifiers": ["left_option"]
+                    }
                 }
             ],
             "virtual_hid_keyboard": {
