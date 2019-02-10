@@ -154,6 +154,8 @@
        (setq shell-file-name '"C:\\msys32\\usr\\bin\\zsh.exe"))
       ((string= (system-name) "nasa-thinkpad-x220")
        (setq shell-file-name '"/usr/bin/zsh"))
+      ((or (string= (system-name) "nasa-MBP") (string= (system-name) "nasa-MBP.local"))
+       (setq shell-file-name '"/usr/local/bin/zsh"))
       (t
        (setq shell-file-name '"~/.local/bin/zsh")))
 
