@@ -156,6 +156,8 @@
        (setq shell-file-name '"/usr/bin/zsh"))
       ((or (string= (system-name) "nasa-MBP") (string= (system-name) "nasa-MBP.local"))
        (setq shell-file-name '"/usr/local/bin/zsh"))
+      ((string= (system-name) "w022571808522m.local")
+       (setq shell-file-name '"/usr/local/bin/zsh"))
       (t
        (setq shell-file-name '"~/.local/bin/zsh")))
 
