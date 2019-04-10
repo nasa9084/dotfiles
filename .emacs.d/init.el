@@ -904,7 +904,7 @@
 ;; 対話的正規表現置換
 (use-package visual-regexp
   :ensure t)
-(global-set-key (kbd "M-%") 'vr/query-replace)
+(global-set-key (kbd "M-5") 'vr/query-replace)
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
