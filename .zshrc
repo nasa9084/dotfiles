@@ -1,7 +1,7 @@
-# プロンプト
+# prompt
 autoload -Uz vcs_info
 setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
+
 zstyle ':vcs_info:git:*' unstagedstr '!'
 zstyle ':vcs_info:git:*' stagedstr '+'
 zstyle ':vcs_info:*' formats ' %c%u(%s:%b)'
@@ -14,62 +14,62 @@ precmd () {
 PROMPT=$'%B%F{green}❯❯%1(v|%1v|)%f%b %B%F{blue}%~%f%b
 %{\e[38;5;240m%}%n@%m%(!.#.$) %{\e[m%}'
 
-# ヒストリ
+# command history
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 PATH="${PATH}:~/bin"
 
-# 自動補完を有効にする
+# auto completion
 autoload -U compinit
 compinit
 
-#補完リストが多いときに尋ねない
+# not ask too many completion
 LISTMAX=1000
 
-# 大文字小文字区別なし補完
+# case insentive completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-#コマンドにsudoを付けても補完
+# completion with sudo
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 
-# 入力したコマンドが存在せず、かつディレクトリ名と一致するならcd
+# autocd
 setopt autocd
 
-# 入力したコマンドがすでにコマンド履歴に含まれる場合古い方のコマンドを削除
+# ignore duplicate in history
 setopt hist_ignore_all_dups
 
-# スペースで始まるコマンド行はコマンド履歴に入れない
+# ignore begin with space
 setopt hist_ignore_space
 
-# 履歴から呼び出して実行する前に編集可能
+# edit before run when use history
 setopt hist_verify
 
-# 余分な空白は詰めて記録
+# reduce blanks in history
 setopt hist_reduce_blanks
 
-# historyコマンドは履歴に保存しない
+# not store `history` command in history
 setopt hist_no_store
 
-# 補完時に履歴を展開
+# completion with history
 setopt hist_expand
 
-# 履歴をインクリメンタルに追加
+# increment append to history
 setopt inc_append_history
 
-# 履歴をすべてのzshプロセスで共有
+# share history all zsh processes
 setopt share_history
 
-#ファイル名の展開でディレクトリにマッチした場合末尾に / を付加する
+# if complete dir name, add trailing slash
 setopt MARK_DIRS
 
-# zsh簡易エディタ
+# zsh editor
 autoload zed
 
-# エディタ
+# editor
 export EDITOR=emacs
 
-# 文字コード
+# charset
 export LANG=ja_JP.UTF-8
 export KCODE=u
 
@@ -99,16 +99,17 @@ alias -g T="| tail"
 alias -g W="| wc"
 alias -g WL="| wc -l"
 
-# S-[TAB]で補完を逆順
+# reverse completion with S-<TAB>
 bindkey "^[[Z" reverse-menu-complete
 
-# DELキーの修正
+# now we can use del
 bindkey "^[[3~" delete-char
 
 # config for darwin(Mac OSX)
 case "${OSTYPE}" in
     darwin*)
-        PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+        export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+        export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 esac
 
 stty stop undef
@@ -150,3 +151,21 @@ export PATH="$PATH:$GOPATH/bin"
 # Wrap git automatically by adding the following to ~/.zshrc:
 
 eval "$(hub alias -s)"
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+#export GO111MODULE=on
+
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# pip
+export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/JP24216/bin/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/JP24216/bin/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/JP24216/bin/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/JP24216/bin/google-cloud-sdk/completion.zsh.inc'; fi
+
+# added by travis gem
+[ -f /Users/JP24216/.travis/travis.sh ] && source /Users/JP24216/.travis/travis.sh
