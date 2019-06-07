@@ -49,6 +49,11 @@
   (package-install 'use-package))
 (require 'use-package)
 
+;; env
+(use-package exec-path-from-shell
+  :ensure t)
+(exec-path-from-shell-copy-env "GO111MODULE")
+
 ;; スタートアップ非表示
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message ";; Welcome to emacs! This buffer is *scratch*.\n\n")
