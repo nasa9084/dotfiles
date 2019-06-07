@@ -1,3 +1,17 @@
+# hub config includes oauth token
+.config/hub
+
+# update-notifier-npm.json is not a config file
+.config/configstore/update-notifier-npm.json
+
+# no need to manage
+.config/gcloud
+.emacs.d/url/cookies
+.emacs.d/transient/history.el
+.emacs.d/network-security.data
+.emacs.d/snippets
+.emacs.d/.lsp-session-v1
+.emacs.d/custom.el
 
 # Created by https://www.gitignore.io/api/macos,elisp
 
