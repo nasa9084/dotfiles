@@ -26,6 +26,14 @@ install-secret:
 	@cd $(REPO_ROOT)/github.com/$(USERNAME); git clone git@github.com:$(USERNAME)/$(SECRET_REPO_NAME)
 	@cd $(REPO_ROOT)/github.com/$(USERNAME)/$(SECRET_REPO_NAME); $(MAKE) install
 
+update: update-secret
+	@echo ">> Update dotfiles"
+	@git pull origin master
+
+update-secret:
+	@echo ">> Update dotfiles-secret"
+	@cd $(REPO_ROOT)/github.com/$(USERNAME)/$(SECRET_REPO_NAME); git pull origin master
+
 clean:
 	@echo ">> Remove dotfiles"
 	@-$(foreach dotfile,$(DOTFILES),rm -vr $(HOME)/$(dotfile);)
