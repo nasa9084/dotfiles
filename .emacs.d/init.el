@@ -534,6 +534,9 @@
   ;; エラーをツールチップ表示
   (with-eval-after-load 'flycheck
     (flycheck-pos-tip-mode)))
+(use-package flycheck-golangci-lint
+  :ensure t
+  :hook (go-mode . flycheck-golangci-lint-setup))
 (flycheck-mode)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -551,17 +554,6 @@
   (add-hook 'go-mode-hook (lambda()
                             (local-set-key (kbd "M-.") 'godef-jump)))
   (add-hook 'before-save-hook 'gofmt-before-save))
-(use-package flycheck-gometalinter
-  :ensure t
-  :defer t
-  :init
-  (flycheck-gometalinter-setup)
-  :config
-  (setq flycheck-gometalinter-fast t)
-  (setq flycheck-gometalinter-test t)
-  (setq flycheck-gometalinter-disable-linters '("gotype" "gotypex"))
-  )
-
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ helm
