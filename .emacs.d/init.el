@@ -404,16 +404,6 @@
   (set-face-attribute 'company-scrollbar-bg nil
                       :background "gray"))
 
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ codic
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; プログラマ用命名辞書
-(use-package codic
-  :ensure t
-  :defer t)
-
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ cyphejor
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -437,6 +427,7 @@
 ;;; @ diminish
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
+;; hide some minor modes
 (use-package diminish
   :ensure t)
 (diminish 'auto-revert-modee)
@@ -529,10 +520,6 @@
 ;;; @ helm
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; helm-ghq
-(use-package helm-ghq
-  :ensure t)
-
 ;; Helm.el
 (use-package helm
   :ensure t
@@ -571,6 +558,7 @@
                         ;; and not required because the directory name is prepended
                         (substring input-pattern 1)
                       (concat ".*" input-pattern)))))))
+
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ jinja2-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -646,36 +634,6 @@
   (("\\.markdown\\'" . gfm-mode)
    ("\\.md\\'" . gfm-mode)
    ("\\.text\\'" . gfm-mode)))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ multi-term
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-(use-package multi-term
-  :ensure t
-  :init
-  (add-hook 'term-mode-hook
-         '(lambda ()
-            ;; C-h を term 内文字削除にする
-            (define-key term-raw-map (kbd "C-h") 'term-send-backspace)
-            ;; C-y を term 内ペーストにする
-            (define-key term-raw-map (kbd "C-y") 'term-paste)
-            ;; yasnippetを無効にする
-            (yas-minor-mode -1)))
-  :config
-  (setq multi-term-program shell-file-name)
-  (add-to-list 'term-unbind-key-list '"M-x"))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ multiple-cursors
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; 複数の同様の文字列を同時編集
-(use-package multiple-cursors
-  :ensure t
-  :bind
-  (("C->" . mc/mark-next-like-this)
-   ("C-<" . mc/mark-previous-like-this)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ org-mode
@@ -763,17 +721,6 @@
   (global-set-key (kbd "RET") 'smart-newline))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ smooth-scroll
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; C-v M-vをなめらかに
-(use-package smooth-scroll
-  :ensure t
-  :diminish smooth-scroll-mode
-  :config
-  (smooth-scroll-mode t))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ stash
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -781,8 +728,7 @@
 (use-package stash
   :ensure t)
 (defstash kill-ring "kill-ring.el" nil (or stashed 'nil))
-(setq stash-directory "/var/tmp/stashes")
-
+(setq stash-directory "/tmp/stashes")
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ state
@@ -830,7 +776,6 @@
   :ensure t)
 (eval-after-load "sql"
   '(load-library "sql-indent"))
-
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ twittering-mode
@@ -898,7 +843,6 @@
 (use-package visual-regexp
   :ensure t)
 (global-set-key (kbd "M-5") 'vr/query-replace)
-
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ volatile-highlights
