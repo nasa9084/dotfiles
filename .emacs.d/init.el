@@ -602,6 +602,30 @@
   (("\\.json\\'" . json-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ lsp-mode
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; Language Server
+(use-package lsp-mode
+  :ensure t
+  :hook (go-mode . lsp)
+  :commands lsp
+  :config
+  (setq gc-cons-threshold (* gc-cons-threshold 150))
+  (setq lsp-prefer-flymake nil)
+  (setq lsp-print-performance nil)
+  (setq lsp-log-io nil)
+  (setq lsp-imenu-show-container-name nil))
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ magit
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
