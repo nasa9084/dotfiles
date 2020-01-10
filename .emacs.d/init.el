@@ -271,24 +271,6 @@
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
   (setq uniquify-ignore-buffers-re "*[^*]+*"))
 
-;; ウィンドウの縦分割横分割を入れ替え
-(defun window-toggle-division ()
-  "ウィンドウ 2 分割時に、縦分割横分割"
-  (interactive)
-  (unless (= (count-windows 1) 2)
-    (error "ウィンドウが2分割されていません。"))
-  (let (before-height (other-buf (window-buffer (next-window))))
-    (setq before-height (window-height))
-    (delete-other-windows)
-    (if (= (window-height) before-height)
-        (split-window-vertically)
-      (split-window-horizontally)
-      )
-
-    (switch-to-buffer-other-window other-buf)
-    (other-window -1)))
-(global-set-key (kbd "C-x t") 'window-toggle-division)
-
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - cursor
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
