@@ -541,6 +541,9 @@
   (define-key global-map (kbd "C-x b")   'helm-buffers-list)
 
   (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "<left>") 'helm-previous-source)
+  (define-key helm-map (kbd "<right>") 'helm-next-source)
+  (customize-set-variable 'helm-ff-lynx-style-map t)
   (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 
   (defadvice helm-ff-kill-or-find-buffer-fname (around execute-only-if-exist activate)
