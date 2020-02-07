@@ -39,7 +39,7 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; Common Lisp
-(require 'cl)
+(require 'cl-lib)
 
 ;; use-package
 (unless (package-installed-p 'use-package)
