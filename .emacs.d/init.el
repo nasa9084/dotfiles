@@ -150,7 +150,6 @@
 (setq ring-bell-function 'ignore)
 
 ;; shellをbashからzshに変更
-(setq hostname (system-name))
 (cond ((or (string= (system-name) "nasa-ubuntu") (string= (system-name) "nasa-Desktop"))
        (setq shell-file-name '"/usr/bin/zsh"))
       ((string= (system-name) "NASA-THINK")
@@ -166,9 +165,8 @@
 
 (use-package exec-path-from-shell
   :ensure t)
-(setq ostype system-type)
-(cond ((string= ostype "darwin")
-       (let ((envs '("PATH" "GOPATH")))
+(cond ((string= system-type "darwin")
+       (let ((envs '("PATH" "GOPATH" "HOME")))
          (exec-path-from-shell-copy-envs envs))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
