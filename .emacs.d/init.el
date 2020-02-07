@@ -42,6 +42,9 @@
 ;; Common Lisp
 (require 'cl-lib)
 
+;; generic config major mode
+(require 'generic-x)
+
 ;; use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
