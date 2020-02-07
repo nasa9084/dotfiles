@@ -3,8 +3,8 @@
 ;; Author: nasa9084
 
 ;;; Commentary:
-;; init.el is setting initialize file for emacs.
-;; this is used on the newest emacs w/GUI.
+;; init.el is setting initialize file for Emacs.
+;; this is used on the newest Emacs w/GUI.
 ;; by nasa9084
 
 ;;; Code:
