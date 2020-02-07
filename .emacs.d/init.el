@@ -507,8 +507,10 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; for golang
-(use-package company-go
-  :ensure t)
+(defun lsp-go-install-save-hooks()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
 (use-package go-mode
   :ensure t
   :mode (("\\.go\\'" . go-mode))
@@ -516,7 +518,7 @@
   (setq gofmt-command "goimports")
   (add-hook 'go-mode-hook (lambda()
                             (local-set-key (kbd "M-.") 'godef-jump)))
-  (add-hook 'before-save-hook 'gofmt-before-save))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ helm
@@ -601,9 +603,11 @@
 ;; Language Server
 (use-package lsp-mode
   :ensure t
-  :hook (go-mode . lsp)
-  :commands lsp
+  :hook
+  (go-mode . lsp-deferred)
+  :commands (lsp lsp-deferred)
   :config
+  (setq lsp-auto-guess-root t)
   (setq gc-cons-threshold (* gc-cons-threshold 150))
   (setq lsp-prefer-flymake nil)
   (setq lsp-print-performance nil)
@@ -612,7 +616,13 @@
 
 (use-package lsp-ui
   :ensure t
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-doc-position 'top)
+  (lsp-ui-doc-use-chidframe nil)
+  :config
+  (setq lsp-ui-sideline-enable t))
+
 
 (use-package company-lsp
   :ensure t
