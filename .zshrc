@@ -171,4 +171,4 @@ if [ -f '/Users/JP24216/bin/google-cloud-sdk/completion.zsh.inc' ]; then source 
 [ -f /Users/JP24216/.travis/travis.sh ] && source /Users/JP24216/.travis/travis.sh
 
 # load secrets
-source .zshrc.secret
+source ${HOME}/.zshrc.secret
