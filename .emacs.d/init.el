@@ -55,6 +55,7 @@
 (use-package exec-path-from-shell
   :ensure t)
 (exec-path-from-shell-copy-env "GO111MODULE")
+(exec-path-from-shell-copy-env "GOPRIVATE")
 
 ;; スタートアップ非表示
 (setq inhibit-startup-screen t)
