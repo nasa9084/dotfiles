@@ -8,14 +8,6 @@ DOTFILES = $(filter-out $(EXCLUDE), $(wildcard .??*))
 
 .PHONY: install install-secret
 
-define install-dotfiles
-$(HOME)/$(1):
-	@echo ">> Install $1"
-	@ln -sfn $(REPO_ROOT)/github.com/$(USERNAME)/$(REPO_NAME)/$1 $(HOME)/$1
-endef
-
-$(foreach dotfile,$(DOTFILES),$(eval $(call install-dotfiles,$(dotfile))))
-
 list:
 	@$(foreach dotfile,$(DOTFILES),/bin/ls -dF $(dotfile);)
 
@@ -38,3 +30,7 @@ clean:
 	@echo ">> Remove dotfiles"
 	@-$(foreach dotfile,$(DOTFILES),rm -vr $(HOME)/$(dotfile);)
 	@-rm -fvr $(REPO_ROOT)/github.com/$(USERNAME)/$(SECRET_REPO_NAME)
+
+$(HOME)/%:
+	@echo ">> Install $(notdir $@)"
+	@ln -sfn $(REPO_ROOT)/github.com/$(USERNAME)/$(REPO_NAME)/$(notdir $@) $(HOME)/$(notdir $@)
