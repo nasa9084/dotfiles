@@ -495,6 +495,7 @@
 (use-package go-mode
   :ensure t
   :mode (("\\.go\\'" . go-mode))
+  (go-mode . lsp-deferred)
   :init
   (setq gofmt-command "goimports")
   (add-hook 'go-mode-hook (lambda()
@@ -605,8 +606,6 @@
 ;; Language Server
 (use-package lsp-mode
   :ensure t
-  :hook
-  (go-mode . lsp-deferred)
   :commands (lsp lsp-deferred)
   :config
   (setq gc-cons-threshold (* gc-cons-threshold 150))
