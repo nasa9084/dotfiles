@@ -73,6 +73,7 @@
       (format "%%f - Emacs@%s" (system-name)))
 
 ;; 行番号表示
+(add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;; フォント設定
