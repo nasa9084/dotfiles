@@ -126,7 +126,6 @@ module.exports = {
 
         // hyper-pokemon config
         pokemon: 'random', // Define your favorite pokemon theme
-        pokecursor: 'true', // Activate your theme's pokecursor
         unibody: 'false', // Define the color of the Hyper window header
         poketab: 'true', // Deactivate your theme's poketab
     },
