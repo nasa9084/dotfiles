@@ -19,7 +19,6 @@ PROMPT=$'%B%F{green}❯❯%1(v|%1v|)%f%b %B%F{blue}%~%f%b
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-PATH="${PATH}:~/bin"
 
 # auto completion
 autoload -U compinit
