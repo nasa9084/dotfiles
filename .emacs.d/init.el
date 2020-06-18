@@ -609,12 +609,12 @@
   (go-mode . lsp-deferred)
   :commands (lsp lsp-deferred)
   :config
-  (setq lsp-auto-guess-root t)
   (setq gc-cons-threshold (* gc-cons-threshold 150))
-  (setq lsp-prefer-flymake nil)
+  (setq lsp-document-sync-method lsp--sync-incremental)
   (setq lsp-print-performance nil)
   (setq lsp-log-io nil)
-  (setq lsp-imenu-show-container-name nil))
+  (setq lsp-imenu-show-container-name nil)
+  (setq lsp-signature-auto-activate nil))
 
 (use-package lsp-ui
   :ensure t
