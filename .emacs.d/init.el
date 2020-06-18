@@ -73,12 +73,7 @@
       (format "%%f - Emacs@%s" (system-name)))
 
 ;; 行番号表示
-(use-package linum
-  :config
-  (set-face-attribute 'linum nil
-                      :height 0.9)
-  (setq linum-format "%4d")
-  (global-linum-mode t))
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;; フォント設定
 (add-to-list 'default-frame-alist '(font . "ricty-13.5"))
