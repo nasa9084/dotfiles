@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # prompt
 autoload -Uz vcs_info
 setopt prompt_subst
