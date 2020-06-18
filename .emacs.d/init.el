@@ -81,10 +81,6 @@
 ;; 優先文字コード
 (prefer-coding-system 'utf-8)
 
-;; 対応する括弧を光らせる
-(show-paren-mode 1)
-(setq show-paren-delay 0)
-
 ;; 予約語を色分けする
 (global-font-lock-mode t)
 
@@ -659,6 +655,17 @@
    'org-babel-load-languages
    (add-to-list 'org-babel-load-languages '(plantuml . t))))
 (add-hook 'org-mode-hook 'plantuml-org-mode-init)
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ paren
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; 対応する括弧を光らせる
+(use-package paren
+  :hook
+  (after-init . show-paren-mode)
+  :config
+  (setq show-paren-delay 0))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ perl-mode
