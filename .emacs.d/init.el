@@ -282,33 +282,6 @@
 ;; ディレクトリのコピーをサブディレクトリについても実行
 (setq dired-recursive-copies 'always)
 
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ eww
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; emacs組み込みブラウザ
-(use-package eww
-  :defer t
-  :config
-  (defvar eww-disable-colorize t)
-  (defun shr-colorize-region--disable (orig start end fg &optional bg &rest _)
-    (unless eww-disable-colorize
-      (funcall orig start end fg)))
-  (advice-add 'shr-colorize-region :around 'shr-colorize-region--disable)
-  (advice-add 'eww-colorize-region :around 'shr-colorize-region--disable)
-  (defun eww-disable-color ()
-    "eww で文字色を反映させない"
-    (interactive)
-    (setq-local eww-disable-colorize t)
-    (setq-default show-trailing-whitespace nil)
-    (eww-reload))
-  (defun eww-enable-color ()
-    "eww で文字色を反映させる"
-    (interactive)
-    (setq-local eww-disable-colorize nil)
-    (setq-default show-trailing-whitespace t)
-    (eww-reload))
-  (setq eww-search-prefix "http://www.google.co.jp/search?q="))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - hiwin
@@ -465,6 +438,34 @@
     '(define-key emmet-mode-keymap (kbd "C-j") nil))
   (keyboard-translate ?\C-i ?\H-i)
   (define-key emmet-mode-keymap (kbd "H-i") 'emmet-expand-line))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ eww
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; emacs組み込みブラウザ
+(use-package eww
+  :defer t
+  :config
+  (defvar eww-disable-colorize t)
+  (defun shr-colorize-region--disable (orig start end fg &optional bg &rest _)
+    (unless eww-disable-colorize
+      (funcall orig start end fg)))
+  (advice-add 'shr-colorize-region :around 'shr-colorize-region--disable)
+  (advice-add 'eww-colorize-region :around 'shr-colorize-region--disable)
+  (defun eww-disable-color ()
+    "eww で文字色を反映させない"
+    (interactive)
+    (setq-local eww-disable-colorize t)
+    (setq-default show-trailing-whitespace nil)
+    (eww-reload))
+  (defun eww-enable-color ()
+    "eww で文字色を反映させる"
+    (interactive)
+    (setq-local eww-disable-colorize nil)
+    (setq-default show-trailing-whitespace t)
+    (eww-reload))
+  (setq eww-search-prefix "http://www.google.co.jp/search?q="))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ flycheck
