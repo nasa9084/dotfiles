@@ -1,19 +1,4 @@
 # -*- coding: utf-8 -*-
-# prompt
-autoload -Uz vcs_info
-setopt prompt_subst
-
-zstyle ':vcs_info:git:*' unstagedstr '!'
-zstyle ':vcs_info:git:*' stagedstr '+'
-zstyle ':vcs_info:*' formats ' %c%u(%s:%b)'
-zstyle ':vcs_info:*' actionformats ' %c%u(%s:%b|%a)'
-precmd () {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-PROMPT=$'%B%F{green}❯❯%1(v|%1v|)%f%b %B%F{blue}%~%f%b
-%{\e[38;5;240m%}%n@%m%(!.#.$) %{\e[m%}'
 
 # command history
 HISTFILE=$HOME/.zsh_history
@@ -167,3 +152,6 @@ if [ -f '/Users/JP24216/bin/google-cloud-sdk/completion.zsh.inc' ]; then source 
 
 # load secrets
 source ${HOME}/.zshrc.secret
+
+# starship
+eval "$(starship init zsh)"
