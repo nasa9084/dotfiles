@@ -1,0 +1,122 @@
+prompt_order = [
+    "custom.preprompt",
+    "directory",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    "dotnet",
+    "elixir",
+    "elm",
+    "erlang",
+    "golang",
+    "haskell",
+    "java",
+    "julia",
+    "nim",
+    "nodejs",
+    "ocaml",
+    "php",
+    "purescript",
+    "python",
+    "ruby",
+    "rust",
+    "terraform",
+    "zig",
+    "nix_shell",
+    "conda",
+    "aws",
+    "crystal",
+    "cmd_duration",
+
+    "line_break",
+    "jobs",
+    "username",
+    "hostname",
+    "character",
+]
+
+[aws]
+symbol = " "
+
+[battery]
+full_symbol = ""
+charging_symbol = ""
+discharging_symbol = ""
+
+[character]
+symbol = "%(!.#.$)"
+style_success = "bold fg:240"
+style_failure = "bold red"
+
+[conda]
+symbol = " "
+
+[custom.preprompt]
+command = "echo -n ❯❯"
+when = ":"
+
+[directory]
+truncate_to_repo = false
+prefix = ""
+style = "bold fg:blue"
+
+[docker]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+prefix = "@"
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[username]
+style_user = "bold fg:240"
