@@ -16,6 +16,9 @@ grep = auto
 [push]
 default = tracking
 
+[pull]
+	rebase = false
+
 [alias]
 branches = branch -a
 tags = tag
