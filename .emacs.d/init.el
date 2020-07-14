@@ -92,9 +92,6 @@
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#393939")
 
-;; 保存時に行末の空白を削除
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 ;; タブをスペースで扱う
 (setq-default indent-tabs-mode nil)
 
