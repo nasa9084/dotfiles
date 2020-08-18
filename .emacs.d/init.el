@@ -32,6 +32,14 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(setq package-pinned-packages
+      '(
+        (company-lsp . "melpa-stable")
+        (lsp-mode . "melpa-stable")
+        (lsp-ui . "melpa-stable")
+        ))
 
 (package-initialize)
 
