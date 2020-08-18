@@ -57,6 +57,7 @@ command = "echo -n ❯❯"
 when = ":"
 
 [directory]
+truncation_length = -1
 truncate_to_repo = false
 prefix = ""
 style = "bold fg:blue"
