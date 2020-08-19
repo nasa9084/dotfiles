@@ -115,9 +115,6 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
-# use Buildkit for docker build
-export DOCKER_BUILDKIT=1
-
 # Wrap git automatically by adding the following to ~/.zshrc:
 eval "$(hub alias -s)"
 

@@ -11,5 +11,9 @@ export GOPATH=${HOME}
 export PATH="${PATH}:${GOPATH}/bin"
 
 
+# Docker settings
+# use Buildkit for docker build
+export DOCKER_BUILDKIT=1
+
 # load secrets
 source ${HOME}/.zshenv.secret
