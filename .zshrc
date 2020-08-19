@@ -51,13 +51,6 @@ setopt MARK_DIRS
 # zsh editor
 autoload zed
 
-# editor
-export EDITOR=emacs
-
-# charset
-export LANG=ja_JP.UTF-8
-export KCODE=u
-
 # alias
 alias emacs=${emacsdir}\emacs
 alias em="emacsclient -a '' -c"
@@ -124,10 +117,6 @@ bindkey '^R' peco-history-selection
 
 # use Buildkit for docker build
 export DOCKER_BUILDKIT=1
-
-# go path
-export GOPATH=$HOME
-export PATH="$PATH:$GOPATH/bin"
 
 # Wrap git automatically by adding the following to ~/.zshrc:
 eval "$(hub alias -s)"
