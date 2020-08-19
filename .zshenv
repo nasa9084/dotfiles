@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
 
+# macOS specific PATH
+case "${OSTYPE}" in
+    darwin*)
+        # gnubin
+        export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+        export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+        export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+esac
+
 # use emacs as default editor
 export EDITOR=emacs
 

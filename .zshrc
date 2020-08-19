@@ -84,13 +84,6 @@ bindkey "^[[Z" reverse-menu-complete
 # now we can use del
 bindkey "^[[3~" delete-char
 
-# config for darwin(Mac OSX)
-case "${OSTYPE}" in
-    darwin*)
-        export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-        export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
-esac
-
 stty stop undef
 stty start undef
 
