@@ -128,7 +128,6 @@ export DOCKER_BUILDKIT=1
 # go path
 export GOPATH=$HOME
 export PATH="$PATH:$GOPATH/bin"
-export GO111MODULE=on
 
 # Wrap git automatically by adding the following to ~/.zshrc:
 eval "$(hub alias -s)"
