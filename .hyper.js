@@ -123,11 +123,6 @@ module.exports = {
         // bellSoundURL: 'http://example.com/bell.mp3',
 
         // for advanced config flags please refer to https://hyper.is/#cfg
-
-        // hyper-pokemon config
-        pokemon: 'random', // Define your favorite pokemon theme
-        unibody: 'false', // Define the color of the Hyper window header
-        poketab: 'true', // Deactivate your theme's poketab
     },
 
     // a list of plugins to fetch and install from npm
