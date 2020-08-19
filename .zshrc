@@ -120,23 +120,6 @@ export DOCKER_BUILDKIT=1
 
 # Wrap git automatically by adding the following to ~/.zshrc:
 eval "$(hub alias -s)"
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
-# rust
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# pip
-export PATH="$HOME/Library/Python/2.7/bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/JP24216/bin/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/JP24216/bin/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/JP24216/bin/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/JP24216/bin/google-cloud-sdk/completion.zsh.inc'; fi
-
-# added by travis gem
-[ -f /Users/JP24216/.travis/travis.sh ] && source /Users/JP24216/.travis/travis.sh
 
 # load secrets
 source ${HOME}/.zshrc.secret
