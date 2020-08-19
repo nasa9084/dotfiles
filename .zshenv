@@ -10,6 +10,6 @@ export LANG=ja_JP.UTF-8
 export GOPATH=${HOME}
 export PATH="${PATH}:${GOPATH}/bin"
 
-# load secrets
 
+# load secrets
 source ${HOME}/.zshenv.secret
