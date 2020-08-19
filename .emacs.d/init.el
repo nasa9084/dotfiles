@@ -662,14 +662,6 @@
 
 (setq org-startup-with-inline-images t)
 
-;; org-plantuml-jar-path(
-(setq org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
-(defun plantuml-org-mode-init ()
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   (add-to-list 'org-babel-load-languages '(plantuml . t))))
-(add-hook 'org-mode-hook 'plantuml-org-mode-init)
-
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ paren
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
