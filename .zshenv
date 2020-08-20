@@ -3,8 +3,8 @@
 # macOS specific PATH
 case "${OSTYPE}" in
     darwin*)
-        # gnubin
         export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+        # coreutils
         export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
         export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
 esac
