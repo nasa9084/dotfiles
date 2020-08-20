@@ -3,6 +3,10 @@
 # macOS specific PATH
 case "${OSTYPE}" in
     darwin*)
+        # disable to call path_helper after this file but call first
+        setopt no_global_rcs
+        eval $(/usr/libexec/path_helper -s)
+
         # GNU make
         export PATH="/usr/local/opt/make/libexec/gnubin:${PATH}"
         export MANPATH="/usr/local/opt/make/libexec/gnuman:${MANPATH}"
