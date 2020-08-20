@@ -6,6 +6,11 @@ case "${OSTYPE}" in
         # GNU make
         export PATH="/usr/local/opt/make/libexec/gnubin:${PATH}"
         export MANPATH="/usr/local/opt/make/libexec/gnuman:${MANPATH}"
+
+        # GNU grep
+        export PATH="/usr/local/opt/grep/libexec/gnubin:${PATH}"
+        export MANPATH="/usr/local/opt/grep/libexec/gnuman:${MANPATH}"
+
         # coreutils
         export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
         export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
