@@ -6,6 +6,8 @@
 
 # no need to manage
 .config/gcloud
+.emacs.d/.cache
+.emacs.d/elpa
 .emacs.d/url/cookies
 .emacs.d/transient/history.el
 .emacs.d/network-security.data
