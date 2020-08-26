@@ -73,9 +73,6 @@
 ;; 優先文字コード
 (prefer-coding-system 'utf-8)
 
-;; 予約語を色分けする
-(global-font-lock-mode t)
-
 ;; 選択領域の色
 (set-face-background 'region "#555")
 
@@ -224,15 +221,6 @@
   (setq file-name-coding-system 'sjis))
  ((eq system-type 'gnu/linux)
   (setq file-name-coding-system 'utf-8-unix)))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ language - input method
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; 漢字/変換キー入力時のエラーメッセージ抑止
-(global-set-key (kbd "<A-kanji>") 'ignore)
-(global-set-key (kbd "<M-kanji>") 'ignore)
-(global-set-key (kbd "<kanji>") 'ignore)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - buffer
