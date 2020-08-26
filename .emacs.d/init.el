@@ -174,6 +174,7 @@
 
 ;; M-d でカーソル位置の単語を削除
 (defun kill-word-at-point()
+  "Function kill-word-at-point deletes a word where the cursor is."
   (interactive)
   (let ((char (char-to-string (char-after (point)))))
     (cond
@@ -465,6 +466,7 @@
 
 ;; for golang
 (defun lsp-go-install-save-hooks()
+  "Add file save hook provided by lsp."
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
 
