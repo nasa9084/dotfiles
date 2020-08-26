@@ -108,15 +108,15 @@
 
 ;; 最近使ったファイルをメニューに表示
 (recentf-mode t)
-(setq recentf-max-menu-items 10)
-(setq recentf-max-saved-items 100)
-(setq recentf-save-file "/var/tmp/recentf")
+(defvar recentf-max-menu-items 10)
+(defvar recentf-max-saved-items 100)
+(defvar recentf-save-file "/var/tmp/recentf")
 
 ;; ミニバッファの履歴を保存する
 (savehist-mode 1)
 (setq history-length 500)
-(setq savehist-file "/var/tmp/emacs-savehist-history")
-(setq savehist-ignored-variables '(file-name-history))
+(defvar savehist-file "/var/tmp/emacs-savehist-history")
+(defvar savehist-ignored-variables '(file-name-history))
 
 ;; バックアップしない
 (setq make-backup-files nil)
@@ -125,7 +125,7 @@
 (setq scroll-conservatively 35
       scroll-margin 0
       scroll-step 1)
-(setq comint-scroll-show-maximum-output t) ;;shell-mode
+(defvar comint-scroll-show-maximum-output t) ;;shell-mode
 
 ;; ビープ音を出さない
 (setq visible-bell t)
@@ -160,7 +160,7 @@
 
 ;; C-[Ret] で矩形選択
 (cua-mode t)
-(setq cua-enable-cua-keys nil)
+(defvar cua-enable-cua-keys nil)
 
 ;; C-h で[BS]
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
@@ -253,10 +253,10 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; 2つのウィンドウで開いている時に、デフォルトの移動orコピー先をもう一方のディレクトリに
-(setq dired-dwim-target t)
+(defvar dired-dwim-target t)
 
 ;; ディレクトリのコピーをサブディレクトリについても実行
-(setq dired-recursive-copies 'always)
+(defvar dired-recursive-copies 'always)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ file - lockfile
@@ -311,7 +311,7 @@
   (define-key company-active-map (kbd "C-i") 'company-complete-selection)
 
   :config
-  (setq company-dabbrev-downcase nil)
+  (defvar company-dabbrev-downcase nil)
   (set-face-attribute 'company-tooltip nil
                       :foreground "black" :background "lightgrey")
   (set-face-attribute 'company-tooltip-common nil
@@ -631,7 +631,7 @@
 ;;; @ org-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(setq org-startup-with-inline-images t)
+(defvar org-startup-with-inline-images t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ paren
@@ -940,7 +940,7 @@
   (cond ((string= (system-name) "nasa-ubuntu")
          (setq dvi2-command "xdvi"))
         ((string= (system-name) "nasa-thinkpad-x220")
-         (setq div2-command "xdvi"))
+         (defvar div2-command "xdvi"))
         (t (setq dvi2-command "pxdvi")))
   (setq bibtex-command "pbibtex")
   (setq dviprint-command-format "dvipdfmx"))
