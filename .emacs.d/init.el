@@ -166,10 +166,10 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 ;; C-[Ret] M-Iでデクリメント
-(defun cua-decr-rectangle (DECRIMENT)
+(defun cua-decr-rectangle (DECREMENT)
   "Decrement each line of CUA rectangle by prefix amount."
   (interactive "p")
-  (cua-incr-rectangle (- DECRIMENT)))
+  (cua-incr-rectangle (- DECREMENT)))
 (define-key cua--rectangle-keymap (kbd "M-I") 'cua-decr-rectangle)
 
 ;; M-d でカーソル位置の単語を削除
