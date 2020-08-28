@@ -473,6 +473,7 @@
 (use-package go-mode
   :ensure t
   :mode (("\\.go\\'" . go-mode))
+  :hook
   (go-mode . lsp-deferred)
   :init
   (setq gofmt-command "goimports")
