@@ -160,7 +160,7 @@
 
 ;; C-[Ret] で矩形選択
 (cua-mode t)
-(defvar cua-enable-cua-keys nil)
+(setq cua-enable-cua-keys nil)
 
 ;; C-h で[BS]
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
