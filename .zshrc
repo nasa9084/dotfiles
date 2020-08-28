@@ -21,9 +21,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # completion with sudo
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 
-# autocd
-setopt autocd
-
 # ignore duplicate in history
 setopt hist_ignore_all_dups
 
