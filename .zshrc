@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+# disable START/STOP flow control
+stty -ixon
+
 # command history
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
@@ -83,9 +86,6 @@ bindkey "^[[Z" reverse-menu-complete
 
 # now we can use del
 bindkey "^[[3~" delete-char
-
-stty stop undef
-stty start undef
 
 # peco
 function peco-src () {
