@@ -15,6 +15,10 @@ case "${OSTYPE}" in
         export PATH="/usr/local/opt/grep/libexec/gnubin:${PATH}"
         export MANPATH="/usr/local/opt/grep/libexec/gnuman:${MANPATH}"
 
+        # GNU sed
+        export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:${PATH}"
+        export MANPATH="/usr/local/opt/gnu-seed/libexec/gnuman:${MANPATH}"
+
         # coreutils
         export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
         export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
