@@ -115,6 +115,7 @@
 
 ;; バックアップしない
 (setq make-backup-files nil)
+(setq auto-save-default nil)
 
 ;;スクロール指定
 (setq scroll-conservatively 35
