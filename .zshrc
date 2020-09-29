@@ -52,12 +52,6 @@ setopt MARK_DIRS
 autoload zed
 
 # alias
-alias emacs=${emacsdir}\emacs
-alias em="emacsclient -a '' -c"
-alias emkill="emacsclient -e '(kill-emacs)'"
-alias emreboot="emkill;em &"
-alias emtwit="emacsclient -a '' -e '(twittering-mode)' -c &"
-alias emterm="emacsclient -a '' -nw"
 alias ls="exa -Fgh --git --time-style=long-iso"
 alias la="ls -a"
 alias ll="ls -l"
