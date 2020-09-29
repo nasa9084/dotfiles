@@ -478,7 +478,6 @@
   :hook
   (go-mode . lsp-deferred)
   :init
-  (setq gofmt-command "goimports")
   (add-hook 'go-mode-hook (lambda()
                             (local-set-key (kbd "M-.") 'godef-jump)))
   (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
