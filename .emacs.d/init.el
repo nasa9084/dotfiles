@@ -43,11 +43,6 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;; env
-(use-package exec-path-from-shell
-  :ensure t)
-(exec-path-from-shell-copy-env "GOPRIVATE")
-
 ;; スタートアップ非表示
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message ";; Welcome to emacs! This buffer is *scratch*.\n\n")
@@ -148,7 +143,7 @@
 (use-package exec-path-from-shell
   :ensure t)
 (cond ((string= system-type "darwin")
-       (let ((envs '("PATH" "GOPATH" "HOME")))
+       (let ((envs '("PATH" "HOME" "GOPATH" "GOPRIVATE")))
          (exec-path-from-shell-copy-envs envs))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
