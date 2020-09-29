@@ -3,9 +3,6 @@
 	name = nasa9084
 	email = nasa.9084.bassclarinet@gmail.com
 
-[core]
-	editor = emacsclient -a '' -c
-
 [color]
 	status = auto
 	diff = auto
