@@ -481,7 +481,8 @@
   :init
   (add-hook 'go-mode-hook (lambda()
                             (local-set-key (kbd "M-.") 'godef-jump)))
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+  (add-hook 'go-dot-mod-mode-hook #'display-line-numbers-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ helm
