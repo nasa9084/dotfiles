@@ -48,9 +48,6 @@ setopt share_history
 # if complete dir name, add trailing slash
 setopt MARK_DIRS
 
-# zsh editor
-autoload zed
-
 # alias
 alias ls="exa -Fgh --git --time-style=long-iso"
 alias la="ls -a"
@@ -60,9 +57,7 @@ alias pd="pushd"
 alias ppd="popd"
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias rezshrc="source ~/.zshrc"
-alias setdisp="xrandr --output HDMI-1 --gamma 1.1:1:1 --brightness 0.88"
 alias cat="bat"
-alias grep="grep --binary-files=without-match --exclude-dir=.git"
 
 # global alias
 alias -g G="| grep"
