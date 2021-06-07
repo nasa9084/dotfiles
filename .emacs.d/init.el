@@ -905,32 +905,6 @@
   ("\\.yaml\\'" . yaml-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ YaTeX
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; LaTeX用モード
-(use-package yatex
-  :ensure t
-  :mode (("\\.tex\\'" . yatex-mode)
-         ("\\.ltx\\'" . yatex-mode)
-         ("\\.cls\\'" . yatex-mode)
-         ("\\.sty\\'" . yatex-mode)
-         ("\\.clo\\'" . yatex-mode)
-         ("\\.bbl\\'" . yatex-mode))
-  :init
-  (add-hook 'yatex-mode-hook '(lambda () (auto-fill-mode -1))) ;自動で改行しない
-  :config
-  (setq YaTeX-kanji-code nil)
-  (setq tex-command "platex -interaction=nonstopmode")
-  (cond ((string= (system-name) "nasa-ubuntu")
-         (setq dvi2-command "xdvi"))
-        ((string= (system-name) "nasa-thinkpad-x220")
-         (defvar div2-command "xdvi"))
-        (t (setq dvi2-command "pxdvi")))
-  (setq bibtex-command "pbibtex")
-  (setq dviprint-command-format "dvipdfmx"))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ theme
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
