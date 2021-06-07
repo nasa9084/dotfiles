@@ -905,21 +905,6 @@
   ("\\.yaml\\'" . yaml-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ yasnippet
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; snippet
-(use-package yasnippet
-  :ensure t
-  :diminish yas-minor-mode
-  :config
-  (yas-global-mode 1)
-  (setq yas-snippet-dirs
-        '("~/.emacs.d/snippets"))
-  (define-key yas-minor-mode-map (kbd "C-c e") 'yas-expand)
-  (define-key yas-minor-mode-map (kbd "TAB") nil))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ YaTeX
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
