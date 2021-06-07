@@ -31,6 +31,14 @@
 ;;; @ general
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
+(setq initial-frame-alist
+      (append (list
+               '(width . 180)
+               '(height . 75)
+               )
+              initial-frame-alist))
+(setq default-frame-alist initial-frame-alist)
+
 ;; Common Lisp
 (require 'cl-lib)
 
