@@ -362,6 +362,8 @@
 ;; major mode for docker
 (use-package dockerfile-mode
   :ensure t
+  :hook
+  (dockerfile-mode . lsp-deferred)
   :mode
   ("Dockerfile$" . dockerfile-mode))
 
