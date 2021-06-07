@@ -653,6 +653,13 @@
             '(lambda()
                (define-key poporg-mode-map (kbd "C-c C-c") 'poporg-dwim))))
 (global-set-key (kbd "C-c p") 'poporg-dwim)
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ protobuf-mode
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; protocolbuffers
+(use-package protobuf-mode
+  :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ python.el
