@@ -748,7 +748,7 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; stateのプレフィクスキーをC-c C-x sにする(読み込み前に指定)
-(setq state-keymap-prefix (kbd "C-c C-x s"))
+(defvar state-keymap-prefix (kbd "C-c C-x s"))
 
 (use-package state
   :ensure t
