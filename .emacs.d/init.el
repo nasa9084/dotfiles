@@ -194,6 +194,9 @@
 (global-set-key (kbd "<magnify-up>") nil)
 (global-set-key (kbd "<magnify-down>") nil)
 
+;; disable close keybind
+(global-set-key (kbd "C-x C-c") nil)
+
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ language - coding system
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
