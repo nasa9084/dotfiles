@@ -45,9 +45,8 @@ charging_symbol = ""
 discharging_symbol = ""
 
 [character]
-symbol = "%(!.#.$)"
-style_success = "bold fg:240"
-style_failure = "bold red"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
 
 [conda]
 symbol = " "
@@ -61,7 +60,7 @@ truncation_length = -1
 truncate_to_repo = false
 style = "bold fg:blue"
 
-[docker]
+[docker_context]
 symbol = " "
 
 [elixir]
@@ -75,9 +74,6 @@ symbol = " "
 
 [golang]
 symbol = " "
-
-[haskell]
-symbol = " "
 
 [hg_branch]
 symbol = " "
