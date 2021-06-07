@@ -461,6 +461,15 @@
   (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
   (add-hook 'go-dot-mod-mode-hook #'display-line-numbers-mode))
 
+(use-package gotest
+  :ensure t
+  :after (popwin)
+  :config
+  (setq go-test-verbose t)
+  (define-key go-mode-map (kbd "C-c C-t") 'go-test-current-file)
+  (define-key go-mode-map (kbd "C-c t") 'go-test-current-test)
+  (push '("\*Go Test\*" :regexp t :height 0.5 :stick t) popwin:special-display-config))
+
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ helm
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -643,18 +652,15 @@
              '("\\.psgi$" . perl-mode) t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ poporg
+;;; @ popwin
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; プログラム中の複数行文字列・コメントをまとめて編集
-(use-package poporg
+;; popup window manager: used for gotest
+(use-package popwin
   :ensure t
-  :defer t
   :config
-  (add-hook 'poporg-mode-hook
-            '(lambda()
-               (define-key poporg-mode-map (kbd "C-c C-c") 'poporg-dwim))))
-(global-set-key (kbd "C-c p") 'poporg-dwim)
+  (global-set-key (kbd "C-z") popwin:keymap))
+
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ protobuf-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -902,6 +908,8 @@
 ;; YAML
 (use-package yaml-mode
   :ensure t
+  :hook
+  (yaml-mode . lsp-deferred)
   :mode
   ("\\.yml\\'" . yaml-mode)
   ("\\.yaml\\'" . yaml-mode))
