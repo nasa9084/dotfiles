@@ -182,7 +182,7 @@
                                      (switch-to-buffer "*terminal<1>*")
                                    (multi-term))))
 
-;; TracPadのピンチイン・ピンチアウトを無効化
+;; TrackPadのピンチイン・ピンチアウトを無効化
 (global-set-key (kbd "<magnify-up>") nil)
 (global-set-key (kbd "<magnify-down>") nil)
 
