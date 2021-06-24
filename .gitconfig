@@ -46,3 +46,5 @@
 
 [include]
 	path = ~/.gitconfig.secret
+[init]
+	defaultBranch = main
