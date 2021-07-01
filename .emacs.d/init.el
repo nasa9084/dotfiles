@@ -529,7 +529,7 @@
 (use-package rjsx-mode
   :ensure t
   :mode
-  (("\\.js\\'" . js2-mode)))
+  (("\\.js\\'" . rjsx-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ jinja2-mode
