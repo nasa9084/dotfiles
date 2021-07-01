@@ -1,7 +1,6 @@
 tap 'homebrew/cask-fonts'
 tap 'railwaycat/emacsmacport'
 
-brew 'anyenv'
 brew 'bat'
 brew 'coreutils'
 brew 'exa'
