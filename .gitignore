@@ -14,6 +14,8 @@
 .emacs.d/snippets
 .emacs.d/.lsp-session-v1
 .emacs.d/custom.el
+.emacs.d/history
+.emacs.d/recentf
 
 # Created by https://www.gitignore.io/api/macos,elisp
 
