@@ -568,27 +568,32 @@
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :config
-  (setq gc-cons-threshold (* gc-cons-threshold 150))
-  (setq lsp-document-sync-method lsp--sync-incremental)
-  (setq lsp-print-performance nil)
-  (setq lsp-log-io nil)
-  (setq lsp-imenu-show-container-name nil)
-  (setq lsp-signature-auto-activate nil))
+  :hook(
+        (lsp-mode . lsp-enable-which-key-integration))
+  :custom
+  (gc-cons-threshold (* gc-cons-threshold 150))
+  (lsp-document-sync-method lsp--sync-incremental)
+  (lsp-enable-file-watchers nil)
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-print-performance nil)
+  (lsp-log-io nil)
+  (lsp-imenu-show-container-name nil)
+  (lsp-diagnostics-provider :flycheck)
+  (lsp-signature-auto-activate nil)
+  (lsp-response-timeout 5)
+  )
 
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode
   :custom
+  (lsp-ui-doc-enable t)
+  (lsp-ui-doc-deley 0.5)
+  (lsp-ui-doc-header nil)
   (lsp-ui-doc-position 'top)
   (lsp-ui-doc-use-chidframe nil)
-  :config
-  (setq lsp-ui-sideline-enable t))
-
-
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)
+  (lsp-ui-doc-use-webkit nil)
+)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ magit
