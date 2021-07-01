@@ -272,6 +272,16 @@
   (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ autoinsert
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package autoinsert
+  :config
+  (add-hook 'find-file-hook 'auto-insert)
+  (setq auto-insert-directory "~/.emacs.d/autoinsert/")
+  (setq auto-insert-query nil))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ bury successful compilation
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
