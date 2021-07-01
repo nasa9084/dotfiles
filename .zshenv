@@ -7,6 +7,9 @@ case "${OSTYPE}" in
         setopt no_global_rcs
         eval $(/usr/libexec/path_helper -s)
 
+        # some brew formulae installs executables into sbin
+        export PATH="/usr/local/sbin:$PATH"
+
         # GNU make
         export PATH="/usr/local/opt/make/libexec/gnubin:${PATH}"
         export MANPATH="/usr/local/opt/make/libexec/gnuman:${MANPATH}"
