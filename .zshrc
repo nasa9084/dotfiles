@@ -58,6 +58,7 @@ alias ppd="popd"
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias rezshrc="source ~/.zshrc"
 alias cat="bat"
+alias diff="colordiff"
 
 # global alias
 alias -g G="| grep"

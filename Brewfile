@@ -2,6 +2,7 @@ tap 'homebrew/cask-fonts'
 tap 'railwaycat/emacsmacport'
 
 brew 'bat'
+brew 'colordiff'
 brew 'coreutils'
 brew 'exa'
 brew 'ghq'
