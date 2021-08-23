@@ -3,7 +3,7 @@ USERNAME = nasa9084
 REPO_NAME = dotfiles
 SECRET_REPO_NAME = dotfiles-secret
 
-EXCLUDE = .DS_Store .git .gitmodules
+EXCLUDE = .DS_Store .git .gitmodules .gitignore
 DOTFILES = $(filter-out $(EXCLUDE), $(wildcard .??*))
 
 .PHONY: install install-secret
@@ -11,20 +11,34 @@ DOTFILES = $(filter-out $(EXCLUDE), $(wildcard .??*))
 list:
 	@$(foreach dotfile,$(DOTFILES),/bin/ls -dF $(dotfile);)
 
-install: install-secret $(addprefix $(HOME)/,$(DOTFILES))
+install: install-homebrew install-secret $(addprefix $(HOME)/,$(DOTFILES))
+
+install-homebrew:
+	@echo ">> Install Homebrew"
+	@/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	@echo ">> Install Homebrew packages"
+	@brew bundle
 
 install-secret:
 	@echo ">> Clone dotfiles-secret"
-	@cd $(REPO_ROOT)/github.com/$(USERNAME); git clone git@github.com:$(USERNAME)/$(SECRET_REPO_NAME)
+# assuming ghq have been installed in install-homebrew step
+	@ghq get -p $(USERNAME)/$(SECRET_REPO_NAME)
 	@cd $(REPO_ROOT)/github.com/$(USERNAME)/$(SECRET_REPO_NAME); $(MAKE) install
 
-update: update-secret
+update: update-homebrew update-secret
 	@echo ">> Update dotfiles"
-	@git pull origin master
+	@ghq get -u -p $(USERNAME)/$(REPO_NAME)
+
+update-homebrew:
+	@echo ">> Update Homebrew formulae"
+	@brew update
+	@echo ">> Upgrade Homebrew formulae"
+	@brew upgrade
 
 update-secret:
 	@echo ">> Update dotfiles-secret"
-	@cd $(REPO_ROOT)/github.com/$(USERNAME)/$(SECRET_REPO_NAME); git pull origin master
+	@ghq get -u -p $(USERNAME)/$(SECRET_REPO_NAME)
+	@cd $(REPO_ROOT)/github.com/$(USERNAME)/$(SECRET_REPO_NAME); $(MAKE) install
 
 clean:
 	@echo ">> Remove dotfiles"
