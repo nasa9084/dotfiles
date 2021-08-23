@@ -37,7 +37,7 @@ cask 'font-fontawesome'
 cask 'font-hack-nerd-font'
 cask 'hyper'
 cask 'karabiner-elements'
-cask 'macs-fan-controll'
+cask 'macs-fan-control'
 cask 'slack'
 cask 'steam'
 
