@@ -48,5 +48,3 @@
 	path = ~/.gitconfig.secret
 [init]
 	defaultBranch = main
-[core]
-	excludesfile = /Users/nasa/.gitignore_global
