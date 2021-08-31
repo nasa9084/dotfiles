@@ -25,7 +25,7 @@ install-secret:
 	@ghq get -p $(USERNAME)/$(SECRET_REPO_NAME)
 	@cd $(REPO_ROOT)/github.com/$(USERNAME)/$(SECRET_REPO_NAME); $(MAKE) install
 
-update: update-homebrew update-secret
+update: update-homebrew update-secret $(addprefix $(HOME)/,$(DOTFILES))
 	@echo ">> Update dotfiles"
 	@ghq get -u -p $(USERNAME)/$(REPO_NAME)
 
