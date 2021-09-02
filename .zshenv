@@ -46,5 +46,8 @@ export PATH="${PATH}:${GOPATH}/bin"
 # use Buildkit for docker build
 export DOCKER_BUILDKIT=1
 
+# krew - plugin system for kubectl
+export PATH="${PATH}:${HOME}/.krew/bin"
+
 # load secrets
 source ${HOME}/.zshenv.secret
