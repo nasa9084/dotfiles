@@ -106,3 +106,5 @@ source ${HOME}/.zshrc.secret
 
 # starship
 eval "$(starship init zsh)"
+
+. /usr/local/opt/asdf/libexec/asdf.sh
