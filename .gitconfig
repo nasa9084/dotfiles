@@ -34,8 +34,17 @@
 	remotes = remote -v
 	ignore = !curl -L -s https://www.gitignore.io/api/$@
 
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+
 [ghq]
 	root = ~/src
+
+[delta]
+	line-numbers = true
 
 [url "git@github.com:"]
 	pushInsteadOf = git://github.com/
