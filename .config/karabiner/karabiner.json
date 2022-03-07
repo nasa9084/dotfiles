@@ -182,16 +182,6 @@
                                     "key_code": "f13"
                                 }
                             ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "left_control"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "international3"
-                                }
-                            ]
                         }
                     ]
                 },
