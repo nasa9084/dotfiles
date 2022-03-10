@@ -57,3 +57,5 @@
 	path = ~/.gitconfig.secret
 [init]
 	defaultBranch = main
+[credential]
+	helper = osxkeychain
