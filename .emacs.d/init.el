@@ -131,7 +131,7 @@
 
 ;; shellをbashからzshに変更
 (cond ((string= system-type "darwin")
-       (setq shell-file-name '"/usr/local/bin/zsh"))
+       (setq shell-file-name '"/opt/homebrew/bin/zsh"))
       (t ;; on linux
        (setq shell-file-name '"/usr/bin/zsh")))
 
