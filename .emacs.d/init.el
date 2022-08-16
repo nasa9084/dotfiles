@@ -763,14 +763,12 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (defun sh-set-shell-tmp-path-advice (func &rest r)
-  "Wrap `sh-set-shell' with temporarily modified
-`exec-path'."
+  "Wrap `sh-set-shell' with temporarily modified `exec-path'."
   (let ((exec-path (cons "/bin/" exec-path)))
     (apply func r)))
 
 (advice-add 'sh-set-shell
             :around 'sh-set-shell-tmp-path-advice)
-
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ ssh-config-mode
