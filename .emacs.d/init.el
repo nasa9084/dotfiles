@@ -826,53 +826,6 @@
   '(load-library "sql-indent"))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ twittering-mode
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; emacs用twitterクライアント
-(use-package twittering-mode
-  :ensure t
-  :defer t
-  :config
-  ;; 公式retweetキーバインド
-  (add-hook 'twittering-mode-hook
-            '(lambda ()
-               (define-key twittering-mode-map (kbd "C-u C-c RET") 'twittering-native-retweet)))
-
-  ;; マスターパスワードの使用->毎回PINを入力しなくてよくなる
-  (setq twittering-use-master-password t)
-
-  ;; アイコンの表示
-  (setq twittering-icon-mode t)
-
-  ;; アイコンをダウンロードする
-  (setq twittering-icon-storage-limit t)
-
-  ;; 起動時に自動で開くTL
-  (setq twittering-initial-timeline-spec-string
-        '(":mentions"
-          ":home"))
-
-  ;; 表示する書式
-  (setq twittering-status-format
-        "%i %S (@%s) - %@:
-%T
-// via %f%L%RT{ retweeted by %S(%s)}
-")
-
-  ;; 割り込みReply時に全員に返信、ハッシュタグ自動挿入
-  (setq twittering-edit-skeleton 'inherit-any)
-
-  ;; C-c <RET>で引用RT
-  (setq twittering-retweet-format '(nil _ " %u"))
-
-  ;; URLを開くときにブラウザを聞く
-  (defadvice browse-url (before select-browser activate)
-    (if (y-or-n-p "Open with eww? ")
-        (setq-local browse-url-browser-function 'eww-browse-url)
-      (setq-local browse-url-browser-function 'browse-url-default-browser))))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ visual-regexp
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
