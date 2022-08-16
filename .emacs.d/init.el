@@ -821,15 +821,6 @@
     :key "s"
     :switch "*scratch*")
 
-  ;; [twit state]prefix tでtwittering-modeに切替える
-  (state-define-state
-      twit
-    :key "t"
-    ;; この条件を満たすときにtwit stateとみなす
-    :in (string= major-mode 'twittering-mode)
-    ;; (twit) でtwittering-modeにする
-    :create twit)
-
   ;; [emacsstate]prefix eでEmacs設定ファイルを編集する
   (state-define-state
     emacs
