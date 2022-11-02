@@ -41,24 +41,24 @@ case "${OSTYPE}" in
                 export PATH="/usr/local/sbin:$PATH"
 
                 # GNU make
-                export PATH="/opt/homebrew/Cellar/make/4.3/libexec/gnubin:${PATH}"
-                export MANPATH="/opt/homebrew/Cellar/make/4.3/libexec/gnuman:${MANPATH}"
+                export PATH="/opt/homebrew/opt/make/libexec/gnubin:${PATH}"
+                export MANPATH="/opt/homebrew/opt/make/libexec/gnuman:${MANPATH}"
 
                 # GNU grep
-                export PATH="/opt/homebrew/Cellar/grep/3.7/libexec/gnubin:${PATH}"
-                export MANPATH="/opt/homebrew/Cellar/grep/3.7/libexec/gnuman:${MANPATH}"
+                export PATH="/opt/homebrew/opt/grep/libexec/gnubin:${PATH}"
+                export MANPATH="/opt/homebrew/opt/grep/libexec/gnuman:${MANPATH}"
 
                 # GNU sed
-                export PATH="/opt/homebrew/Cellar/gnu-sed/4.8/libexec/gnubin:${PATH}"
-                export MANPATH="/opt/homebrew/Cellar/gnu-sed/4.8/libexec/gnuman:${MANPATH}"
+                export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:${PATH}"
+                export MANPATH="/opt/homebrew/opt/gnu-sed/libexec/gnuman:${MANPATH}"
 
                 # GNU tar
-                export PATH="/opt/homebrew/Cellar/gnu-tar/1.34/libexec/gnubin:$PATH"
-                export MANPATH="/opt/homebrew/Cellar/gnu-tar/1.34/libexec/gnuman:${MANPATH}"
+                export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+                export MANPATH="/opt/homebrew/opt/gnu-tar/libexec/gnuman:${MANPATH}"
 
                 # coreutils
-                export PATH="/opt/homebrew/Cellar/coreutils/9.0_1/libexec/gnubin:${PATH}"
-                export MANPATH="/opt/homebrew/Cellar/coreutils/9.0_1/libexec/gnuman:${MANPATH}"
+                export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
+                export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:${MANPATH}"
         esac
 esac
 
