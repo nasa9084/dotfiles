@@ -59,6 +59,9 @@ case "${OSTYPE}" in
                 # coreutils
                 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
                 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:${MANPATH}"
+
+                # Docker platform
+                export DOCKER_DEFAULT_PLATFORM=linux/amd64
         esac
 esac
 
