@@ -60,6 +60,11 @@ alias rezshrc="source ~/.zshrc"
 alias cat="bat"
 alias grep="rg"
 
+if [[ "${OSTYPE}" == "darwin"* ]] && [ "$(uname -m)" = "arm64" ]
+then
+    alias python="python3"
+fi
+
 # global alias
 alias -g G="| grep"
 alias -g H="| head"
