@@ -60,6 +60,9 @@ case "${OSTYPE}" in
                 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
                 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:${MANPATH}"
 
+                # mysql-client
+                export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
                 # Docker platform
                 export DOCKER_DEFAULT_PLATFORM=linux/amd64
         esac
