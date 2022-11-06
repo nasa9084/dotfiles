@@ -1,5 +1,9 @@
 format = """\
     ${custom.preprompt}\
+    $kubernetes\
+
+    $line_break\
+    ${custom.preprompt}\
     $directory\
     $git_branch\
     $git_commit\
@@ -89,6 +93,10 @@ symbol = " "
 
 [julia]
 symbol = " "
+
+[kubernetes]
+disabled = false
+format = '[$symbol($cluster) \(ns: $namespace\)](dimmed green) '
 
 [memory_usage]
 symbol = " "
