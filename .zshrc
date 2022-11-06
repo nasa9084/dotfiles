@@ -98,9 +98,6 @@ bindkey '^R' peco-history-selection
 # Wrap git automatically by adding the following to ~/.zshrc:
 eval "$(hub alias -s)"
 
-# direnv
-eval "$(direnv hook zsh)"
-
 # load secrets
 source ${HOME}/.zshrc.secret
 
