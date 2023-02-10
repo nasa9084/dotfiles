@@ -50,8 +50,9 @@
 ;; フォント設定
 (add-to-list 'default-frame-alist '(font . "ricty-13.5"))
 
-;; 優先文字コード
+;; coding system
 (prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8-unix)
 
 ;; 選択領域の色
 (set-face-background 'region "#555")
@@ -173,31 +174,6 @@
 
 ;; disable close keybind
 (global-set-key (kbd "C-x C-c") nil)
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ language - coding system
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; デフォルトの言語環境
-(set-language-environment "Japanese")
-
-;; デフォルトの文字コード
-(set-default-coding-systems 'utf-8-unix)
-
-;; キーボード入力の文字コード
-(set-keyboard-coding-system 'utf-8-unix)
-
-;; 端末の文字コード
-(set-terminal-coding-system 'utf-8-unix)
-
-;; ファイル名の文字コード
-;; windows環境ではshift-jis
-;; linux環境ではutf-8-unix
-(cond
- ((eq window-system 'w32)
-  (setq file-name-coding-system 'sjis))
- ((eq system-type 'gnu/linux)
-  (setq file-name-coding-system 'utf-8-unix)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - buffer
