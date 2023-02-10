@@ -206,7 +206,6 @@
 ;; 同一バッファ名にディレクトリ付与
 (use-package uniquify
   :config
-  (setq uniquify-buffer-name-style 'forward)
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
   (setq uniquify-ignore-buffers-re "*[^*]+*"))
 
