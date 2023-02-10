@@ -24,14 +24,6 @@
 ;;; @ general
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(setq initial-frame-alist
-      (append (list
-               '(width . 180)
-               '(height . 75)
-               )
-              initial-frame-alist))
-(setq default-frame-alist initial-frame-alist)
-
 ;; Common Lisp
 (require 'cl-lib)
 
@@ -44,16 +36,8 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;; スタートアップ非表示
-(setq inhibit-startup-screen t)
+;; Set shorter scratch message
 (setq initial-scratch-message ";; Welcome to emacs! This buffer is *scratch*.\n\n")
-
-;; スクロールバー非表示
-(set-scroll-bar-mode nil)
-
-;; ツールバー非表示
-(tool-bar-mode -1)
-(menu-bar-mode -1)
 
 ;; タイトルバー表示変更
 (setq frame-title-format
