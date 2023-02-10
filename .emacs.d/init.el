@@ -486,7 +486,6 @@
   :init
   (global-set-key (kbd "C-c h") 'helm-mini)
   :config
-  (require 'helm-config)
   (helm-mode 1)
 
   (define-key global-map (kbd "M-x") 'helm-M-x)
