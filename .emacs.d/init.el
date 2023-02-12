@@ -578,8 +578,7 @@
   (lsp-imenu-show-container-name nil)
   (lsp-diagnostics-provider :flycheck)
   (lsp-signature-auto-activate nil)
-  (lsp-response-timeout 5)
-  )
+  (lsp-response-timeout 5))
 
 (use-package lsp-ui
   :ensure t
@@ -590,8 +589,7 @@
   (lsp-ui-doc-header nil)
   (lsp-ui-doc-position 'top)
   (lsp-ui-doc-use-chidframe nil)
-  (lsp-ui-doc-use-webkit nil)
-)
+  (lsp-ui-doc-use-webkit nil))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ magit
@@ -784,7 +782,7 @@
   :config
   ;; [scratch state]prefix sで*scratch*に切り替える
   (state-define-state
-      scratch
+    scratch
     :key "s"
     :switch "*scratch*")
 
@@ -845,8 +843,7 @@
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-sql-indent-offset 2)
   (setq indent-tabs-mode nil)
-  (setq tab-width 2)
-  )
+  (setq tab-width 2))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ which-key
