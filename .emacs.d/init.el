@@ -304,7 +304,6 @@
           ("lisp" "lisp")
           ("markdown" "md")
           ("org" "org")
-          ("twittering" "tw")
           ("mode" "" :postfix)))
   (cyphejor-mode 1))
 
