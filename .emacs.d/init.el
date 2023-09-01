@@ -148,7 +148,6 @@
      (t (forward-char) (backward-word) (kill-word 1)))))
 (global-set-key "\M-d" 'kill-word-at-point)
 
-;; flycheck次のエラー・前のエラー
 (global-set-key (kbd "C-c C-n") 'flycheck-next-error)
 (global-set-key (kbd "C-c C-p") 'flycheck-previous-error)
 
@@ -252,7 +251,6 @@
 ;;; @ dockerfile-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; major mode for docker
 (use-package dockerfile-mode
   :ensure t
   :hook
@@ -264,7 +262,6 @@
 ;;; @ editorconfig
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; editorconfig plugin
 (use-package editorconfig
   :ensure t
   :config
@@ -284,7 +281,6 @@
   (add-hook 'css-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode)
 
-  ;; インデントは2文字分
   (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
 
   :config
@@ -306,12 +302,12 @@
 (use-package flycheck
   :ensure t
   :init
-  ;; 文法チェック
   (add-hook 'after-init-hook #'global-flycheck-mode)
 
   ;; エラーをツールチップ表示
   (with-eval-after-load 'flycheck
     (flycheck-pos-tip-mode)))
+
 (use-package flycheck-golangci-lint
   :ensure t
   :hook (go-mode . flycheck-golangci-lint-setup))
@@ -338,7 +334,6 @@
 ;;; @ go
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; for golang
 (defun lsp-go-install-save-hooks()
   "Add file save hook provided by lsp."
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -366,7 +361,6 @@
 ;;; @ helm
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; Helm.el
 (use-package helm
   :ensure t
   :diminish helm-mode
@@ -446,7 +440,6 @@
 ;;; @ jinja2-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; for Jinja2 Template
 (use-package jinja2-mode
   :ensure t
   :mode
@@ -456,7 +449,6 @@
 ;;; @ json-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; json用モード
 (use-package json-mode
   :ensure t
   :mode
@@ -466,7 +458,6 @@
 ;;; @ jsonnet-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; jsonnet用モード
 (use-package jsonnet-mode
   :ensure t
   :mode
@@ -476,7 +467,6 @@
 ;;; @ k8s-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; major mode for Kubernetes configuration
 (use-package k8s-mode
   :ensure t
   :hook (k8s-mode . yas-minor-mode))
@@ -485,7 +475,6 @@
 ;;; @ kotlin-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; major mode for kotlin
 (use-package kotlin-mode
   :ensure t)
 
@@ -535,7 +524,6 @@
 ;;; @ Markdown-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; markdown用モード
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode)
@@ -548,7 +536,6 @@
 ;;; @ nginx-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; for nginx configurations
 (use-package nginx-mode
   :ensure t)
 
@@ -610,7 +597,6 @@
 ;;; @ python-pep8
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; python-pep8
 (add-hook 'python-mode-hook
           '(lambda ()
              (define-key python-mode-map (kbd "C-c s") 'python-pep8)))
@@ -652,7 +638,6 @@
 ;;; @ rust
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; rust
 (use-package rust-mode
   :ensure t
   :mode (("\\.rs\\'" . rust-mode))
@@ -804,7 +789,6 @@
 ;;; @ yaml-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; YAML
 (use-package yaml-mode
   :ensure t
   :hook
@@ -817,12 +801,9 @@
 ;;; @ theme
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; テーマ格納ディレクトリのパス追加
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory (concat user-emacs-directory "theme"))
              )
-
-;; テーマ選択
 (load-theme 'gnupack-dark t)
 
 ;; Local Variables:
