@@ -698,7 +698,8 @@
   (state-define-state
     scratch
     :key "s"
-    :switch "*scratch*")
+    :switch "*scratch*"
+    :create (scratch-buffer))
 
   ;; [emacs state] Open init.el by prefix e
   (state-define-state
