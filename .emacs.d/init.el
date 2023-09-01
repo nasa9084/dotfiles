@@ -123,12 +123,6 @@
 ;; キーストロークをミニバッファに早く表示
 (setq echo-keystrokes 0.1)
 
-(use-package cua-base
-  :custom
-  (cua-enable-cua-keys nil "Disable CUA keybindings e.g. C-x for cut")
-  :config
-  (cua-mode t))
-
 ;; C-h で[BS]
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
@@ -204,6 +198,18 @@
   (add-hook 'find-file-hook 'auto-insert)
   (setq auto-insert-directory "~/.emacs.d/autoinsert/")
   (setq auto-insert-query nil))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ cua-base
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; built-in CUA-mode
+;; for rectangle selection
+(use-package cua-base
+  :custom
+  (cua-enable-cua-keys nil "Disable CUA keybindings e.g. C-x for cut")
+  :config
+  (cua-mode t))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ cyphejor
