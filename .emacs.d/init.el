@@ -169,6 +169,9 @@
 ;; disable close keybind
 (global-set-key (kbd "C-x C-c") nil)
 
+;; disable show menubar
+(global-set-key (kbd "C-<tab>") nil)
+
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - buffer
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
