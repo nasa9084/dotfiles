@@ -143,9 +143,6 @@
      (t (forward-char) (backward-word) (kill-word 1)))))
 (global-set-key "\M-d" 'kill-word-at-point)
 
-(global-set-key (kbd "C-c C-n") 'flycheck-next-error)
-(global-set-key (kbd "C-c C-p") 'flycheck-previous-error)
-
 ;; multi-term
 (global-set-key (kbd "C-c t") '(lambda ()
                                  (interactive)
@@ -301,7 +298,10 @@
 
   ;; エラーをツールチップ表示
   (with-eval-after-load 'flycheck
-    (flycheck-pos-tip-mode)))
+    (flycheck-pos-tip-mode))
+  :bind
+  (("C-c C-n" . flycheck-next-error)
+  ("C-c C-p" . flycheck-previous-error)))
 
 (use-package flycheck-golangci-lint
   :ensure t
