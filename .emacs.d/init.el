@@ -30,12 +30,6 @@
 ;; generic config major mode
 (require 'generic-x)
 
-;; use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-
 ;; Set shorter scratch message
 (setq initial-scratch-message ";; Welcome to emacs! This buffer is *scratch*.\n\n")
 
