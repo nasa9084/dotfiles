@@ -212,18 +212,6 @@
 (setq create-lockfiles nil)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ auto-async-byte-compile
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; 自動コンパイル
-(use-package auto-async-byte-compile
-  :ensure t
-  :config
-  ;; 自動コンパイルを無効にするファイル名の正規表現
-  (setq auto-async-byte-compile-exclude-files-regexp "init.el")
-  (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ autoinsert
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -232,56 +220,6 @@
   (add-hook 'find-file-hook 'auto-insert)
   (setq auto-insert-directory "~/.emacs.d/autoinsert/")
   (setq auto-insert-query nil))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ bury successful compilation
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; コンパイル成功時にcompilationバッファを自動で閉じる
-(use-package bury-successful-compilation
-  :ensure t
-  :config
-  (bury-successful-compilation 1))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ company
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; 補完
-(use-package company
-  :ensure t
-  :diminish company-mode
-  :init
-  (global-company-mode 1)
-
-  ;; C-n, C-pで補完候補を次/前の候補を選択
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous)
-  (define-key company-search-map (kbd "C-n") 'company-select-next)
-  (define-key company-search-map (kbd "C-p") 'company-select-previous)
-
-  ;; C-sで絞り込む
-  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
-
-  ;; TABで候補を設定
-  (define-key company-active-map (kbd "C-i") 'company-complete-selection)
-
-  :config
-  (defvar company-dabbrev-downcase nil)
-  (set-face-attribute 'company-tooltip nil
-                      :foreground "black" :background "lightgrey")
-  (set-face-attribute 'company-tooltip-common nil
-                      :foreground "black" :background "lightgrey")
-  (set-face-attribute 'company-tooltip-common-selection nil
-                      :foreground "white" :background "steelblue")
-  (set-face-attribute 'company-tooltip-selection nil
-                      :foreground "black" :background "steelblue")
-  (set-face-attribute 'company-preview-common nil
-                      :foreground "lightgrey" :background nil :underline t)
-  (set-face-attribute 'company-scrollbar-fg nil
-                      :background "gray40")
-  (set-face-attribute 'company-scrollbar-bg nil
-                      :background "gray"))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ cyphejor
@@ -417,14 +355,6 @@
   (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
   (add-hook 'go-dot-mod-mode-hook #'display-line-numbers-mode))
 
-(use-package gotest
-  :ensure t
-  :after (popwin)
-  :config
-  (setq go-test-verbose t)
-  (define-key go-mode-map (kbd "C-c C-t") 'go-test-current-file)
-  (define-key go-mode-map (kbd "C-c t") 'go-test-current-test)
-  (push '("\*Go Test\*" :regexp t :height 0.5 :stick t) popwin:special-display-config))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ helm
