@@ -710,30 +710,27 @@
 ;;; @ state
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; stateのプレフィクスキーをC-c C-x sにする(読み込み前に指定)
-(defvar state-keymap-prefix (kbd "C-c C-x s"))
-
 (use-package state
   :ensure t
   :diminish state-mode
   :init
-  ;; マイナーモードを有効にする
-  (state-global-mode 1)
+  (defvar state-keymap-prefix (kbd "C-c C-x s"))
 
   :config
-  ;; [scratch state]prefix sで*scratch*に切り替える
+  ;; [scratch state] Open *scratch* by prefix s
   (state-define-state
     scratch
     :key "s"
     :switch "*scratch*")
 
-  ;; [emacsstate]prefix eでEmacs設定ファイルを編集する
+  ;; [emacs state] Open init.el by prefix e
   (state-define-state
     emacs
     :key "e"
     :in "init.el"
-    ;; どれも見付からないときは init.el を開く
-    :create (find-file "~/.emacs.d/init.el")))
+    :create (find-file "~/.emacs.d/init.el"))
+
+  (state-global-mode 1))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ sql-mode
