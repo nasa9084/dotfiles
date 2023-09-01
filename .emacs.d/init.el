@@ -143,13 +143,6 @@
      (t (forward-char) (backward-word) (kill-word 1)))))
 (global-set-key "\M-d" 'kill-word-at-point)
 
-;; multi-term
-(global-set-key (kbd "C-c t") '(lambda ()
-                                 (interactive)
-                                 (if (get-buffer "*terminal<1>*")
-                                     (switch-to-buffer "*terminal<1>*")
-                                   (multi-term))))
-
 ;; TrackPadのピンチイン・ピンチアウトを無効化
 (global-set-key (kbd "<magnify-up>") nil)
 (global-set-key (kbd "<magnify-down>") nil)
