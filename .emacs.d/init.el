@@ -420,8 +420,9 @@
   :hook
   (prog-mode . highlight-indent-guides-mode)
   :config
-  (setq highlight-indent-guides-method 'character)
-  (setq highlight-indent-guides-auto-character-face-perc 25))
+  (setq highlight-indent-guides-method 'fill)
+  (setq highlight-indent-guides-auto-even-face-perc 0)
+  (setq highlight-indent-guides-auto-odd-face-perc 6))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ hiwin
