@@ -123,9 +123,11 @@
 ;; キーストロークをミニバッファに早く表示
 (setq echo-keystrokes 0.1)
 
-;; C-[Ret] で矩形選択
-(cua-mode t)
-(setq cua-enable-cua-keys nil)
+(use-package cua-base
+  :custom
+  (cua-enable-cua-keys nil "Disable CUA keybindings e.g. C-x for cut")
+  :config
+  (cua-mode t))
 
 ;; C-h で[BS]
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
