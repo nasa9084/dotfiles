@@ -88,7 +88,6 @@
 (setq scroll-conservatively 35
       scroll-margin 0
       scroll-step 1)
-(defvar comint-scroll-show-maximum-output t) ;;shell-mode
 
 ;; ビープ音を出さない
 (setq visible-bell t)
@@ -99,12 +98,6 @@
        (setq shell-file-name '"/opt/homebrew/bin/zsh"))
       (t ;; on linux
        (setq shell-file-name '"/usr/bin/zsh")))
-
-(use-package exec-path-from-shell
-  :ensure t)
-(cond ((string= system-type "darwin")
-       (let ((envs '("PATH" "HOME" "GOPATH" "GOPRIVATE")))
-         (exec-path-from-shell-copy-envs envs))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ package manager
@@ -148,39 +141,11 @@
 (global-set-key (kbd "C-<tab>") nil)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ screen - buffer
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; 同一バッファ名にディレクトリ付与
-(use-package uniquify
-  :config
-  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-  (setq uniquify-ignore-buffers-re "*[^*]+*"))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - cursor
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; カーソルの点滅をさせない
 (blink-cursor-mode 0)
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ search - isearch
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; 大文字・小文字を区別しないでサーチ
-(setq case-fold-search t)
-(setq isearch-case-fold-search t)
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ dired
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; 2つのウィンドウで開いている時に、デフォルトの移動orコピー先をもう一方のディレクトリに
-(defvar dired-dwim-target t)
-
-;; ディレクトリのコピーをサブディレクトリについても実行
-(defvar dired-recursive-copies 'always)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ file - lockfile
@@ -194,8 +159,8 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package autoinsert
+  :hook (find-file . auto-insert)
   :config
-  (add-hook 'find-file-hook 'auto-insert)
   (setq auto-insert-directory "~/.emacs.d/autoinsert/")
   (setq auto-insert-query nil))
 
@@ -252,15 +217,25 @@
 (diminish 'auto-revert-modee)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ dired
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; built-in dired
+(use-package dired
+  :custom
+  ;; 2つのウィンドウで開いている時に、デフォルトの移動orコピー先をもう一方のディレクトリに
+  (dired-dwim-target t)
+  ;; ディレクトリのコピーをサブディレクトリについても実行
+  (dired-recursive-copies 'always))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ dockerfile-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package dockerfile-mode
   :ensure t
-  :hook
-  (dockerfile-mode . lsp-deferred)
-  :mode
-  ("Dockerfile$" . dockerfile-mode))
+  :hook (dockerfile-mode . lsp-deferred)
+  :mode ("Dockerfile\\'" . dockerfile-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ editorconfig
@@ -279,23 +254,28 @@
 (use-package emmet-mode
   :ensure t
   :commands emmet-mode
-  :init
-  ;; HTML, CSSでemmet-mode
-  (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'css-mode-hook 'emmet-mode)
-  (add-hook 'web-mode-hook 'emmet-mode)
-
-  (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
-
+  :hook  ((sgml-mode . emmet-mode)
+          (css-mode . emmet-mode)
+          (web-mode . emmet-mode))
+  :bind (:map emmet-mode-keymap
+              ("C-j" . nil)
+              ("H-i" . emmet-expand-line))
   :config
-  ;; 展開語は最初のクォーテーションの間にカーソル
   (setq emmet-move-cursor-between-quotes t)
+  (setq emmet-indentation 2)
 
-  ;; 展開のキーバインドをC-j -> C-i
-  (eval-after-load "emmet-mode"
-    '(define-key emmet-mode-keymap (kbd "C-j") nil))
-  (keyboard-translate ?\C-i ?\H-i)
-  (define-key emmet-mode-keymap (kbd "H-i") 'emmet-expand-line))
+  (keyboard-translate ?\C-i ?\H-i))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ exec-path-from-shell
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (cond ((string= system-type "darwin")
+         (let ((envs '("PATH" "HOME" "GOPATH" "GOPRIVATE")))
+           (exec-path-from-shell-copy-envs envs)))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ flycheck
@@ -303,22 +283,17 @@
 
 (use-package flycheck-pos-tip
   :ensure t)
+
 (use-package flycheck
   :ensure t
+  :hook (after-init . global-flycheck-mode)
   :init
-  (add-hook 'after-init-hook #'global-flycheck-mode)
-
-  ;; エラーをツールチップ表示
-  (with-eval-after-load 'flycheck
-    (flycheck-pos-tip-mode))
-  :bind
-  (("C-c C-n" . flycheck-next-error)
-  ("C-c C-p" . flycheck-previous-error)))
-
-(use-package flycheck-golangci-lint
-  :ensure t
-  :hook (go-mode . flycheck-golangci-lint-setup))
-(flycheck-mode)
+  ;; https://www.flycheck.org/en/latest/user/syntax-checkers.html#variable-flycheck-disabled-checkers
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+  :bind(("C-c C-n" . flycheck-next-error)
+        ("C-c C-p" . flycheck-previous-error))
+  :config
+  (flycheck-pos-tip-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ git-gutter
@@ -327,7 +302,7 @@
 (use-package git-gutter
   :ensure t
   :diminish
-  :init (global-git-gutter-mode 1))
+  :config (global-git-gutter-mode 1))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ git-modes
@@ -335,27 +310,28 @@
 
 (use-package git-modes
   :ensure t
-  :mode (("CODEOWNERS" . gitignore-mode)))
+  :mode ("CODEOWNERS" . gitignore-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ go
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(defun lsp-go-install-save-hooks()
-  "Add file save hook provided by lsp."
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
 (use-package go-mode
   :ensure t
-  :mode (("\\.go\\'" . go-mode))
-  :hook
-  (go-mode . lsp-deferred)
-  :init
-  (add-hook 'go-mode-hook (lambda()
-                            (local-set-key (kbd "M-.") 'godef-jump)))
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-  (add-hook 'go-dot-mod-mode-hook #'display-line-numbers-mode))
+  :mode ("\\.go\\'" . go-mode)
+  :hook ((go-mode . lsp-deferred)
+         (go-mode . lsp-go-install-save-hooks)
+         (go-dot-mod-mode . display-line-numbers-mode))
+  :functions (lsp-format-buffer lsp-organize-imports)
+  :config
+  (defun lsp-go-install-save-hooks()
+    "Add file save hook provided by lsp."
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t)))
+
+(use-package flycheck-golangci-lint
+  :ensure t
+  :hook (go-mode . flycheck-golangci-lint-setup))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ gradle
@@ -371,24 +347,22 @@
 (use-package helm
   :ensure t
   :diminish helm-mode
-  :init
-  (global-set-key (kbd "C-c h") 'helm-mini)
+  :defines (helm-find-files-map helm-read-file-map)
+  :bind (("M-x" . helm-M-x)
+         ("C-x b" . helm-buffers-list)
+         ("C-x C-f" . helm-find-files)
+         ("C-x C-r" . helm-recentf)
+         ("M-y" . helm-show-kill-ring)
+         :map helm-find-files-map
+         ("TAB" . helm-execute-persistent-action)
+         :map helm-map
+         ("<left>" . helm-previous-source)
+         ("<right>" . helm-next-source)
+         :map helm-read-file-map
+         ("TAB" . helm-execute-persistent-action))
+  :custom (helm-ff-lynx-style-map t)
   :config
   (helm-mode 1)
-
-  (define-key global-map (kbd "M-x") 'helm-M-x)
-  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
-  (define-key global-map (kbd "C-x C-r") 'helm-recentf)
-  (define-key global-map (kbd "C-c C-s") 'helm-ghq)
-  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-  (define-key global-map (kbd "C-c i")   'helm-imenu)
-  (define-key global-map (kbd "C-x b")   'helm-buffers-list)
-
-  (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-  (define-key helm-map (kbd "<left>") 'helm-previous-source)
-  (define-key helm-map (kbd "<right>") 'helm-next-source)
-  (customize-set-variable 'helm-ff-lynx-style-map t)
-  (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 
   (defadvice helm-ff-kill-or-find-buffer-fname (around execute-only-if-exist activate)
     "Execute command only if CANDIDATE exists"
@@ -415,8 +389,7 @@
 (use-package highlight-indent-guides
   :ensure t
   :diminish highlight-indent-guides-mode
-  :hook
-  (prog-mode . highlight-indent-guides-mode)
+  :hook (prog-mode . highlight-indent-guides-mode)
   :config
   (setq highlight-indent-guides-method 'fill)
   (setq highlight-indent-guides-auto-even-face-perc 0)
@@ -430,8 +403,17 @@
 (use-package hiwin
   :ensure t
   :config
-  ;; hiwin-modeを有効化
   (hiwin-activate))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ isearch
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; built-in isearch
+(use-package isearch
+  :config
+  (setq case-fold-search t)
+  (setq isearch-case-fold-search t))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ javascript
@@ -440,8 +422,7 @@
 ;; javascript用モード
 (use-package rjsx-mode
   :ensure t
-  :mode
-  (("\\.js\\'" . rjsx-mode)))
+  :mode ("\\.js\\'" . rjsx-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ jinja2-mode
@@ -449,26 +430,21 @@
 
 (use-package jinja2-mode
   :ensure t
-  :mode
-  ("\\.tmpl\\'" . jinja2-mode))
+  :mode ("\\.tmpl\\'" . jinja2-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ json-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package json-mode
-  :ensure t
-  :mode
-  (("\\.json\\'" . json-mode)))
+  :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ jsonnet-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package jsonnet-mode
-  :ensure t
-  :mode
-  (("\\.jsonnet\\'" . jsonnet-mode)))
+  :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ k8s-mode
@@ -492,12 +468,14 @@
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :hook(
-        (lsp-mode . lsp-enable-which-key-integration))
+  :init
+  (setq lsp-keymap-prefix "C-c C-l")
+  :hook (lsp-mode . lsp-enable-which-key-integration)
   :custom
   (gc-cons-threshold (* gc-cons-threshold 150))
   (lsp-document-sync-method lsp--sync-incremental)
   (lsp-enable-file-watchers nil)
+  (lsp-completion-enable nil)
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-print-performance nil)
   (lsp-log-io nil)
@@ -533,10 +511,9 @@
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode)
-  :mode
-  (("\\.markdown\\'" . gfm-mode)
-   ("\\.md\\'" . gfm-mode)
-   ("\\.text\\'" . gfm-mode)))
+  :mode (("\\.markdown\\'" . gfm-mode)
+         ("\\.md\\'" . gfm-mode)
+         ("\\.text\\'" . gfm-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ nginx-mode
@@ -549,7 +526,9 @@
 ;;; @ org-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(defvar org-startup-with-inline-images t)
+(use-package org
+  :config
+  (setq org-startup-with-inline-images t))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ paren
@@ -557,8 +536,7 @@
 
 ;; 対応する括弧を光らせる
 (use-package paren
-  :hook
-  (after-init . show-paren-mode)
+  :hook (after-init . show-paren-mode)
   :config
   (setq show-paren-delay 0))
 
@@ -567,8 +545,8 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; built-in perl-mode
-(add-to-list 'auto-mode-alist
-             '("\\.psgi$" . perl-mode) t)
+(use-package perl
+  :mode ("\\.psgi\\'" . perl-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ popwin
@@ -577,8 +555,7 @@
 ;; popup window manager: used for gotest
 (use-package popwin
   :ensure t
-  :config
-  (global-set-key (kbd "C-z") popwin:keymap))
+  :bind-keymap ("C-z" . popwin:keymap))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ protobuf-mode
@@ -589,23 +566,15 @@
   :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ python.el
+;;; @ python-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; built-in python.el
-(add-to-list 'auto-mode-alist
-             '("\\.wsgi$" . python-mode) t)
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (define-key python-mode-map (kbd "C-m") 'newline-and-indent)))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ python-pep8
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (define-key python-mode-map (kbd "C-c s") 'python-pep8)))
+(use-package python
+  :mode ("\\.wsgi\\'" . python-mode)
+  :bind (:map python-mode-map
+              ("C-m" . newline-and-indent)
+              ("C-c s" . python-pep8)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ rainbow-mode
@@ -615,10 +584,9 @@
 (use-package rainbow-mode
   :ensure t
   :diminish rainbow-mode
-  :init
-  (add-hook 'css-mode-hook 'rainbow-mode)
-  (add-hook 'scss-mode-hook 'rainbow-mode)
-  (add-hook 'web-mode-hook 'rainbow-mode)
+  :hook ((css-mode . rainbow-mode)
+         (scss-mode . rainbow-mode)
+         (web-mode . rainbow-mode))
   :config
   (setq rainbow-html-colors t)
   (setq rainbow-latex-colors t)
@@ -647,9 +615,8 @@
 (use-package rust-mode
   :ensure t
   :mode (("\\.rs\\'" . rust-mode))
-  :hook
-  (rust-mode . lsp-deferred)
-  :custom rust-format-on-save t)
+  :hook (rust-mode . lsp-deferred)
+  :custom (rust-format-on-save t))
 
 (use-package cargo
   :ensure t
@@ -660,12 +627,17 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (defun sh-set-shell-tmp-path-advice (func &rest r)
-  "Wrap `sh-set-shell' with temporarily modified `exec-path'."
-  (let ((exec-path (cons "/bin/" exec-path)))
-    (apply func r)))
+  (let ((exec-path (cons "/bin/" exec-path))) (apply func r)))
 
 (advice-add 'sh-set-shell
             :around 'sh-set-shell-tmp-path-advice)
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ shell-mode
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package comint
+  :custom (comint-scroll-show-maximum-output t))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ ssh-config-mode
@@ -681,9 +653,8 @@
 ;; 改行を少し賢く
 (use-package smart-newline
   :ensure t
-  :config
-  (global-set-key (kbd "C-j") 'smart-newline)
-  (global-set-key (kbd "RET") 'smart-newline))
+  :bind (("C-j" . smart-newline)
+         ("RET" . smart-newline)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ stash
@@ -691,9 +662,10 @@
 
 ;; 変数永続化
 (use-package stash
-  :ensure t)
-(defstash kill-ring "kill-ring.el" nil (or stashed 'nil))
-(setq stash-directory "/tmp/stashes")
+  :ensure t
+  :config
+  (defstash kill-ring "kill-ring.el" nil (or stashed 'nil))
+  (setq stash-directory "/tmp/stashes"))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ state
@@ -728,8 +700,9 @@
 
 (use-package sql-indent
   :ensure t)
-(eval-after-load "sql"
-  '(load-library "sql-indent"))
+
+(use-package sql
+  :hook (sql-mode . sqlind-minor-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ terraform-mode
@@ -739,13 +712,24 @@
   :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ uniquify
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; built-in uniquify
+;; 同一バッファ名にディレクトリ付与
+(use-package uniquify
+  :config
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+  (setq uniquify-ignore-buffers-re "*[^*]+*"))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ visual-regexp
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; 対話的正規表現置換
 (use-package visual-regexp
-  :ensure t)
-(global-set-key (kbd "M-5") 'vr/query-replace)
+  :ensure t
+  :bind ("M-5" . vr/query-replace))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ volatile-highlights
@@ -798,11 +782,9 @@
 
 (use-package yaml-mode
   :ensure t
-  :hook
-  (yaml-mode . lsp-deferred)
-  :mode
-  ("\\.yml\\'" . yaml-mode)
-  ("\\.yaml\\'" . yaml-mode))
+  :hook (yaml-mode . lsp-deferred)
+  :mode (("\\.yml\\'" . yaml-mode)
+         ("\\.yaml\\'" . yaml-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ theme
