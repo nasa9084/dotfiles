@@ -18,8 +18,18 @@
 ;; generic config major mode
 (require 'generic-x)
 
-;; Set shorter scratch message
+;; Configure *scratch* buffer
 (setq initial-scratch-message ";; Welcome to emacs! This buffer is *scratch*.\n\n")
+(defun scratch-mode ()
+  "A lightweight major mode for *scratch* buffer."
+  (interactive)
+  (setq mode-name "scratch")
+  (setq major-mode 'scratch-mode))
+(setq initial-major-mode 'scratch-mode)
+
+;; Disable startup echo area message
+(put 'inhibit-startup-echo-area-message 'saved-value t)
+(setq inhibit-startup-echo-area-message (user-login-name))
 
 ;; タイトルバー表示変更
 (setq frame-title-format
