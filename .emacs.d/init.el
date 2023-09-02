@@ -224,7 +224,6 @@
 ;; hide some minor modes
 (use-package diminish
   :ensure t)
-(diminish 'auto-revert-modee)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ dired
