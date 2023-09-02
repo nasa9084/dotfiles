@@ -798,6 +798,7 @@
 ;; Local Variables:
 ;; coding: utf-8
 ;; mode: emacs-lisp
+;; byte-compile-warnings: (not cl-functions obsolete) ; emmet-mode still uses cl
 ;; End:
 
 ;;; init.el ends here
