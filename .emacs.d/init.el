@@ -123,6 +123,7 @@
 (setq echo-keystrokes 0.1)
 
 ;; C-h で[BS]
+(global-unset-key (kbd "C-h"))
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 ;; M-d でカーソル位置の単語を削除
