@@ -215,18 +215,31 @@
 ;;; @ cyphejor
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
+;; The major mode name for go.mod file is go-dot-mod-mode which is
+;; split into "go dot mod mode" internally in cyphejor--cypher function
+;; and is difficult to be converted into other name as a "go-dot-mod"
+;; group. To do the conversion easier, use advice for cyphejor--cypher
+;; function.
+(defun cyphejor--go-dot-mod-mode-advice (func old-name &rest rules)
+  (if (equal old-name "go-dot-mod-mode") (setq old-name "go.mod"))
+  (apply func old-name rules))
+
 ;; メジャーモード名を変換
 (use-package cyphejor
   :ensure t
-  :config
+  :init
   (setq cyphejor-rules
         '(("emacs" "e")
           ("interaction" "i" :prefix)
+          ("markdown" "md")
+          ("mode" "" :postfix)
+          ;; tautology rules for removing space
           ("js2" "js2")
           ("lisp" "lisp")
-          ("markdown" "md")
-          ("org" "org")
-          ("mode" "" :postfix)))
+          ("org" "org")))
+  :config
+  (advice-add 'cyphejor--cypher :around #'cyphejor--go-dot-mod-mode-advice)
+
   (cyphejor-mode 1))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
