@@ -28,8 +28,7 @@
 (setq initial-major-mode 'scratch-mode)
 
 ;; Disable startup echo area message
-(put 'inhibit-startup-echo-area-message 'saved-value t)
-(setq inhibit-startup-echo-area-message (user-login-name))
+(custom-set-variables '(inhibit-startup-echo-area-message (user-login-name)))
 
 ;; タイトルバー表示変更
 (setq frame-title-format
