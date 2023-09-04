@@ -281,10 +281,10 @@
 
 (use-package exec-path-from-shell
   :ensure t
-  :config
-  (cond ((string= system-type "darwin")
-         (let ((envs '("PATH" "HOME" "GOPATH" "GOPRIVATE")))
-           (exec-path-from-shell-copy-envs envs)))))
+  :hook (after-init . (lambda ()
+                        (when (memq system-type '("darwin"))
+                          (let ((envs '("PATH" "HOME" "GOPATH" "GOPRIVATE")))
+                            (exec-path-from-shell-copy-envs envs))))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ flycheck
