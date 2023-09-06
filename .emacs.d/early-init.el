@@ -16,6 +16,10 @@
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)
 
+;; Enable menu-bar-mode not to send emacs background after mission control
+;; menu-bar-lines are set to 0 in above line so menu-bar won't be shown
+(menu-bar-mode)
+
 ;; Disable scroll bar
 (push '(vertical-scroll-bars) default-frame-alist)
 
