@@ -84,11 +84,6 @@
 (defvar recentf-max-saved-items 100)
 (defvar recentf-save-file "/var/tmp/recentf")
 
-;; ミニバッファの履歴を保存する
-(savehist-mode 1)
-(setq history-length 500)
-(defvar savehist-ignored-variables '(file-name-history))
-
 ;; バックアップしない
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -629,6 +624,18 @@
 (use-package cargo
   :ensure t
   :hook (rust-mode . cargo-minor-mode))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ savehist
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; built-in savehist
+(use-package savehist
+  :custom (savehist-ignored-variables . (file-name-history))
+  :init
+  ;; Save minibuffer history
+  (savehist-mode 1)
+  (setq history-length 500))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ sh-mode
