@@ -352,48 +352,6 @@
   :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ helm
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-(use-package helm
-  :ensure t
-  :diminish helm-mode
-  :defines (helm-find-files-map helm-read-file-map)
-  :bind (("M-x" . helm-M-x)
-         ("C-x b" . helm-buffers-list)
-         ("C-x C-f" . helm-find-files)
-         ("C-x C-r" . helm-recentf)
-         ("M-y" . helm-show-kill-ring)
-         :map helm-find-files-map
-         ("TAB" . helm-execute-persistent-action)
-         :map helm-map
-         ("<left>" . helm-previous-source)
-         ("<right>" . helm-next-source)
-         :map helm-read-file-map
-         ("TAB" . helm-execute-persistent-action))
-  :custom (helm-ff-lynx-style-map t)
-  :config
-  (helm-mode 1)
-
-  (defadvice helm-ff-kill-or-find-buffer-fname (around execute-only-if-exist activate)
-    "Execute command only if CANDIDATE exists"
-    (when (file-exists-p candidate)
-      ad-do-it))
-  (defadvice helm-ff-transform-fname-for-completion (around my-transform activate)
-    "Transform the pattern to reflect my intention"
-    (let* ((pattern (ad-get-arg 0))
-           (input-pattern (file-name-nondirectory pattern))
-           (dirname (file-name-directory pattern)))
-      (setq input-pattern (replace-regexp-in-string "\\." "\\\\." input-pattern))
-      (setq ad-return-value
-            (concat dirname
-                    (if (string-match "^\\^" input-pattern)
-                        ;; '^' is a pattern for basename
-                        ;; and not required because the directory name is prepended
-                        (substring input-pattern 1)
-                      (concat ".*" input-pattern)))))))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ highlight-indent-guides
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -517,6 +475,16 @@
   :defer t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ marginalia-mode
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; add more informations to the minibuffer completions
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ Markdown-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -526,6 +494,23 @@
   :mode (("\\.markdown\\'" . gfm-mode)
          ("\\.md\\'" . gfm-mode)
          ("\\.text\\'" . gfm-mode)))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ nerd-icons
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package nerd-icons
+  :ensure t
+  :config
+  (delete '("^readme" nerd-icons-octicon "nf-oct-book" :face nerd-icons-lcyan) nerd-icons-regexp-icon-alist))
+
+(use-package nerd-icons-completion
+  :ensure t
+  :after marginalia
+  :config
+  (nerd-icons-completion-mode)
+  ;; :hook does not work
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ nginx-mode
@@ -568,6 +553,24 @@
 (use-package popwin
   :ensure t
   :bind-keymap ("C-z" . popwin:keymap))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ prescient
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; sorting and filtering for completion
+(use-package prescient
+  :ensure t
+  :commands prescient-persist-mode
+  :config
+  (setq prescient-filter-method 'fuzzy)
+  (prescient-persist-mode))
+
+(use-package vertico-prescient
+  :ensure t
+  :after prescient
+  :config
+  (vertico-prescient-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ protobuf-mode
@@ -745,6 +748,42 @@
   :config
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
   (setq uniquify-ignore-buffers-re "*[^*]+*"))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ vertico
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package vertico
+  :ensure t
+  :bind (:map vertico-map
+              ("<left>" . vertico-directory-up)
+              ("<right>" . vertico-insert))
+  :init
+  (vertico-mode)
+  (vertico-multiform-mode)
+  (setq vertico-count 32)
+  (setq enable-recursive-minibuffers t)
+  (dolist (ext '(".DS_Store")) (add-to-list 'completion-ignored-extensions ext)))
+
+(use-package vertico-multiform
+  :after vertico
+  :defines vertico-multiform-categories
+  :commands vertico-sort-alpha
+  :init
+  (defun sort-directories-first (files)
+    (setq files (vertico-sort-alpha files))
+    (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
+           (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
+  ;(setq vertico-multiform-commands
+  ;      '((t (vertico-sort-function . just-echo))))
+  (setq vertico-multiform-categories
+        '((file (vertico-sort-function . sort-directories-first)))))
+
+(use-package vertico-directory
+  :after vertico
+  :bind (:map vertico-map
+              ("<backspace>" . vertico-directory-delete-char)
+              ("RET" . vertico-directory-enter)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ visual-regexp
