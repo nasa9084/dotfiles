@@ -404,7 +404,7 @@
   :config
   (setq highlight-indent-guides-method 'fill)
   (setq highlight-indent-guides-auto-even-face-perc 0)
-  (setq highlight-indent-guides-auto-odd-face-perc 6))
+  (setq highlight-indent-guides-auto-odd-face-perc 7))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ hiwin
