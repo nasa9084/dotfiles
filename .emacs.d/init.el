@@ -774,8 +774,6 @@
     (setq files (vertico-sort-alpha files))
     (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
            (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
-  ;(setq vertico-multiform-commands
-  ;      '((t (vertico-sort-function . just-echo))))
   (setq vertico-multiform-categories
         '((file (vertico-sort-function . sort-directories-first)))))
 
