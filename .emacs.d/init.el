@@ -138,11 +138,19 @@
 (global-unset-key (kbd "<magnify-up>"))
 (global-unset-key (kbd "<magnify-down>"))
 
+;; disable swipe action on TrackPad
+(global-unset-key (kbd "<swipe-left>"))
+(global-unset-key (kbd "<swipe-right>"))
+
 ;; disable close keybind
 (global-unset-key (kbd "C-x C-c"))
 
 ;; disable show menubar
 (global-unset-key (kbd "C-<tab>"))
+
+;; disable upcase
+(global-unset-key (kbd "M-u"))
+(global-unset-key (kbd "M-c"))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - cursor
