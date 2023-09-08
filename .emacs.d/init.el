@@ -134,15 +134,15 @@
      (t (forward-char) (backward-word) (kill-word 1)))))
 (global-set-key "\M-d" 'kill-word-at-point)
 
-;; TrackPadのピンチイン・ピンチアウトを無効化
-(global-set-key (kbd "<magnify-up>") nil)
-(global-set-key (kbd "<magnify-down>") nil)
+;; disable pinch-in/pinch-out action on TrackPad
+(global-unset-key (kbd "<magnify-up>"))
+(global-unset-key (kbd "<magnify-down>"))
 
 ;; disable close keybind
-(global-set-key (kbd "C-x C-c") nil)
+(global-unset-key (kbd "C-x C-c"))
 
 ;; disable show menubar
-(global-set-key (kbd "C-<tab>") nil)
+(global-unset-key (kbd "C-<tab>"))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - cursor
