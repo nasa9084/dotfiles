@@ -142,7 +142,9 @@ module.exports = {
     localPlugins: [],
 
     keymaps: {
-        // Example
-        // 'window:devtools': 'cmd+alt+o',
+        "pane:close": "",
+        "editor:copy": [ "command+c", "command+w" ],
+        "editor:cut": [ "command+x", "ctrl+w" ],
+        "editor:paste": [ "command+v", "ctrl+y" ],
     },
 };
