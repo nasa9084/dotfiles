@@ -490,6 +490,7 @@
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-print-performance nil)
   (lsp-log-io nil)
+  (lsp-lens-enable nil)
   (lsp-imenu-show-container-name nil)
   (lsp-diagnostics-provider :flycheck)
   (lsp-signature-auto-activate nil)
