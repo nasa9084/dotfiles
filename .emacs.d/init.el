@@ -1,4 +1,4 @@
-;;; init.el --- .emacs.d/init.el init file for emacs
+;;; init.el --- .emacs.d/init.el init file for emacs -*- lexical-binding: t -*-
 
 ;; Author: nasa9084
 
@@ -472,7 +472,38 @@
 ;; gitクライアント
 (use-package magit
   :ensure t
-  :defer t)
+  :defer t
+  :commands (magit--completion-table)
+  :functions (magit-completion-table-with-sort
+              builtin-completing-read)
+  :config
+  (defun sort-preferred-remote-first (branches)
+    (let ((preferred-push-remote-prefix "origin/"))
+      (nconc (seq-filter (lambda (x) (string-prefix-p preferred-push-remote-prefix x)) branches)
+             (seq-remove (lambda (x) (string-prefix-p preferred-push-remote-prefix x)) branches))))
+
+  (defun magit-completion-table-with-sort (collection)
+    (lambda (string pred action)
+      (if (eq action 'metadata)
+          '(metadata (display-sort-function . sort-preferred-remote-first))
+        (complete-with-action action collection string pred))))
+
+  (defun builtin-completing-read
+      (prompt choices &optional predicate require-match initial-input hist def)
+    "Wrapper for standard `completing-read' function to be used by magit."
+    (pcase this-command
+      ('magit-push-current-to-upstream
+       ;; use my sort function to sort candidate branches
+       (setq choices (magit-completion-table-with-sort choices))
+       ;; I don't want origin/master to be on top when push
+       ;; ref. https://github.com/magit/magit/blob/7bef529ce9b07808d5c14692c5ab2d248e7b5bd1/lisp/magit-push.el#L141
+       (when (equal def "origin/master") (setq def nil)))
+      (_
+       ;; otherwise use magit's default completion-table function
+       (setq choices (magit--completion-table choices))))
+    (completing-read prompt choices predicate require-match initial-input hist def))
+
+  (setq magit-completing-read-function #'builtin-completing-read))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ marginalia-mode
