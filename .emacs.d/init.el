@@ -514,7 +514,7 @@
   (setq magit-completing-read-function #'builtin-completing-read))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ marginalia-mode
+;;; @ marginalia
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; add more informations to the minibuffer completions
