@@ -78,6 +78,9 @@
 ;; yes or no -> y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; always follow symlinks without asking
+(setq vc-follow-symlinks t)
+
 ;; 最近使ったファイルをメニューに表示
 (recentf-mode t)
 (defvar recentf-max-menu-items 10)
