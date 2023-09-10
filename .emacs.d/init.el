@@ -167,14 +167,22 @@
 (setq create-lockfiles nil)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ autoinsert
+;;; @ consult
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(use-package autoinsert
-  :hook (find-file . auto-insert)
+(use-package consult
+  :ensure t
+  :bind (("C-s" . consult-line)
+         ("C-x b" . consult-buffer)
+         ("M-y" . consult-yank-pop)
+         ([remap goto-line] . consult-goto-line))
   :config
-  (setq auto-insert-directory "~/.emacs.d/autoinsert/")
-  (setq auto-insert-query nil))
+  (consult-customize
+   consult-line :prompt "Search: ")
+  (setq consult-buffer-sources '(
+                                 consult--source-buffer
+                                 consult--source-modified-buffer
+                                 consult--source-project-buffer-hidden)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ cua-base
