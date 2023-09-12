@@ -159,6 +159,9 @@
 (global-unset-key (kbd "M-c"))
 (global-unset-key (kbd "M-l"))
 
+;; disable zap-to-char
+(global-unset-key (kbd "M-z"))
+
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - cursor
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
