@@ -154,9 +154,10 @@
 ;; disable show menubar
 (global-unset-key (kbd "C-<tab>"))
 
-;; disable upcase
+;; disable case edit
 (global-unset-key (kbd "M-u"))
 (global-unset-key (kbd "M-c"))
+(global-unset-key (kbd "M-l"))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - cursor
