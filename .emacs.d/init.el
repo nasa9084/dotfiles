@@ -806,6 +806,24 @@
   :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ undo-fu
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package undo-fu
+  :ensure t
+  :bind (([remap undo] . undo-fu-only-undo)
+         ([remap undo-redo] . undo-fu-only-redo))
+  :init
+  (setq undo-limit 67108864) ; 64mb
+  (setq undo-strong-limit 100663296) ; 96mb.
+  (setq undo-outer-limit 1006632960)) ; 960mb.
+
+(use-package undo-fu-session
+  :ensure t
+  :init
+  (undo-fu-session-global-mode))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ uniquify
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
