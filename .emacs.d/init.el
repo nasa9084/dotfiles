@@ -493,6 +493,8 @@
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode
+  :bind (:map lsp-ui-mode-map
+         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions))
   :custom
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-deley 0.5)
