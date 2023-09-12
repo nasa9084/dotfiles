@@ -479,17 +479,17 @@
   :hook (lsp-mode . lsp-enable-which-key-integration)
   :custom
   (gc-cons-threshold (* gc-cons-threshold 150))
+  (lsp-completion-enable nil)
+  (lsp-diagnostics-provider :flycheck)
   (lsp-document-sync-method lsp--sync-incremental)
   (lsp-enable-file-watchers nil)
-  (lsp-completion-enable nil)
   (lsp-headerline-breadcrumb-enable nil)
-  (lsp-print-performance nil)
-  (lsp-log-io nil)
-  (lsp-lens-enable nil)
   (lsp-imenu-show-container-name nil)
-  (lsp-diagnostics-provider :flycheck)
-  (lsp-signature-auto-activate nil)
-  (lsp-response-timeout 5))
+  (lsp-lens-enable nil)
+  (lsp-log-io nil)
+  (lsp-print-performance nil)
+  (lsp-response-timeout 5)
+  (lsp-signature-auto-activate nil))
 
 (use-package lsp-ui
   :ensure t
