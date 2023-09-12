@@ -354,7 +354,8 @@
 
 (use-package git-modes
   :ensure t
-  :mode ("CODEOWNERS" . gitignore-mode))
+  :mode (("CODEOWNERS" . gitignore-mode)
+         (".dockerignore" . gitignore-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ go
