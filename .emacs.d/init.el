@@ -401,7 +401,10 @@
 ;; 現在アクティブなウィンドウを可視化
 (use-package hiwin
   :ensure t
+  :functions hiwin-create-ol-after
   :config
+  (defun hiwin-create-ol-after () (set-face-extend 'hiwin-face t))
+  (advice-add 'hiwin-create-ol :after #'hiwin-create-ol-after)
   (hiwin-activate))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
