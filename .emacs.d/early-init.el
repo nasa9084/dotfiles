@@ -24,7 +24,7 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 
 ;; Configure default window size
-(push '(width . 180) default-frame-alist)
+(push '(width . 250) default-frame-alist)
 (push '(height . 75) default-frame-alist)
 
 ;; Not to show startup screen
