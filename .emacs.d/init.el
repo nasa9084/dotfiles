@@ -137,6 +137,9 @@
      (t (forward-char) (backward-word) (kill-word 1)))))
 (global-set-key "\M-d" 'kill-word-at-point)
 
+;; never used set-fill-column and it's always typo of C-x C-f
+(global-set-key (kbd "C-x f") #'find-file)
+
 ;; disable pinch-in/pinch-out action on TrackPad
 (global-unset-key (kbd "<magnify-up>"))
 (global-unset-key (kbd "<magnify-down>"))
