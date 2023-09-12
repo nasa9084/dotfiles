@@ -498,7 +498,6 @@
   (lsp-ui-doc-deley 0.5)
   (lsp-ui-doc-header nil)
   (lsp-ui-doc-position 'top)
-  (lsp-ui-doc-use-chidframe nil)
   (lsp-ui-doc-use-webkit nil))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
