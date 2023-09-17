@@ -81,12 +81,6 @@
 ;; always follow symlinks without asking
 (setq vc-follow-symlinks t)
 
-;; 最近使ったファイルをメニューに表示
-(recentf-mode t)
-(defvar recentf-max-menu-items 10)
-(defvar recentf-max-saved-items 100)
-(defvar recentf-save-file "/var/tmp/recentf")
-
 ;; バックアップしない
 (setq make-backup-files nil)
 (setq auto-save-default nil)
