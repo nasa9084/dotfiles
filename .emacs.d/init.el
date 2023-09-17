@@ -213,7 +213,7 @@
 ;; group. To do the conversion easier, use advice for cyphejor--cypher
 ;; function.
 (defun cyphejor--go-dot-mod-mode-advice (func old-name &rest rules)
-  (if (equal old-name "go-dot-mod-mode") (setq old-name "go.mod"))
+  (if (string= old-name "go-dot-mod-mode") (setq old-name "go.mod"))
   (apply func old-name rules))
 
 ;; メジャーモード名を変換
@@ -533,7 +533,7 @@
        (setq choices (magit-completion-table-with-sort choices))
        ;; I don't want origin/master to be on top when push
        ;; ref. https://github.com/magit/magit/blob/7bef529ce9b07808d5c14692c5ab2d248e7b5bd1/lisp/magit-push.el#L141
-       (when (equal def "origin/master") (setq def nil)))
+       (when (string= def "origin/master") (setq def nil)))
       (_
        ;; otherwise use magit's default completion-table function
        (setq choices (magit--completion-table choices))))
