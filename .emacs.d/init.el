@@ -476,6 +476,7 @@
   :hook (lsp-mode . lsp-enable-which-key-integration)
   :custom
   (gc-cons-threshold (* gc-cons-threshold 150))
+  (lsp-auto-guess-root t)
   (lsp-completion-enable nil)
   (lsp-diagnostics-provider :flycheck)
   (lsp-document-sync-method lsp--sync-incremental)
