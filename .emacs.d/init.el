@@ -179,7 +179,7 @@
 
 (use-package consult
   :ensure t
-  :bind (("C-s" . consult-line)
+  :bind (("C-M-s" . consult-line)
          ("C-x b" . consult-buffer)
          ("M-y" . consult-yank-pop)
          ([remap goto-line] . consult-goto-line))
