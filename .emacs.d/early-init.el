@@ -26,6 +26,7 @@
 ;; Configure default window size
 (push '(width . 250) default-frame-alist)
 (push '(height . 75) default-frame-alist)
+(setq frame-inhibit-implied-resize t)
 
 ;; Not to show startup screen
 (setq inhibit-startup-screen t)
