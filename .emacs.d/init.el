@@ -78,6 +78,9 @@
 ;; yes or no -> y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Automatically update buffers if the file is changed outside emacs
+(global-auto-revert-mode t)
+
 ;; always follow symlinks without asking
 (setq vc-follow-symlinks t)
 
