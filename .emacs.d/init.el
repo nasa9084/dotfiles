@@ -76,7 +76,7 @@
 (setq tab-width 4)
 
 ;; yes or no -> y or n
-(fset 'yes-or-no-p 'y-or-n-p)
+(setq use-short-answers t)
 
 ;; Automatically update buffers if the file is changed outside emacs
 (global-auto-revert-mode t)
