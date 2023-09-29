@@ -401,7 +401,8 @@
 (use-package highlight-indent-guides
   :ensure t
   :diminish highlight-indent-guides-mode
-  :hook (prog-mode . highlight-indent-guides-mode)
+  :hook ((prog-mode . highlight-indent-guides-mode)
+         (yaml-mode . highlight-indent-guides-mode)) ; yaml-mode is not a prog-mode...
   :config
   (setq highlight-indent-guides-method 'fill)
   (setq highlight-indent-guides-auto-even-face-perc 0)
