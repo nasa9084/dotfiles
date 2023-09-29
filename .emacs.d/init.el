@@ -595,7 +595,9 @@
   ;; prefer markdown logo even for README.md file
   (delete '("^readme" nerd-icons-octicon "nf-oct-book" :face nerd-icons-lcyan) nerd-icons-regexp-icon-alist)
   ;; prefer Go logo instead of go gopher, as the font size is too small to see what it is in the completion
-  (add-to-list 'nerd-icons-extension-icon-alist '("go" nerd-icons-mdicon "nf-md-language_go" :face nerd-icons-blue)))
+  (add-to-list 'nerd-icons-extension-icon-alist '("go" nerd-icons-mdicon "nf-md-language_go" :face nerd-icons-blue))
+  ;; gradle icon for gradlew
+  (add-to-list 'nerd-icons-regexp-icon-alist '("^gradlew\\'" nerd-icons-sucicon "nf-seti-gradle" :face nerd-icons-green)))
 
 (use-package nerd-icons-completion
   :ensure t
