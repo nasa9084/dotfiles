@@ -167,6 +167,18 @@
 (blink-cursor-mode 0)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ file - find-file
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(defun mkdir-before-open (orig &rest args)
+  (let* ((directory (file-name-directory (car args))))
+    (if (not (file-directory-p directory))
+        (if (yes-or-no-p (format "Directory %s does not exist. Create? " directory))
+            (make-directory directory t)))
+    (apply orig args)))
+(advice-add 'find-file :around 'mkdir-before-open)
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ file - lockfile
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
