@@ -91,6 +91,12 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
+;; I don't need lock files
+(setq create-lockfiles nil)
+
+;; don't blink cursor
+(blink-cursor-mode 0)
+
 ;; scrolling
 (setq scroll-conservatively 35
       scroll-margin 0
@@ -99,6 +105,15 @@
 ;; no beep
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
+
+;; create directory before opening file if the directory does not exist
+(defun mkdir-before-open (orig &rest args)
+  (let* ((directory (file-name-directory (car args))))
+    (if (not (file-directory-p directory))
+        (if (yes-or-no-p (format "Directory %s does not exist. Create? " directory))
+            (make-directory directory t)))
+    (apply orig args)))
+(advice-add 'find-file :around 'mkdir-before-open)
 
 ;; use zsh
 (cond ((string= system-type "darwin")
@@ -168,32 +183,6 @@
 
 ;; disable minimize
 (global-unset-key (kbd "C-z"))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ screen - cursor
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; don't blink cursor
-(blink-cursor-mode 0)
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ file - find-file
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-(defun mkdir-before-open (orig &rest args)
-  (let* ((directory (file-name-directory (car args))))
-    (if (not (file-directory-p directory))
-        (if (yes-or-no-p (format "Directory %s does not exist. Create? " directory))
-            (make-directory directory t)))
-    (apply orig args)))
-(advice-add 'find-file :around 'mkdir-before-open)
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ file - lockfile
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; I don't need lock files
-(setq create-lockfiles nil)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ browse-at-remote
