@@ -143,6 +143,9 @@ module.exports = {
 
     keymaps: {
         "pane:close": "",
+        "editor:search": "",
+        "editor:moveNextWord": "command+f",
+        "editor:movePreviousWord": "command+b",
         "editor:copy": [ "command+c", "command+w" ],
         "editor:cut": [ "command+x", "ctrl+w" ],
         "editor:paste": [ "command+v", "ctrl+y" ],
