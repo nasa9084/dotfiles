@@ -1,6 +1,7 @@
 format = """\
     ${custom.preprompt}\
     $kubernetes\
+    $helm\
 
     $line_break\
     ${custom.preprompt}\
@@ -9,54 +10,26 @@ format = """\
     $git_commit\
     $git_state\
     $git_status\
-    $dotnet\
-    $elixir\
-    $elm\
-    $erlang\
     $golang\
-    $haskell\
     $java\
-    $julia\
-    $nim\
+    $kotlin\
+    $gradle\
     $nodejs\
-    $ocaml\
-    $php\
-    $purescript\
     $python\
-    $ruby\
-    $rust\
     $terraform\
-    $zig\
-    $nix_shell\
-    $conda\
-    $aws\
-    $crystal\
     $cmd_duration\
 
     $line_break\
     $jobs\
-    $username\
-    $hostname\
     $character\
 """
 
 command_timeout = 1000
 
 
-[aws]
-symbol = " "
-
-[battery]
-full_symbol = ""
-charging_symbol = ""
-discharging_symbol = ""
-
 [character]
 success_symbol = "[❯](bold green)"
 error_symbol = "[❯](bold red)"
-
-[conda]
-symbol = " "
 
 [custom.preprompt]
 command = "echo -n ❯❯"
@@ -67,63 +40,43 @@ truncation_length = -1
 truncate_to_repo = false
 style = "bold fg:blue"
 
-[docker_context]
-symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
 [git_branch]
 symbol = " "
 
 [golang]
-symbol = " "
+symbol = "󰟓 "
+format = "[$symbol($version )]($style)"
 
-[hg_branch]
-symbol = " "
+[gradle]
+symbol = " "
+format = "[$symbol($version )]($style)"
 
-[hostname]
-format = "@"
+[helm]
+format = "[$symbol($version )]($style)"
+style = "dimmed white"
 
 [java]
 symbol = " "
+format = "[$symbol($version )]($style)"
 
-[julia]
-symbol = " "
+[kotlin]
+symbol = " "
+format = "[$symbol($version )]($style)"
 
 [kubernetes]
 disabled = false
-format = '[$symbol($cluster) \(ns: $namespace\)](dimmed green) '
+format = "[$symbol($cluster )(\\(ns: $namespace\\) )]($style)"
+style = "dimmed green"
 
-[memory_usage]
-symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
+[[kubernetes.contexts]]
+# use cautious color for production environment
+context_pattern = ".+prod.*"
+style = "red"
 
 [nodejs]
 symbol = " "
-
-[package]
-symbol = " "
-
-[php]
-symbol = " "
+format = "[$symbol($version )]($style)"
 
 [python]
 symbol = " "
-
-[ruby]
-symbol = " "
-
-[rust]
-symbol = " "
-
-[username]
-style_user = "bold fg:240"
+format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
