@@ -24,7 +24,10 @@
   "A lightweight major mode for *scratch* buffer."
   (interactive)
   (setq mode-name "scratch")
-  (setq major-mode 'scratch-mode))
+  (setq major-mode 'scratch-mode)
+  ;; State doesn't enabled if the scratch buffer is recreated
+  (state-mode)
+  (cd "~"))
 (setq initial-major-mode 'scratch-mode)
 
 ;; Disable startup echo area message
