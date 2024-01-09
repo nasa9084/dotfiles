@@ -958,7 +958,9 @@
   :ensure t
   :hook (yaml-mode . lsp-deferred)
   :mode (("\\.yml\\'" . yaml-mode)
-         ("\\.yaml\\'" . yaml-mode)))
+         ("\\.yaml\\'" . yaml-mode)
+         ;; .yamllint is actually YAML file
+         ("\\.yamllint\\'" . yaml-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ theme
