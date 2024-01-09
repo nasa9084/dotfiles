@@ -1,0 +1,5 @@
+# Suggest ${VAR} in place of $VAR
+enable=require-variable-braces
+
+# Expressions don't expand in single quotes, use double quotes for that.
+disable=SC2016
