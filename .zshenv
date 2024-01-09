@@ -63,6 +63,9 @@ case "${OSTYPE}" in
                 # mysql-client
                 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
+                # Rancher Desktop
+                export PATH="${HOME}/.rd/bin:${PATH}"
+
                 # Docker platform
                 export DOCKER_DEFAULT_PLATFORM=linux/amd64
         esac
