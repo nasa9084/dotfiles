@@ -33,29 +33,29 @@
 ;; Disable startup echo area message
 (custom-set-variables '(inhibit-startup-echo-area-message (user-login-name)))
 
-;; タイトルバー表示変更
+;; Change title bar
 (setq frame-title-format
       (format "%%f - Emacs@%s" (system-name)))
 
-;; 行番号表示
+;; show line numbers
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
-;; フォント設定
+;; Use ricty 13.5 pt as default font
 (add-to-list 'default-frame-alist '(font . "ricty-13.5"))
 
 ;; coding system
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8-unix)
 
-;; 選択領域の色
+;; color for selected region
 (set-face-background 'region "#555")
 
-;; 行末の空白を強調表示
+;; emphasize trailing whitespaces
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#393939")
 
-;; タブをスペースで扱う
+;; use whitespaces as tab by default
 (setq-default indent-tabs-mode nil)
 
 ;; custom
@@ -87,20 +87,20 @@
 ;; always follow symlinks without asking
 (setq vc-follow-symlinks t)
 
-;; バックアップしない
+;; I don't need backup
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;;スクロール指定
+;; scrolling
 (setq scroll-conservatively 35
       scroll-margin 0
       scroll-step 1)
 
-;; ビープ音を出さない
+;; no beep
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 
-;; shellをbashからzshに変更
+;; use zsh
 (cond ((string= system-type "darwin")
        (setq shell-file-name '"/opt/homebrew/bin/zsh"))
       (t ;; on linux
@@ -119,14 +119,14 @@
 ;;; @ key-bind
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; キーストロークをミニバッファに早く表示
+;; show key storokes on minubuffer faster
 (setq echo-keystrokes 0.1)
 
-;; C-h で[BS]
+;; C-h -> backspace
 (global-unset-key (kbd "C-h"))
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
-;; M-d でカーソル位置の単語を削除
+;; word-based kill
 (defun kill-word-at-point()
   "Function kill-word-at-point deletes a word where the cursor is."
   (interactive)
@@ -173,7 +173,7 @@
 ;;; @ screen - cursor
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; カーソルの点滅をさせない
+;; don't blink cursor
 (blink-cursor-mode 0)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -192,8 +192,24 @@
 ;;; @ file - lockfile
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; ロックファイルの生成を抑止
+;; I don't need lock files
 (setq create-lockfiles nil)
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ browse-at-remote
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; browse the line on the browser
+(use-package browse-at-remote
+  :ensure t
+  :bind (("C-c b r" . browse-at-remote)
+         ("C-c b k" . browse-at-remote-kill))
+  :defines browse-at-remote-remote-type-regexps
+  :custom (browse-at-remote-prefer-symbolic nil)
+  :config
+  (add-to-list 'browse-at-remote-remote-type-regexps
+               `(:host ,(rx bol "git.")
+                       :type "github")))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ consult
@@ -238,7 +254,7 @@
   (if (string= old-name "go-dot-mod-mode") (setq old-name "go.mod"))
   (apply func old-name rules))
 
-;; メジャーモード名を変換
+;; convert major mode names
 (use-package cyphejor
   :ensure t
   :init
@@ -271,9 +287,9 @@
 ;; built-in dired
 (use-package dired
   :custom
-  ;; 2つのウィンドウで開いている時に、デフォルトの移動orコピー先をもう一方のディレクトリに
+  ;; I might want to copy/move a file to another directory when I opening two dired
   (dired-dwim-target t)
-  ;; ディレクトリのコピーをサブディレクトリについても実行
+
   (dired-recursive-copies 'always))
 
 
@@ -313,7 +329,6 @@
 ;;; @ emmet-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; HTML/CSSの短縮入力
 (use-package emmet-mode
   :ensure t
   :commands emmet-mode
@@ -422,7 +437,7 @@
 ;;; @ hiwin
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; 現在アクティブなウィンドウを可視化
+;; visualize current active window
 (use-package hiwin
   :ensure t
   :functions hiwin-create-ol-after
@@ -445,7 +460,7 @@
 ;;; @ javascript
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; javascript用モード
+;; major mode for javascript
 (use-package rjsx-mode
   :ensure t
   :mode ("\\.js\\'" . rjsx-mode))
@@ -528,7 +543,6 @@
 ;;; @ magit
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; gitクライアント
 (use-package magit
   :ensure t
   :defer t
@@ -653,7 +667,6 @@
 ;;; @ paren
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; 対応する括弧を光らせる
 (use-package paren
   :hook (after-init . show-paren-mode)
   :config
@@ -690,7 +703,6 @@
 ;;; @ rainbow-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; 16進色文字列に色をつける
 (use-package rainbow-mode
   :ensure t
   :diminish rainbow-mode
@@ -772,7 +784,6 @@
 ;;; @ smart-newline
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; 改行を少し賢く
 (use-package smart-newline
   :ensure t
   :bind (("C-j" . smart-newline)
@@ -782,7 +793,7 @@
 ;;; @ stash
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; 変数永続化
+;; persistent some variables
 (use-package stash
   :ensure t
   :config
@@ -856,7 +867,7 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; built-in uniquify
-;; 同一バッファ名にディレクトリ付与
+;; add directory name when I open two or more files which have same name
 (use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
@@ -900,7 +911,6 @@
 ;;; @ visual-regexp
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; 対話的正規表現置換
 (use-package visual-regexp
   :ensure t
   :bind ("M-5" . vr/query-replace))
@@ -909,7 +919,7 @@
 ;;; @ volatile-highlights
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; undoやyankなどの操作をした部分を可視化
+;; visualize paste/undo results
 (use-package volatile-highlights
   :ensure t
   :diminish volatile-highlights-mode
@@ -920,7 +930,6 @@
 ;;; @ web-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; HTML等用の編集モード
 (use-package web-mode
   :ensure t
   :mode (("\\.html?\\'" . web-mode)
@@ -942,7 +951,6 @@
 ;;; @ which-key
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; prefix-keyのあとの操作を教えてくれる
 (use-package which-key
   :ensure t
   :diminish which-key-mode
