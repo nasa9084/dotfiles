@@ -12,6 +12,13 @@
 ;;; @ general
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
+;; workaround for the issue that the title bar becomes taller on macOS 14 (Sonoma)
+;;
+;; This commit will resolve the issue but has not yet released:
+;; https://bitbucket.org/mituharu/emacs-mac/commits/5f6c306095c825eb01708e336f9d03c15271dfe9
+(tool-bar-mode 1)
+(tool-bar-mode 0)
+
 ;; Common Lisp
 (require 'cl-lib)
 
