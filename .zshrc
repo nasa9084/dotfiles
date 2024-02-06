@@ -49,7 +49,7 @@ setopt share_history
 setopt MARK_DIRS
 
 # alias
-alias ls="eza -Fgh --git --time-style=long-iso"
+alias ls="eza --classify=auto -gh --git --time-style=long-iso"
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
