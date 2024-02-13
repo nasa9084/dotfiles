@@ -262,7 +262,8 @@
           ;; tautology rules for removing space
           ("js2" "js2")
           ("lisp" "lisp")
-          ("org" "org")))
+          ("org" "org")
+          ("yaml" "yaml")))
   :config
   (advice-add 'cyphejor--cypher :around #'cyphejor--go-dot-mod-mode-advice)
 
@@ -841,6 +842,24 @@
   :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ tree-sitter
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; define tree-sitter grammar source
+(setq treesit-language-source-alist
+      '((yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+;; automatically install if the grammar has not been installed
+(dolist (element treesit-language-source-alist)
+  (let* ((lang (car element)))
+    (if (treesit-language-available-p lang)
+        (message "tree-sistter: %s is already installed" lang)
+      (message "tree-sitter: %s is not installed" lang)
+      (treesit-install-language-grammar lang))))
+;; enable "TS"-powered modes
+(setq major-mode-remap-alist
+      '((yaml-mode . yaml-ts-mode)))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ undo-fu
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -955,16 +974,12 @@
   (which-key-mode 1))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ yaml-mode
+;;; @ YAML
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(use-package yaml-mode
-  :ensure t
-  :hook (yaml-mode . lsp-deferred)
-  :mode (("\\.yml\\'" . yaml-mode)
-         ("\\.yaml\\'" . yaml-mode)
-         ;; .yamllint is actually YAML file
-         ("\\.yamllint\\'" . yaml-mode)))
+;; built-in yaml-ts-mode
+(use-package yaml-ts-mode
+  :hook (yaml-ts-mode . lsp-deferred))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ theme
