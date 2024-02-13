@@ -988,6 +988,10 @@
 (use-package yaml-ts-mode
   :hook (yaml-ts-mode . lsp-deferred))
 
+;; yamllint
+(use-package flycheck-yamllint
+  :ensure t)
+
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ theme
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
