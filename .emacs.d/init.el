@@ -984,9 +984,23 @@
 ;;; @ YAML
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
+;; built-in yaml-ts-mode is too simple and I'd like to use
+;; indent functions defined for yaml-mode
+(use-package yaml-mode
+  :ensure t)
+
 ;; built-in yaml-ts-mode
+;; nothing except tree-sitter grammar is implemented in the major mode
+;; so I pull some functions from yaml-mode
 (use-package yaml-ts-mode
-  :hook (yaml-ts-mode . lsp-deferred))
+  :hook ((yaml-ts-mode . lsp-deferred)
+         (yaml-ts-mode . (lambda() (setq-local indent-line-function 'yaml-indent-line))))
+  :bind (("|" . yaml-electric-bar-and-angle)
+         (">" . yaml-electric-bar-and-angle)
+         ("-" . yaml-electric-dash-and-dot)
+         ("." . yaml-electric-dash-and-dot)
+         ("DEL" . yaml-electric-backspace))
+  :after yaml-mode)
 
 ;; yamllint
 (use-package flycheck-yamllint
