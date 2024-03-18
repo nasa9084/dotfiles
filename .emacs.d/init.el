@@ -192,22 +192,6 @@
 (global-unset-key (kbd "C-z"))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ browse-at-remote
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; browse the line on the browser
-(use-package browse-at-remote
-  :ensure t
-  :bind (("C-c b r" . browse-at-remote)
-         ("C-c b k" . browse-at-remote-kill))
-  :defines browse-at-remote-remote-type-regexps
-  :custom (browse-at-remote-prefer-symbolic nil)
-  :config
-  (add-to-list 'browse-at-remote-remote-type-regexps
-               `(:host ,(rx bol "git.")
-                       :type "github")))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ consult
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
