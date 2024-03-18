@@ -979,7 +979,8 @@
 (use-package yaml-ts-mode
   :hook ((yaml-ts-mode . lsp-deferred)
          (yaml-ts-mode . (lambda() (setq-local indent-line-function 'yaml-indent-line))))
-  :mode ("\\.yamllint\\'" . yaml-ts-mode) ; .yamllint file is actually yaml
+  :mode (("\\.yamllint\\'" . yaml-ts-mode) ; .yamllint file is actually yaml
+         ("\\.kube/config\\'" . yaml-ts-mode)) ; .kube/config file is actually yaml
   :bind (("|" . yaml-electric-bar-and-angle)
          (">" . yaml-electric-bar-and-angle)
          ("-" . yaml-electric-dash-and-dot)
