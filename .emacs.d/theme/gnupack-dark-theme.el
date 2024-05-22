@@ -39,13 +39,13 @@
       (gray-05       "#0D0D0D") (gray-10       "#1A1A1A") (gray-15       "#262626") (gray-20       "#333333") (gray-25       "#404040")
       (gray-30       "#4D4D4D") (gray-35       "#595959") (gray-40       "#666666") (gray-45       "#737373") (gray-50       "#808080")
       (gray-55       "#8C8C8C") (gray-60       "#999999") (gray-65       "#A6A6A6") (gray-70       "#B3B3B3") (gray-75       "#BFBFBF")
-      (gray-80       "#CCCCCC") (gray-85       "#D9D9D9") (gray-90       "#E6E6E6") (gray-95       "#F2F2F2") 
+      (gray-80       "#CCCCCC") (gray-85       "#D9D9D9") (gray-90       "#E6E6E6") (gray-95       "#F2F2F2")
       )
 
   (custom-theme-set-faces
    'gnupack-dark
 
-   `(default     ((t (:foreground ,gray-80 :background ,gray-15)))) 
+   `(default     ((t (:foreground ,gray-80 :background ,gray-15))))
    `(bold        ((t (:bold t   :italic nil :underline nil ))))
    `(bold-italic ((t (:bold t   :italic t   :underline nil ))))
    `(italic      ((t (:bold nil :italic t   :underline nil ))))
@@ -61,7 +61,7 @@
    `(font-lock-function-name-face         ((t (:foreground ,violet-basic :bold t           ))))
    `(font-lock-builtin-face               ((t (:foreground ,gray-50                        ))))
    `(font-lock-preprocessor-face          ((t (:foreground ,gray-50                        ))))
-   
+
    `(cursor         ((t (:foreground ,gray-90 :background ,red-dark   :bold nil))))
    `(cursor-ime-off ((t (:foreground ,gray-90 :background ,red-dark   :bold nil))))
    `(cursor-ime-on  ((t (:foreground ,gray-90 :background ,green-dark :bold nil))))
@@ -84,7 +84,7 @@
    `(shadow            ((t (:foreground ,gray-35))))
    `(fringe            ((t (:foreground ,gray-45 :background ,gray-30))))
    `(minibuffer-prompt ((t (:foreground ,cyan-light))))
-   `(tooltip           ((t (:foreground ,gray-80 :background ,gray-15)))) 
+   `(tooltip           ((t (:foreground ,gray-80 :background ,gray-15))))
    `(link              ((t (:foreground ,cyan-light))))
    `(link-visited      ((t (:foreground ,magenta-light))))
    `(escape-glyph      ((t (:foreground ,cyan-light))))
@@ -99,8 +99,8 @@
    `(compilation-mode-line-run      ((t (:foreground ,yellow-dark                          ))))
    `(compilation-warning            ((t (:foreground ,yellow-dark                          ))))
    `(completions-annotations        ((t (                                   :underline nil ))))
-   `(completions-common-part        ((t (:foreground ,gray-40               :underline nil )))) 
-   `(completions-first-difference   ((t (:foreground ,red-light             :underline nil )))) 
+   `(completions-common-part        ((t (:foreground ,gray-40               :underline nil ))))
+   `(completions-first-difference   ((t (:foreground ,red-light             :underline nil ))))
 
    `(hl-line ((t (:foreground nil :background ,yellow-deep))))
 
@@ -112,8 +112,8 @@
 
    `(sh-heredoc              ((t (:foreground ,gray-50 :bold nil))))
 
-   `(diff-added       ((t (:foreground ,green-basic))))
-   `(diff-removed     ((t (:foreground ,red-basic))))
+   `(diff-added       ((t (:foreground ,green-basic :background ,green-dark))))
+   `(diff-removed     ((t (:foreground ,red-basic :background ,red-dark))))
    `(diff-context     ((t (:foreground ,gray-50))))
    `(diff-header      ((t (:foreground ,orange-basic))))
    `(diff-file-header ((t (:foreground ,orange-basic :underline t :bold nil))))

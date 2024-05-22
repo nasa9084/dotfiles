@@ -254,6 +254,19 @@
   (cyphejor-mode 1))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ diff-hl
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; show git diff on fringe
+(use-package diff-hl
+  :ensure t
+  :diminish
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
+  :init
+  (global-diff-hl-mode)
+  (diff-hl-flydiff-mode))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ diminish
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -353,15 +366,6 @@
         ("C-c C-p" . flycheck-previous-error))
   :config
   (flycheck-pos-tip-mode))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ git-gutter
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-(use-package git-gutter
-  :ensure t
-  :diminish
-  :config (global-git-gutter-mode 1))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ git-modes
