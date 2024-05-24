@@ -905,11 +905,18 @@
 (use-package vertico-multiform
   :after vertico
   :defines vertico-multiform-categories
+  :functions (remove-trailing-slash add-trailing-slash sort-directories)
   :commands vertico-sort-alpha
   :init
+  (defun remove-trailing-slash (dirs)
+    (mapcar (lambda (elem) (string-remove-suffix "/" elem)) dirs))
+  (defun add-trailing-slash (dirs)
+    (mapcar (lambda (elem) (format "%s/" elem)) dirs))
+  (defun sort-directories (dirs) (add-trailing-slash (vertico-sort-alpha (remove-trailing-slash dirs))))
+
   (defun sort-directories-first (files)
     (setq files (vertico-sort-alpha files))
-    (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
+    (nconc (sort-directories (seq-filter (lambda (x) (string-suffix-p "/" x)) files))
            (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
   (setq vertico-multiform-categories
         '((file (vertico-sort-function . sort-directories-first)))))
