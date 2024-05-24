@@ -257,13 +257,17 @@
 ;;; @ diff-hl
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; show git diff on fringe
+;; show git diff parameter on fringe
 (use-package diff-hl
   :ensure t
   :diminish
   :hook (magit-post-refresh . diff-hl-magit-post-refresh)
   :init
   (global-diff-hl-mode)
+  ;; somehow the left line is not drawn well without setting left-fringe
+  ;; parameter after diff-hl-mode is enabled
+  (diff-hl-mode)
+  (set-frame-parameter nil 'left-fringe 9)
   (diff-hl-flydiff-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
