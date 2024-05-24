@@ -900,7 +900,6 @@
   (vertico-mode)
   (vertico-multiform-mode)
   (setq vertico-count 32)
-  (setq enable-recursive-minibuffers t)
   (dolist (ext '(".DS_Store")) (add-to-list 'completion-ignored-extensions ext)))
 
 (use-package vertico-multiform
