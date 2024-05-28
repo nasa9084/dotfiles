@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if ! git status > /dev/null 2>&1
+then
+    echo 'fatal: not a git repository'
+    exit 1
+fi
+
+if git log > /dev/null 2>&1
+then
+    echo 'fatal: one or more commits found'
+    exit 1
+else
+    git commit --allow-empty --message 'In the beginning there was darkness'
+fi

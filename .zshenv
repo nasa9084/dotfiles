@@ -81,6 +81,8 @@ export LANG=ja_JP.UTF-8
 export GOPATH=${HOME}
 export PATH="${PATH}:${GOPATH}/bin"
 
+# PATH to extension scripts
+export PATH="${PATH}:${HOME}/.extensions"
 
 # Docker settings
 # use Buildkit for docker build
