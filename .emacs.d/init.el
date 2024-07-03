@@ -200,10 +200,11 @@
 
 (use-package consult
   :ensure t
-  :bind (("C-M-s" . consult-line)
   :bind (([remap switch-to-buffer] . consult-buffer)
          ("M-y" . consult-yank-pop)
-         ([remap goto-line] . consult-goto-line))
+         ([remap goto-line] . consult-goto-line)
+         :map isearch-mode-map
+         ("C-:" . consult-line))
   :config
   (consult-customize
    consult-line :prompt "Search: ")
