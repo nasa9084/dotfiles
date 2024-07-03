@@ -170,6 +170,9 @@
 (global-unset-key (kbd "<swipe-left>"))
 (global-unset-key (kbd "<swipe-right>"))
 
+;; disable mouse movement
+(global-unset-key (kbd "<mouse-movement>"))
+
 ;; disable close keybind
 (global-unset-key (kbd "C-x C-c"))
 
