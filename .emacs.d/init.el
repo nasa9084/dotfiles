@@ -211,7 +211,8 @@
   (setq consult-buffer-sources '(
                                  consult--source-buffer
                                  consult--source-modified-buffer
-                                 consult--source-project-buffer-hidden)))
+                                 consult--source-project-buffer-hidden))
+  (setq consult-line-start-from-top t))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ cua-base
