@@ -1,0 +1,27 @@
+;;; tempel templates -*- lisp-data -*-
+
+emacs-lisp-mode
+
+(section
+ ";;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;" n
+ ";;; @ " p n
+ ";;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;" n n q
+ )
+
+go-mode
+
+(main
+ "package main" n n
+ "import \"log\"" n n
+ "func main() {" n>
+ "if err := execute(); err != nil {" n>
+ "log.Fatal(err)" n>
+ "}" > n>
+ "}" > n n
+ "func execute() error {" n>
+ q n n>
+ "return nil" n>
+ "}" >
+ )
+
+(test "func Test" p "(t *testing.T) {" n> q n "}")
