@@ -861,7 +861,7 @@
 ;; templating
 (use-package tempel
   :ensure t
-  :function tempel-next
+  :functions tempel-next
   :bind (("M-;" . tempel-expand)
          :map tempel-map
          ("<tab>" . #'tempel-next)))
