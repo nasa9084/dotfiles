@@ -861,10 +861,9 @@
 ;; templating
 (use-package tempel
   :ensure t
-  :functions tempel-next
   :bind (("M-;" . tempel-expand)
          :map tempel-map
-         ("<tab>" . #'tempel-next)))
+         ("<tab>" . tempel-next)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ terraform-mode
