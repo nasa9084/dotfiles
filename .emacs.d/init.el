@@ -284,7 +284,9 @@
 
 ;; hide some minor modes
 (use-package diminish
-  :ensure t)
+  :ensure t
+  :config
+  (diminish 'eldoc-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ dired
@@ -328,6 +330,7 @@
 
 (use-package editorconfig
   :ensure t
+  :diminish
   :config
   (editorconfig-mode 1))
 
