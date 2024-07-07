@@ -557,7 +557,9 @@
   (lsp-ui-doc-delay 0.5)
   (lsp-ui-doc-header nil)
   (lsp-ui-doc-position 'top)
-  (lsp-ui-doc-use-webkit nil))
+  (lsp-ui-doc-use-webkit nil)
+  (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-doc-show-with-mouse nil))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ magit
