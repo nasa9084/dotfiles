@@ -554,7 +554,7 @@
          ([remap xref-find-definitions] . lsp-ui-peek-find-definitions))
   :custom
   (lsp-ui-doc-enable t)
-  (lsp-ui-doc-deley 0.5)
+  (lsp-ui-doc-delay 0.5)
   (lsp-ui-doc-header nil)
   (lsp-ui-doc-position 'top)
   (lsp-ui-doc-use-webkit nil))
