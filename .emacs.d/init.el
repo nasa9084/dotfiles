@@ -628,7 +628,8 @@
   :commands (markdown-mode)
   :mode (("\\.markdown\\'" . gfm-mode)
          ("\\.md\\'" . gfm-mode)
-         ("\\.text\\'" . gfm-mode)))
+         ("\\.text\\'" . gfm-mode))
+  :custom (markdown-fontify-code-blocks-natively t))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ nerd-icons
