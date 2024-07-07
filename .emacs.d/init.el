@@ -210,6 +210,8 @@
          ([remap goto-line] . consult-goto-line)
          :map isearch-mode-map
          ("C-:" . consult-line))
+  :defines (consult-line consult-buffer-sources consult-line-start-from-top)
+  :functions consult-customize
   :config
   (consult-customize
    consult-line :prompt "Search: ")
@@ -247,6 +249,8 @@
 ;; convert major mode names
 (use-package cyphejor
   :ensure t
+  :defines cyphejor-rules
+  :functions cyphejor-mode
   :init
   (setq cyphejor-rules
         '(("emacs" "e")
@@ -272,6 +276,7 @@
   :ensure t
   :diminish
   :hook (magit-post-refresh . diff-hl-magit-post-refresh)
+  :functions (global-diff-hl-mode diff-hl-mode diff-hl-flydiff-mode)
   :init
   (global-diff-hl-mode)
   ;; somehow the left line is not drawn well without setting left-fringe
@@ -287,6 +292,7 @@
 ;; hide some minor modes
 (use-package diminish
   :ensure t
+  :functions diminish
   :config
   (diminish 'eldoc-mode))
 
@@ -333,6 +339,7 @@
 (use-package editorconfig
   :ensure t
   :diminish
+  :functions editorconfig-mode
   :config
   (editorconfig-mode 1))
 
@@ -359,6 +366,7 @@
   :hook  ((sgml-mode . emmet-mode)
           (css-mode . emmet-mode)
           (web-mode . emmet-mode))
+  :defines (emmet-mode-keymap emmet-move-cursor-between-quotes emmet-indentation)
   :bind (:map emmet-mode-keymap
               ("C-j" . nil)
               ("H-i" . emmet-expand-line))
@@ -374,6 +382,7 @@
 
 (use-package exec-path-from-shell
   :ensure t
+  :functions exec-path-from-shell-copy-envs
   :hook (after-init . (lambda ()
                         (when (memq system-type '("darwin"))
                           (let ((envs '("PATH" "HOME" "GOPATH" "GOPRIVATE")))
@@ -450,6 +459,9 @@
   :diminish highlight-indent-guides-mode
   :hook ((prog-mode . highlight-indent-guides-mode)
          (yaml-mode . highlight-indent-guides-mode)) ; yaml-mode is not a prog-mode...
+  :defines (highlight-indent-guides-method
+            highlight-indent-guides-auto-even-face-perc
+            highlight-indent-guides-auto-odd-face-perc)
   :config
   (setq highlight-indent-guides-method 'fill)
   (setq highlight-indent-guides-auto-even-face-perc 0)
@@ -462,7 +474,7 @@
 ;; visualize current active window
 (use-package hiwin
   :ensure t
-  :functions hiwin-create-ol-after
+  :functions (hiwin-create-ol-after hiwin-activate)
   :config
   (defun hiwin-create-ol-after () (set-face-extend 'hiwin-face t))
   (advice-add 'hiwin-create-ol :after #'hiwin-create-ol-after)
@@ -531,6 +543,7 @@
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
+  :defines lsp-keymap-prefix
   :init
   (setq lsp-keymap-prefix "C-c C-l")
   :hook (lsp-mode . lsp-enable-which-key-integration)
@@ -552,6 +565,7 @@
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode
+  :defines lsp-ui-mode-map
   :bind (:map lsp-ui-mode-map
          ([remap xref-find-definitions] . lsp-ui-peek-find-definitions))
   :custom
@@ -571,6 +585,7 @@
   :ensure t
   :defer t
   :commands (magit--completion-table)
+  :defines magit-completing-read-function
   :functions (magit-completion-table-with-sort
               builtin-completing-read)
   :config
@@ -610,6 +625,7 @@
 (use-package marginalia
   :ensure t
   :functions (marginalia--time-absolute--month-number)
+  :functions marginalia-mode
   :config
   (defun marginalia--time-absolute--month-number (time)
     "Format TIME as an absolute age but use month number instead of month name."
@@ -641,6 +657,8 @@
 
 (use-package nerd-icons
   :ensure t
+  :defines (nerd-icons-extension-icon-alist
+            nerd-icons-regexp-icon-alist)
   :config
   ;; prefer markdown logo even for README.md file
   (delete '("^readme" nerd-icons-octicon "nf-oct-book" :face nerd-icons-lcyan) nerd-icons-regexp-icon-alist)
@@ -652,6 +670,7 @@
 (use-package nerd-icons-completion
   :ensure t
   :after marginalia
+  :functions (nerd-icons-completion-mode nerd-icons-completion-marginalia-setup)
   :config
   (nerd-icons-completion-mode)
   ;; :hook does not work
@@ -674,6 +693,7 @@
 
 (use-package orderless
   :ensure t
+  :defines orderless-matching-styles
   :init
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
@@ -731,6 +751,10 @@
 (use-package rainbow-mode
   :ensure t
   :diminish rainbow-mode
+  :defines (rainbow-html-colors
+            rainbow-latex-colors
+            rainbow-x-colors
+            rainbow-ansi-colors)
   :hook ((css-mode . rainbow-mode)
          (scss-mode . rainbow-mode)
          (web-mode . rainbow-mode))
@@ -832,20 +856,22 @@
 (use-package state
   :ensure t
   :diminish state-mode
+  :defines (state-scratch state-emacs)
+  :functions (state-define-state state-global-mode state-mode)
   :init
   (defvar state-keymap-prefix (kbd "C-c C-x s"))
 
   :config
   ;; [scratch state] Open *scratch* by prefix s
   (state-define-state
-    scratch
+    state-scratch
     :key "s"
     :switch "*scratch*"
     :create (scratch-buffer))
 
   ;; [emacs state] Open init.el by prefix e
   (state-define-state
-    emacs
+    state-emacs
     :key "e"
     :in "init.el"
     :create (find-file "~/.emacs.d/init.el"))
@@ -869,6 +895,7 @@
 ;; templating
 (use-package tempel
   :ensure t
+  :defines tempel-map
   :bind (("M-;" . tempel-expand)
          :map tempel-map
          ("<tab>" . tempel-next)))
@@ -913,6 +940,7 @@
 
 (use-package undo-fu-session
   :ensure t
+  :functions undo-fu-session-global-mode
   :init
   (undo-fu-session-global-mode))
 
@@ -936,6 +964,8 @@
   :bind (:map vertico-map
               ("<left>" . vertico-directory-up)
               ("<right>" . vertico-insert))
+  :defines (vertico-count vertico-map)
+  :functions (vertico-mode vertico-multiform-mode)
   :init
   (vertico-mode)
   (vertico-multiform-mode)
@@ -983,6 +1013,7 @@
 (use-package volatile-highlights
   :ensure t
   :diminish volatile-highlights-mode
+  :functions (volatile-highlights-mode)
   :config
   (volatile-highlights-mode t))
 
@@ -998,6 +1029,11 @@
          ("\\.tpl\\'" . web-mode)
          ("\\.tmpl\\'" . web-mode)
          ("\\.tag\\'" . web-mode))
+  :defines (web-mode-markup-indent-offset
+            web-mode-attr-indent-offset
+            web-mode-css-indent-offset
+            web-mode-code-indent-offset
+            web-mode-sql-indent-offset)
   :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-attr-indent-offset nil)
@@ -1014,6 +1050,7 @@
 (use-package which-key
   :ensure t
   :diminish which-key-mode
+  :functions (which-key-setup-side-window-bottom which-key-mode)
   :config
   (which-key-setup-side-window-bottom)
   (which-key-mode 1))
