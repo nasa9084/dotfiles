@@ -1050,6 +1050,7 @@
              (file-name-as-directory (concat user-emacs-directory "theme"))
              )
 (load-theme 'gnupack-dark t)
+(load-theme 'something t)
 
 ;; Local Variables:
 ;; coding: utf-8
