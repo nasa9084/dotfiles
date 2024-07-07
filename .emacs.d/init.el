@@ -344,6 +344,15 @@
   (editorconfig-mode 1))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ emacs-lisp
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package elisp-mode
+  :hook (emacs-lisp-mode . (lambda ()
+                             (remove-hook 'flymake-diagnostic-functions 'elisp-flymake-checkdoc t))))
+
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ embark
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -389,22 +398,18 @@
                             (exec-path-from-shell-copy-envs envs))))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ flycheck
+;;; @ flymake
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(use-package flycheck-pos-tip
-  :ensure t)
+(use-package flymake
+  :hook (prog-mode . flymake-mode)
+  :bind (("C-c C-n" . flymake-goto-next-error)
+         ("C-c C-p" . flymake-goto-prev-error)))
 
-(use-package flycheck
+(use-package flymake-popon
   :ensure t
-  :hook (after-init . global-flycheck-mode)
-  :init
-  ;; https://www.flycheck.org/en/latest/user/syntax-checkers.html#variable-flycheck-disabled-checkers
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-  :bind(("C-c C-n" . flycheck-next-error)
-        ("C-c C-p" . flycheck-previous-error))
-  :config
-  (flycheck-pos-tip-mode))
+  :diminish
+  :hook (flymake-mode . flymake-popon-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ git-modes
@@ -419,7 +424,7 @@
 ;;; @ GitHub Actions
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(use-package flycheck-actionlint
+(use-package flymake-actionlint
   :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -439,9 +444,8 @@
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t)))
 
-(use-package flycheck-golangci-lint
-  :ensure t
-  :hook (go-mode . flycheck-golangci-lint-setup))
+(use-package flymake-golangci
+  :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ groovy-mode
@@ -551,7 +555,7 @@
   (gc-cons-threshold (* gc-cons-threshold 150))
   (lsp-auto-guess-root t)
   (lsp-completion-enable nil)
-  (lsp-diagnostics-provider :flycheck)
+  (lsp-diagnostics-provider :flymake)
   (lsp-document-sync-method lsp--sync-incremental)
   (lsp-enable-file-watchers nil)
   (lsp-headerline-breadcrumb-enable nil)
@@ -1080,7 +1084,7 @@
   :after yaml-mode)
 
 ;; yamllint
-(use-package flycheck-yamllint
+(use-package flymake-yamllint
   :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
