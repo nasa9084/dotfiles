@@ -393,7 +393,7 @@
   :ensure t
   :functions exec-path-from-shell-copy-envs
   :hook (after-init . (lambda ()
-                        (when (memq system-type '("darwin"))
+                        (when (memq system-type '(darwin))
                           (let ((envs '("PATH" "HOME" "GOPATH" "GOPRIVATE")))
                             (exec-path-from-shell-copy-envs envs))))))
 
