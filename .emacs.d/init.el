@@ -632,9 +632,8 @@
 ;; add more informations to the minibuffer completions
 (use-package marginalia
   :ensure t
-  :functions (marginalia--time-absolute--month-number)
-  :functions marginalia-mode
   :config
+  :functions (marginalia-mode marginalia--time-absolute--month-number)
   (defun marginalia--time-absolute--month-number (time)
     "Format TIME as an absolute age but use month number instead of month name."
     (let ((system-time-locale "C"))
