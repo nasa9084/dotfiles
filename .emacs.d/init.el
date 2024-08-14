@@ -212,14 +212,13 @@
          ("C-:" . consult-line))
   :defines (consult-line consult-buffer-sources consult-line-start-from-top)
   :functions consult-customize
+  :custom ((consult-line-start-from-top t)
+           (consult-buffer-sources '(consult--source-buffer
+                                     consult--source-modified-buffer
+                                     consult--source-project-buffer-hidden)))
   :config
   (consult-customize
-   consult-line :prompt "Search: ")
-  (setq consult-buffer-sources '(
-                                 consult--source-buffer
-                                 consult--source-modified-buffer
-                                 consult--source-project-buffer-hidden))
-  (setq consult-line-start-from-top t))
+   consult-line :prompt "Search: "))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ cua-base
