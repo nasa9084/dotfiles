@@ -8,6 +8,9 @@
  ;; display-line-numbers-mode
  `(line-number-current-line ((t (:foreground ,"#CCCCCC"))))
 
+ ;; flymake-popon-mode
+ `(flymake-popon ((t (:background ,"#404040" :foreground ,"#CC9166" :distant-foreground ,"#CCCCCC" :weight bold))))
+
  ;; markdown-mode
  `(markdown-code-face ((t (:background ,"#333333" :extend t))))
  )
@@ -19,4 +22,4 @@
 ;; mode: emacs-lisp
 ;; End:
 
-;;; ends here
+;;; something-theme.el ends here
