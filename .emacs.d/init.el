@@ -391,18 +391,21 @@
 
 (use-package exec-path-from-shell
   :ensure t
-  :functions exec-path-from-shell-copy-envs
-  :hook (after-init . (lambda ()
-                        (when (memq system-type '(darwin))
-                          (let ((envs '("PATH" "HOME" "GOPATH" "GOPRIVATE")))
-                            (exec-path-from-shell-copy-envs envs))))))
+  :functions exec-path-from-shell-initialize
+  :custom
+  (exec-path-from-shell-arguments nil)
+  (exec-path-from-shell-variables '("PATH" "HOME" "GOPATH" "GOPRIVATE"))
+  :config
+  (when (memq system-type '(darwin))
+    (exec-path-from-shell-initialize)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ flymake
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package flymake
-  :hook (prog-mode . flymake-mode)
+  :hook ((prog-mode . flymake-mode)
+         (yaml-mode . flymake-mode))
   :bind (("C-c C-n" . flymake-goto-next-error)
          ("C-c C-p" . flymake-goto-prev-error)))
 
@@ -425,7 +428,8 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package flymake-actionlint
-  :ensure t)
+  :ensure t
+  :hook (yaml-mode . flymake-actionlint-action-load-when-actions-file))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ go
@@ -445,14 +449,16 @@
     (add-hook 'before-save-hook #'lsp-organize-imports t t)))
 
 (use-package flymake-golangci
-  :ensure t)
+  :ensure t
+  :hook (go-mode . flymake-golangci-load))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ groovy-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package groovy-mode
-  :ensure t)
+  :ensure t
+  :commands groovy-mode)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ highlight-indent-guides
@@ -516,28 +522,24 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package json-mode
-  :ensure t)
+  :ensure t
+  :mode ("\\.json" . json-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ jsonnet-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package jsonnet-mode
-  :ensure t)
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ k8s-mode
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-(use-package k8s-mode
-  :ensure t)
+  :ensure t
+  :mode ("\\.jsonnet" . jsonnet-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ kotlin-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package kotlin-mode
-  :ensure t)
+  :ensure t
+  :mode ("\\.kt" . kotlin-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ lsp-mode
@@ -711,6 +713,7 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package org
+  :mode ("\\.org" . org-mode)
   :config
   (setq org-startup-with-inline-images t))
 
@@ -737,7 +740,8 @@
 
 ;; protocolbuffers
 (use-package protobuf-mode
-  :ensure t)
+  :ensure t
+  :mode ("\\.proto" . protobuf-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ python-mode
@@ -775,7 +779,8 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package rego-mode
-  :ensure t)
+  :ensure t
+  :mode ("\\.rego" . rego-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ review-mode
@@ -783,7 +788,8 @@
 
 ;; Major mode for Re:VIEW
 (use-package review-mode
-  :ensure t)
+  :ensure t
+  :mode ("\\.re" . review-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ rust
@@ -815,18 +821,26 @@
 ;;; @ sh-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(defun sh-set-shell-tmp-path-advice (func &rest r)
-  (let ((exec-path (cons "/bin/" exec-path))) (apply func r)))
+(use-package sh-script
+  :init
+  (defun sh-set-shell-tmp-path-advice (func &rest r)
+    (let ((exec-path (cons "/bin/" exec-path))) (apply func r)))
 
-(advice-add 'sh-set-shell
-            :around 'sh-set-shell-tmp-path-advice)
+  (advice-add 'sh-set-shell
+              :around 'sh-set-shell-tmp-path-advice)
+  :mode ("\\.sh" . sh-mode))
+
+(use-package flymake-shellcheck
+  :ensure t
+  :hook (sh-mode . flymake-shellcheck-load))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ shell-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(use-package comint
-  :custom (comint-scroll-show-maximum-output t))
+; recently not using...
+;(use-package comint
+;  :custom (comint-scroll-show-maximum-output t))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ ssh-config-mode
@@ -878,7 +892,8 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package sql-indent
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package sql
   :hook (sql-mode . sqlind-minor-mode))
@@ -900,7 +915,8 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 (use-package terraform-mode
-  :ensure t)
+  :ensure t
+  :hook (terraform-mode . terraform-format-on-save-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ tree-sitter
@@ -1057,7 +1073,9 @@
 ;; built-in yaml-ts-mode is too simple and I'd like to use
 ;; indent functions defined for yaml-mode
 (use-package yaml-mode
-  :ensure t)
+  :ensure t
+  :mode (("\\.yaml" . yaml-mode)
+         ("\\.yml" . yaml-mode)))
 
 ;; built-in yaml-ts-mode
 ;; nothing except tree-sitter grammar is implemented in the major mode
@@ -1076,7 +1094,8 @@
 
 ;; yamllint
 (use-package flymake-yamllint
-  :ensure t)
+  :ensure t
+  :hook (yaml-mode . flymake-yamllint-setup))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ theme
