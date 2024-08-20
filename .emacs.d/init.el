@@ -428,7 +428,8 @@
 
 (use-package flymake-actionlint
   :ensure t
-  :hook (yaml-mode . flymake-actionlint-action-load-when-actions-file))
+  :hook ((yaml-mode . flymake-actionlint-action-load-when-actions-file)
+         (yaml-ts-mode . flymake-actionlint-action-load-when-actions-file)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ go
