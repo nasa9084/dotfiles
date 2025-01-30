@@ -1093,11 +1093,12 @@
          (yaml-ts-mode . (lambda() (setq-local indent-line-function 'yaml-indent-line))))
   :mode (("\\.yamllint\\'" . yaml-ts-mode) ; .yamllint file is actually yaml
          ("\\.kube/config\\'" . yaml-ts-mode)) ; .kube/config file is actually yaml
-  :bind (("|" . yaml-electric-bar-and-angle)
-         (">" . yaml-electric-bar-and-angle)
-         ("-" . yaml-electric-dash-and-dot)
-         ("." . yaml-electric-dash-and-dot)
-         ("DEL" . yaml-electric-backspace))
+  :bind (:map yaml-ts-mode
+              ("|" . yaml-electric-bar-and-angle)
+              (">" . yaml-electric-bar-and-angle)
+              ("-" . yaml-electric-dash-and-dot)
+              ("." . yaml-electric-dash-and-dot)
+              ("DEL" . yaml-electric-backspace))
   :after yaml-mode)
 
 ;; yamllint
