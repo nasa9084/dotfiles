@@ -1081,9 +1081,7 @@
 ;; built-in yaml-ts-mode is too simple and I'd like to use
 ;; indent functions defined for yaml-mode
 (use-package yaml-mode
-  :ensure t
-  :mode (("\\.yaml" . yaml-mode)
-         ("\\.yml" . yaml-mode)))
+  :ensure t)
 
 ;; built-in yaml-ts-mode
 ;; nothing except tree-sitter grammar is implemented in the major mode
@@ -1091,7 +1089,8 @@
 (use-package yaml-ts-mode
   :hook ((yaml-ts-mode . lsp-deferred)
          (yaml-ts-mode . (lambda() (setq-local indent-line-function 'yaml-indent-line))))
-  :mode (("\\.yamllint\\'" . yaml-ts-mode) ; .yamllint file is actually yaml
+  :mode (("\\.ya?ml\\'" . yaml-ts-mode)
+         ("\\.yamllint\\'" . yaml-ts-mode) ; .yamllint file is actually yaml
          ("\\.kube/config\\'" . yaml-ts-mode)) ; .kube/config file is actually yaml
   :bind (:map yaml-ts-mode
               ("|" . yaml-electric-bar-and-angle)
