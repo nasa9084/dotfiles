@@ -1092,7 +1092,7 @@
   :mode (("\\.ya?ml\\'" . yaml-ts-mode)
          ("\\.yamllint\\'" . yaml-ts-mode) ; .yamllint file is actually yaml
          ("\\.kube/config\\'" . yaml-ts-mode)) ; .kube/config file is actually yaml
-  :bind (:map yaml-ts-mode
+  :bind (:map yaml-ts-mode-map
               ("|" . yaml-electric-bar-and-angle)
               (">" . yaml-electric-bar-and-angle)
               ("-" . yaml-electric-dash-and-dot)
