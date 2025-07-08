@@ -107,7 +107,7 @@ bindkey '^R' peco-history-selection
 eval "$(hub alias -s)"
 
 # load secrets
-source ${HOME}/.zshrc.secret
+source "${HOME}/.zshrc.secret"
 
 # starship
 eval "$(starship init zsh)"
