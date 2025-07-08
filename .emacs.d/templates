@@ -13,6 +13,58 @@ sh-mode
 ;; shelcheck
 (shellcheckignore
  "# shellcheck disable=" q)
+
+;; github actions
+yaml-mode
+
+(shellcheckignore
+ "# shellcheck disable=" q)
+
+(concurrency
+ "concurrency:" n
+ "  group: ${{ github.workflow }}-${{ github.ref }}" n
+ "  cancel-in-progress: " q
+ )
+
+(actionlint
+ "  actionlint:" > n
+ "    runs-on: " p n
+ "    timeout-minutes: 5" n
+ "    steps:" n
+ "      - name: Checkout" n
+ "        uses: actions/checkout@v4" n n
+ "      - name: Actionlint" n
+ "        uses: reviewdog/action-actionlint@v1" n
+ "        with:" n
+ "          fail_on_error: true" n q
+ )
+
+(runners
+ "self-hosted-runner:" n
+ "  labels:" n
+ "    - " q
+ )
+
+(runner-small
+ "${{ vars.RUNNER_SMALL }}")
+
+(runner-medium
+ "${{ vars.RUNNER_MEDIUM }}")
+
+(runner-large
+ "${{ vars.RUNNER_LARGE }}")
+
+(checkout
+ >
+ "- name: Checkout" n>
+ "uses: actions/checkout@v4")
+
+(setup-go
+ "- name: Setup Go" n
+ "        uses: actions/setup-go@v5" n
+ "        with:" n
+ "          go-version: 1.23")
+
 go-mode
 
 (main
