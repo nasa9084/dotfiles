@@ -112,7 +112,33 @@ source "${HOME}/.zshrc.secret"
 # starship
 eval "$(starship init zsh)"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+function preexec_kubectx_asdf_kubectl() {
+    IFS=" " read -rA cmd <<< "${1}"
+
+    if [ "${cmd[1]}" != "kubectx" ] || [ "${#cmd}" -ne 2 ]
+    then
+        return
+    fi
+
+    if ! kubectl version 2>&1 > /dev/null
+    then
+        echo "cannot get Kubernetes server version."
+        return
+    fi
+
+    version=$(kubectl --context="${cmd[2]}" version -o json | jq -r '.serverVersion.gitVersion' | tr -d 'v' 2>/dev/null)
+
+    echo "Switch kubectl version to ${version}"
+    if ! asdf list kubectl | grep "${version}" > /dev/null
+    then
+        echo "kubectl ${version} has not been installed."
+        asdf install kubectl "${version}"
+    fi
+    asdf set -u kubectl "${version}"
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec preexec_kubectx_asdf_kubectl
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
