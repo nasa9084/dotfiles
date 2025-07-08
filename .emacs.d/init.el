@@ -940,6 +940,8 @@
 
 (use-package terraform-mode
   :ensure t
+  :mode (("\\.tf\\'" . terraform-mode)
+         ("\\.terraformrc\\'" . terraform-mode))
   :hook (terraform-mode . terraform-format-on-save-mode))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
