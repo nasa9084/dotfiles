@@ -82,3 +82,163 @@ go-mode
  )
 
 (test "func Test" p "(t *testing.T) {" n> q n "}")
+
+;; terraform provider
+(datasource
+ "type " (s unexportedname) "DataSource struct {" n>
+ "*baseDataSource" n>
+ "}" n
+ n
+ "type " (s unexportedname) "Model struct {" n>
+ "}" n
+ n
+ "func New" (s exportedname) "DataSource() datasource.DataSource {" n>
+ "return &" (s unexportedname) "DataSource{" n>
+ "baseDataSource: newBaseDataSource(\"" (s datasourcename) "\")," n>
+ "}" n
+ "}" n n
+ "func (d *" (s unexportedname) "DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {" n>
+ "resp.Schema = fwschema.Schema{" n>
+ "Attributes: map[string]fwschema.Attribute{" n > q
+ "}," n >
+ "}" n
+ "}" n
+ "func (d *" (s unexportedname) "DataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {" n>
+ "tflog.Debug(ctx, \"" (s exportedname) " DataSource Read\")" n
+ n>
+ "var data " (s unexportedname) "Model" n>
+ "resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)" n>
+ "if resp.Diagnostics.HasError() {" n>
+ "return" n>
+ "}" n
+ n>
+ "//" n>
+ "// TODO: Implement something" n>
+ "//" n>
+ "resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)" n>
+ "}" n
+ n>
+ "func (data *" (s unexportedname) "Model) from(ctx context.Context, _ any) diag.Diagnostics {" n>
+ "//" n>
+ "// TODO: Implement conversion" n>
+ "//" n>
+ "return nil" n>
+ "}" >
+ )
+
+(resource
+ "var _ resource.ResourceWithConfigure = &" (s unexportedname) "Resource{}" n n
+ "type " (s unexportedname) "Resource struct {" n>
+ "*baseResource" n>
+ "}" n n
+ "func New" (s exportedname) "Resource() resource.Resource {" n>
+ "return &" (s unexportedname) "Resource{" n>
+ "baseResource: newBaseResource(\"" (s resourcename) "\")," n>
+ "}" n
+ "}" n n
+ "func (r *" (s unexportedname) "Resource) Schema(_ context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {" n
+ "resp.Schema = fwschema.Schema{" n>
+ "Attributes: map[string]fwschema.Attribute{" q "}," n>
+ "}" n
+ "}" n n
+ "func (r *" (s unexportedname) "Resource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {" n>
+ "resource.ImportStatePassthroughID(ctx, path.Root(\"" (s resourcename) "\"), req, resp)" n
+ "}" n n
+ "func (r *" (s unexportedname) "Resource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {" n>
+ "tflog.Debug(ctx, \"" (s exportedname) " Resource Create\")" n
+ n
+ "var data " (s unexportedname) "Model" n>
+ "resp.Diagnostics.Append(req.Plan.Get(ctx, &data)...)" n>
+ "if resp.Diagnostics.HasError() {" n>
+ "return">
+ "}" n
+ n>
+ "resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)" n
+ "}" n n
+ "func (r *" (s unexportedname) "Resource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {" n>
+ "tflog.Debug(ctx, \"" (s exportedname) " Resource Read\")" n
+ n>
+ "var data " (s unexportedname) "Model" n>
+ "resp.Diagnostics.Append(req.State.Get(ctx, &data)...)" n>
+ "if resp.Diagnostics.HasError() {" n>
+ "return" n>
+ "}" n
+ n
+ "resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)" n
+ "}" n
+ "func (r *" (s unexportedname) "Resource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {" n
+ "tflog.Debug(ctx, \"" (s exportedname) " Resource Update\")" n
+ "}" n n
+ "func (r *" (s unexportedname) "Resource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {" n
+ "tflog.Debug(ctx, \"" (s exportedname) " Resource Delete\")" n
+ n
+ "var data " (s unexportedname) "Model" n
+ "resp.Diagnostics.Append(req.State.Get(ctx, &data)...)" n
+ "if resp.Diagnostics.HasError() {" n
+ "return" n
+ "}"
+ n
+ "// If the logic reaches here, it implicitly succeeded and will remove" n
+ "// the resource from state if there are no other errors." n
+ "}"
+ )
+
+(attr "\"" p "\": fwschema." p "Attribute{" n> "Description: \"" q "\"," n "},")
+(tfstring p " types.String `tfsdk:\"" p "\"`" n> q)
+
+(migrationtest
+ "func Test" (s exportedname) "DataSourceSchema(t *testing.T) {" n>
+ "testDataSourceSchema(t, imon.New" (s exportedname) "DataSource())" n>
+ "}" n
+ n
+ "func TestAccDataSource" (s exportedname) "SDK2FrameworkMigration(t *testing.T) {" n>
+ "vars := config.Variables{" n>
+ (s vars)
+ "}" n>
+ "testSDK2FrameworkMigration(t, vars)" n>
+ "}" n
+ n
+ "func TestAccDataSource" (s exportedname) "(t *testing.T) {" n>
+ "acceptanceTest(t)" n>
+ n>
+ "const resourceName = \"data." (s resourcename) ".test\"" n
+ n >
+ "vars := config.Variables{" n>
+ (s vars) n>
+ "}" n
+ n
+ "checks := resource.ComposeTestCheckFunc(" n>
+ "resource.TestCheckResourceAttrSet(resourceName, \"id\")," n>
+ q n
+ ")" n
+ n>
+ "t.Run(\"SDKv2-based provider\", func(t *testing.T) {" n>
+ "// test SDKv2-based provider" n>
+ "resource.ParallelTest(t, resource.TestCase{" n>
+ "ProviderFactories: testProviderFactories()," n>
+ "Steps: []resource.TestStep{" n>
+ "{" n>
+ "ConfigDirectory: config.TestStepDirectory()," n>
+ "ConfigVariables: vars," n>
+ "Check:           checks," n>
+ "}," n>
+ "}," n>
+ "})" n>
+ "})" n
+ n>
+ "t.Run(\"Framework-based provider\", func(t *testing.T) {" n>
+ "// test Framework-based provider" n>
+ "resource.ParallelTest(t, resource.TestCase{" n>
+ "ProtoV6ProviderFactories: testProtov6ProviderFactories()," n>
+ "Steps: []resource.TestStep{" n>
+ "{" n>
+ "ConfigDirectory: config.TestStepDirectory()," n>
+ "ConfigVariables: vars," n>
+ "Check:           checks," n>
+ "}," n>
+ "}," n>
+ "})" n>
+ "})" n>
+ "}" n
+ )
+
