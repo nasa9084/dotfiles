@@ -1,4 +1,7 @@
+#!/bin/zsh
 # -*- coding: utf-8 -*-
+
+
 
 # macOS specific PATH
 case "${OSTYPE}" in
@@ -74,6 +77,10 @@ case "${OSTYPE}" in
                 export DOCKER_DEFAULT_PLATFORM=linux/amd64
         esac
 esac
+
+
+export ASDF_DATA_DIR=${HOME}/.asdf
+export PATH="${ASDF_DATA_DIR}/shims:${PATH}"
 
 # use emacs as default editor
 export EDITOR=emacs
