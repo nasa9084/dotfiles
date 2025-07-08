@@ -1,4 +1,6 @@
+#!/bin/zsh
 # -*- coding: utf-8 -*-
+# shellcheck disable=all
 
 # disable START/STOP flow control
 stty -ixon
