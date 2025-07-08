@@ -6,7 +6,7 @@
 stty -ixon
 
 # command history
-HISTFILE=$HOME/.zsh_history
+HISTFILE=${HOME}/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
