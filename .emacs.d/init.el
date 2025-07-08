@@ -206,7 +206,7 @@
 (use-package consult
   :ensure t
   :bind (([remap switch-to-buffer] . consult-buffer)
-         ("M-y" . consult-yank-pop)
+         ([remap cua-paste-pop] . consult-yank-pop)
          ([remap goto-line] . consult-goto-line)
          :map isearch-mode-map
          ("C-:" . consult-line))
