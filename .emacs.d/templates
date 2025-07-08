@@ -1,4 +1,5 @@
 ;;; tempel templates -*- lisp-data -*-
+;;; See https://github.com/minad/tempel for details
 
 emacs-lisp-mode
 
@@ -8,6 +9,10 @@ emacs-lisp-mode
  ";;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;" n n q
  )
 
+sh-mode
+;; shelcheck
+(shellcheckignore
+ "# shellcheck disable=" q)
 go-mode
 
 (main
