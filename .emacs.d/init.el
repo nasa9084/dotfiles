@@ -575,6 +575,7 @@
   (lsp-diagnostics-provider :flymake)
   (lsp-document-sync-method lsp--sync-incremental)
   (lsp-enable-file-watchers nil)
+  (lsp-enable-snippet nil)
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-imenu-show-container-name nil)
   (lsp-lens-enable nil)
