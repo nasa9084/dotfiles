@@ -545,7 +545,16 @@
 
 (use-package kotlin-mode
   :ensure t
-  :mode ("\\.kt" . kotlin-mode))
+  :mode ("\\.kt" . kotlin-mode)
+  :hook ((kotlin-mode . lsp-deferred)))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ lsp-java
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package lsp-java
+  :ensure t
+  :hook ((java-mode . lsp-deferred)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ lsp-mode
