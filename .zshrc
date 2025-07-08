@@ -61,6 +61,7 @@ alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias rezshrc="source ~/.zshrc"
 alias cat="bat"
 alias grep="rg"
+alias jq="~/bin/jq" # https://gist.github.com/nasa9084/caee63465acb712d43301c488534e7b5
 
 if [[ "${OSTYPE}" == "darwin"* ]] && [ "$(uname -m)" = "arm64" ]
 then
