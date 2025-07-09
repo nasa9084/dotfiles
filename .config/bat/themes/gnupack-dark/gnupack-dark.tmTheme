@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>gnupack-dark</string>
+	<key>settings</key>
+	<array>
+		<dict>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#262626</string>
+				<key>caret</key>
+				<string>#97979B</string>
+				<key>foreground</key>
+				<string>#CCCCCC</string>
+				<key>invisibles</key>
+				<string>#686868</string>
+				<key>lineHighlight</key>
+				<string>#000000</string>
+				<key>selection</key>
+				<string>#57C7FF</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Comment</string>
+			<key>scope</key>
+			<string>comment</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#BBCC66</string>
+			</dict>
+		</dict>
+	</array>
+	<key>uuid</key>
+	<string>3ceaa6ef-3427-64f9-8cfc-2f611676fb77</string>
+</dict>
+</plist>
