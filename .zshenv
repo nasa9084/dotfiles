@@ -102,5 +102,8 @@ export DOCKER_BUILDKIT=1
 # krew - plugin system for kubectl
 export PATH="${PATH}:${HOME}/.krew/bin"
 
+# pipx
+export PATH="${PATH}:${HOME}/.local/bin"
+
 # load secrets
 source ${HOME}/.zshenv.secret
