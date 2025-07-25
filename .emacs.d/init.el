@@ -453,6 +453,21 @@
   :hook (go-mode . flymake-golangci-load))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ gptel
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package gptel
+  :ensure t
+  :config
+  (setq gptel-model 'gpt-4o
+        gptel-backend
+        (gptel-make-openai "gpt4o"
+          :protocol "https"
+          :host (getenv "OPENAI_PROXY_URL")
+          :key #'gptel-api-key-from-auth-source
+          :models '(gpt-4o))))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ groovy-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
