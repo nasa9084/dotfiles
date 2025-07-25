@@ -106,4 +106,4 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 export PATH="${PATH}:${HOME}/.local/bin"
 
 # load secrets
-source ${HOME}/.zshenv.secret
+source "${HOME}/.zshenv.secret"
