@@ -41,7 +41,7 @@ case "${OSTYPE}" in
                 eval $(/usr/libexec/path_helper -s)
 
                 # some brew formulae installs executables into sbin
-                export PATH="/usr/local/sbin:$PATH"
+                export PATH="/usr/local/sbin:${PATH}"
 
                 # GNU make
                 export PATH="/opt/homebrew/opt/make/libexec/gnubin:${PATH}"
@@ -56,7 +56,7 @@ case "${OSTYPE}" in
                 export MANPATH="/opt/homebrew/opt/gnu-sed/libexec/gnuman:${MANPATH}"
 
                 # GNU tar
-                export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+                export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:${PATH}"
                 export MANPATH="/opt/homebrew/opt/gnu-tar/libexec/gnuman:${MANPATH}"
 
                 # coreutils
@@ -64,11 +64,11 @@ case "${OSTYPE}" in
                 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:${MANPATH}"
 
                 # findutils; xargs or find
-                export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
-                export MANPATH="/opt/homebrew/opt/findutils/libexec/gnuman:$PATH"
+                export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:${PATH}"
+                export MANPATH="/opt/homebrew/opt/findutils/libexec/gnuman:${PATH}"
 
                 # mysql-client
-                export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+                export PATH="/opt/homebrew/opt/mysql-client/bin:${PATH}"
 
                 # Rancher Desktop
                 export PATH="${HOME}/.rd/bin:${PATH}"
