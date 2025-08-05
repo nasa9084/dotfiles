@@ -3,3 +3,6 @@ enable=require-variable-braces
 
 # Expressions don't expand in single quotes, use double quotes for that.
 disable=SC2016
+
+# Allow opening any source files, even if not spcified as input
+external-sources=true
