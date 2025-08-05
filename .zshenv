@@ -104,5 +104,9 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 # pipx
 export PATH="${PATH}:${HOME}/.local/bin"
 
+# npm
+NPM_PREFIX="$(npm prefix --location=global)"
+export PATH="${PATH}:${NPM_PREFIX}/bin"
+
 # load secrets
 source "${HOME}/.zshenv.secret"
