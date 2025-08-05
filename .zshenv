@@ -78,9 +78,8 @@ case "${OSTYPE}" in
         esac
 esac
 
-
-export ASDF_DATA_DIR=${HOME}/.asdf
-export PATH="${ASDF_DATA_DIR}/shims:${PATH}"
+# mise, a tool to manage CLI tools
+eval "$(mise activate zsh)"
 
 # use emacs as default editor
 export EDITOR=emacs
