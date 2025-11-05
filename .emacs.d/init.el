@@ -129,6 +129,9 @@
       (t ;; on linux
        (setq shell-file-name '"/usr/bin/zsh")))
 
+;; Automatically select ascii IME after prefix key
+(mac-auto-ascii-mode t)
+
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ package manager
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
