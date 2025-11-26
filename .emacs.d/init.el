@@ -310,7 +310,6 @@
 
   (dired-recursive-copies 'always))
 
-
 (use-package ls-lisp
   :init
   (setq ls-lisp-dirs-first t)
