@@ -140,6 +140,51 @@ function preexec_kubectx_asdf_kubectl() {
 autoload -Uz add-zsh-hook
 add-zsh-hook preexec preexec_kubectx_asdf_kubectl
 
+# Configuration for vterm, a terminal emulator on emacs
+vterm_printf() {
+    if [ -n "$TMUX" ] \
+        && { [ "${TERM%%-*}" = "tmux" ] \
+            || [ "${TERM%%-*}" = "screen" ]; }; then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+
+vterm_prompt_end() {
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+}
+
+setopt PROMPT_SUBST
+PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+
+vterm_cmd() {
+    local vterm_elisp
+    vterm_elisp=""
+    while [ $# -gt 0 ]; do
+        vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
+        shift
+    done
+    vterm_printf "51;E$vterm_elisp"
+}
+
+open() {
+    local rpath="$(realpath "${@:-.}")"
+    # open in emacs, if the terminal is running in vterm and the file is a text-based one
+    if [[ "${INSIDE_EMACS}" = 'vterm' ]] \
+           && [[ -f "${rpath}" ]] \
+           && [[ "$(file --mime-encoding "${rpath}")" != "${rpath}: binary" ]]
+    then
+        vterm_cmd find-file "${rpath}"
+    else
+        /usr/bin/open "${@}"
+    fi
+}
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
