@@ -830,14 +830,6 @@
   :hook (sh-mode . flymake-shellcheck-load))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ shell-mode
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-; recently not using...
-;(use-package comint
-;  :custom (comint-scroll-show-maximum-output t))
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ ssh-config-mode
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -860,8 +852,8 @@
 (use-package state
   :ensure t
   :diminish state-mode
-  :defines (state-scratch state-emacs)
-  :functions (state-define-state state-global-mode state-mode)
+  :defines (state-scratch state-emacs state-vterm)
+  :functions (state-define-state state-global-mode state-mode vterm)
   :init
   (defvar state-keymap-prefix (kbd "C-c C-x s"))
 
@@ -879,6 +871,12 @@
     :key "e"
     :in "init.el"
     :create (find-file "~/.emacs.d/init.el"))
+
+  (state-define-state
+    state-vterm
+    :key "t"
+    :switch "*vterm*"
+    :create (vterm))
 
   (state-global-mode 1))
 
@@ -1033,6 +1031,36 @@
   :functions (volatile-highlights-mode)
   :config
   (volatile-highlights-mode t))
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ vterm
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; terminal emulator
+(use-package vterm
+  :ensure t
+  :defines vterm-mode-map
+  :functions vterm-reset-cursor-point
+  :custom
+  (vterm-always-compile-module t)
+  :init
+  (defun vterm--kill-ring-save-and-reset-cursor-point (BEG END &optional REGION)
+    (interactive (list (mark) (point) 'region))
+      (kill-ring-save BEG END REGION)
+      (vterm-reset-cursor-point))
+  :bind (:map vterm-mode-map
+              ("C-y" . vterm-yank)
+              ("M-y" . vterm-yank-pop)
+              ("M-w" . vterm--kill-ring-save-and-reset-cursor-point))
+  :custom-face
+  (vterm-color-black ((t (:foreground "#1b2b34"))))
+  (vterm-color-red ((t (:foreground "#ec5f67"))))
+  (vterm-color-green ((t (:foreground "#99c794"))))
+  (vterm-color-yellow ((t (:foreground "#fac863"))))
+  (vterm-color-blue ((t (:foreground "#6699cc"))))
+  (vterm-color-magenta ((t (:foreground "#c594c5"))))
+  (vterm-color-cyan ((t (:foreground "#62b3b2"))))
+  (vterm-color-white ((t (:foreground "#ffffff")))))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ web-mode
