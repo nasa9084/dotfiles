@@ -619,7 +619,8 @@
        (setq choices (magit--completion-table choices))))
     (completing-read prompt choices predicate require-match initial-input hist def))
 
-  (setq magit-completing-read-function #'builtin-completing-read))
+  (setq magit-completing-read-function #'builtin-completing-read)
+  (add-hook 'after-save-hook 'magit-after-save-refresh-status))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ marginalia
