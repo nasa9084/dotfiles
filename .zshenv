@@ -10,6 +10,9 @@ case "${OSTYPE}" in
                 setopt no_global_rcs
                 eval $(/usr/libexec/path_helper -s)
 
+                # utilities installed via brew
+                export PATH="/opt/homebrew/bin:${PATH}"
+
                 # some brew formulae installs executables into sbin
                 export PATH="/usr/local/sbin:${PATH}"
 
