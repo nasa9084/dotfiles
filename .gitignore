@@ -6,6 +6,7 @@
 
 # no need to manage
 .config/gcloud
+.config/karabiner/automatic_backups
 .emacs.d/.cache
 .emacs.d/elpa
 .emacs.d/url/cookies
