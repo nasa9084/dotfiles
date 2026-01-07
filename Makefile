@@ -6,7 +6,7 @@ SECRET_REPO_NAME = dotfiles-secret
 EXCLUDE = .DS_Store .git .gitmodules .gitignore
 DOTFILES = $(filter-out $(EXCLUDE), $(wildcard .??*))
 
-.PHONY: install install-secret
+.PHONY: install install-secret stow
 
 list:
 	@$(foreach dotfile,$(DOTFILES),/bin/ls -dF $(dotfile);)
@@ -44,6 +44,12 @@ clean:
 	@echo ">> Remove dotfiles"
 	@-$(foreach dotfile,$(DOTFILES),rm -vr $(HOME)/$(dotfile);)
 	@-rm -fvr $(REPO_ROOT)/github.com/$(USERNAME)/$(SECRET_REPO_NAME)
+
+stow:
+	@echo ">> stow"
+	@mkdir -p "$(HOME)/.config"
+	@stow -R -v -d "$(REPO_ROOT)/github.com/$(USERNAME)/$(REPO_NAME)" -t ~ zsh
+	@stow -R -v -d "$(REPO_ROOT)/github.com/$(USERNAME)/$(REPO_NAME)" -t ~/.config .config
 
 $(HOME)/%:
 	@echo ">> Install $(notdir $@)"
