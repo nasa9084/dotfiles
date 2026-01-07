@@ -765,10 +765,10 @@
          (scss-mode . rainbow-mode)
          (web-mode . rainbow-mode))
   :config
-  (setq rainbow-html-colors t)
-  (setq rainbow-latex-colors t)
-  (setq rainbow-x-colors t)
-  (setq rainbow-ansi-colors t))
+  (setq rainbow-html-colors nil)
+  (setq rainbow-latex-colors nil)
+  (setq rainbow-x-colors nil)
+  (setq rainbow-ansi-colors nil))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ Rego / OpenPolicyAgent
