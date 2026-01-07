@@ -9,16 +9,17 @@
 .config/karabiner/automatic_backups
 .config/mise
 .emacs.d/.cache
-.emacs.d/elpa
-.emacs.d/url/cookies
-.emacs.d/transient/history.el
-.emacs.d/network-security.data
-.emacs.d/snippets
+.emacs.d/.dap-breakpoints
 .emacs.d/.lsp-session-v1
 .emacs.d/custom.el
+.emacs.d/elpa
 .emacs.d/history
+.emacs.d/network-security.data
 .emacs.d/recentf
+.emacs.d/snippets
+.emacs.d/transient/history.el
 .emacs.d/tree-sitter
+.emacs.d/url/cookies
 
 # Created by https://www.gitignore.io/api/macos,elisp
 
