@@ -492,7 +492,7 @@
 ;;; @ java
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(setenv "JAVA_HOME" "/Users/jp24216/.sdkman/candidates/java/current")
+(setenv "JAVA_HOME" (concat (getenv "HOME") "/.sdkman/candidates/java/current"))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ javascript
