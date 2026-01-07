@@ -1,0 +1,29 @@
+font-family = Ricty
+font-family = Hack Nerd Font
+font-size = 14
+font-variation = wght=400
+font-variation-bold = wght=600
+font-thicken = true
+
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = false
+
+theme = Oceanic Next
+
+title = " "
+
+keybind = performable:super+f=esc:f
+keybind = performable:super+b=esc:b
+keybind = performable:super+w=copy_to_clipboard
+keybind = performable:ctrl+y=paste_from_clipboard
+keybind = all:shift+opt+|=text:|
+keybind = all:alt+¥=text:\\
+
+window-padding-x = 12
+window-padding-y = 14
+
+window-height = 55
+window-width = 200
+
+macos-titlebar-proxy-icon = hidden
