@@ -81,5 +81,9 @@ export PATH="${PATH}:${HOME}/.local/bin"
 NPM_PREFIX="$(npm prefix --location=global)"
 export PATH="${PATH}:${NPM_PREFIX}/bin"
 
+# pinact
+PINACT_CONFIG="${HOME}/.pinact.yaml"
+export PINACT_CONFIG
+
 # load secrets
 source "${HOME}/.zshenv.secret"
