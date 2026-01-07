@@ -717,8 +717,14 @@
 
 (use-package org
   :mode ("\\.org" . org-mode)
+  :after verb
+  :defines verb-command-map
   :config
-  (setq org-startup-with-inline-images t))
+  (setq org-startup-with-inline-images t)
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
+(use-package verb
+  :ensure t)
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ paren
