@@ -972,6 +972,7 @@
 
 (use-package undo-fu-session
   :ensure t
+  :after undo-fu
   :functions undo-fu-session-global-mode
   :init
   (undo-fu-session-global-mode))
