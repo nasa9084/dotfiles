@@ -929,7 +929,8 @@
 
 ;; define tree-sitter grammar source
 (setq treesit-language-source-alist
-      '((yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+      '((dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+        (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 ;; automatically install if the grammar has not been installed
 (dolist (element treesit-language-source-alist)
   (let* ((lang (car element)))
@@ -939,7 +940,8 @@
       (treesit-install-language-grammar lang))))
 ;; enable "TS"-powered modes
 (setq major-mode-remap-alist
-      '((yaml-mode . yaml-ts-mode)))
+      '((dockerfile-mode . dockerfile-ts-mode)
+        (yaml-mode . yaml-ts-mode)))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ undo-fu
