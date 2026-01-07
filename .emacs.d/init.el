@@ -656,6 +656,13 @@
   :custom (markdown-fontify-code-blocks-natively t))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ mermaid.js
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(use-package mermaid-ts-mode
+  :ensure t)
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ nerd-icons
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
@@ -930,6 +937,7 @@
 ;; define tree-sitter grammar source
 (setq treesit-language-source-alist
       '((dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+        (mermaid "https://github.com/monaqa/tree-sitter-mermaid")
         (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 ;; automatically install if the grammar has not been installed
 (dolist (element treesit-language-source-alist)
