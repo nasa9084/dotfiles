@@ -48,7 +48,7 @@ clean:
 stow:
 	@echo ">> stow"
 	@mkdir -p "$(HOME)/.config" "$(HOME)/.emacs.d"
-	@stow -R -v -d "$(REPO_ROOT)/github.com/$(USERNAME)/$(REPO_NAME)" -t ~ editorconfig hyper shellcheck zsh
+	@stow -R -v -d "$(REPO_ROOT)/github.com/$(USERNAME)/$(REPO_NAME)" -t ~ editorconfig shellcheck zsh
 	@stow -R -v -d "$(REPO_ROOT)/github.com/$(USERNAME)/$(REPO_NAME)" -t ~/.config .config
 	@stow -R -v -d "$(REPO_ROOT)/github.com/$(USERNAME)/$(REPO_NAME)" -t ~/.emacs.d .emacs.d
 
